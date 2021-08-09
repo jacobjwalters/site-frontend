@@ -2,7 +2,7 @@
 title: About
 ---
 
-# About me
+## About me
 I am a second-year student of
 Computer Science
 (and maybe Mathematics)
@@ -28,7 +28,7 @@ reading,
 and eclectic (read: bad) music.
 
 
-# About this site
+## About this site
 This site is generated
 from a set of markdown files using
 [Hakyll](https://jaspervdj.be/hakyll/)
