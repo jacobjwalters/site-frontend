@@ -1,4 +1,4 @@
-$SRVDIR=/srv/http/site/
+SRVDIR=/srv/http/site/
 
 all:
 	stack run site build
