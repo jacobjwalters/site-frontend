@@ -30,19 +30,19 @@ and eclectic (read: bad) music.
 
 # About this site
 This site is generated
-from a set of markdown files
-using (Hakyll)[https://jaspervdj.be/hakyll/]
-(and (Pandoc)[https://pandoc.org/]),
+from a set of markdown files using
+[Hakyll](https://jaspervdj.be/hakyll/)
+(and [Pandoc](https://pandoc.org/)),
 and served to you using
-(Scotty)[https://hackage.haskell.org/package/scotty]
-and (Warp)[https://hackage.haskell.org/package/warp].
+[Scotty](https://hackage.haskell.org/package/scotty) and
+[Warp](https://hackage.haskell.org/package/warp).
 It's hosted on a VPS from
-(Contabo)[https://contabo.com].
+[Contabo](https://contabo.com).
 I thoroughly recommend all of these.
 
 The CSS I'm currently using is
 a modified
-(tufte-css)[https://edwardtufte.github.io/tufte-css/].
+[tufte-css](https://edwardtufte.github.io/tufte-css/).
 This allows for the nice side and margin notes
 you can see throughout my site.
 
