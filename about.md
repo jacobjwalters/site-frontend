@@ -45,6 +45,11 @@ a modified
 [tufte-css](https://edwardtufte.github.io/tufte-css/).
 This allows for the nice side and margin notes
 you can see throughout my site.
+To aid writing with this, I use
+[pandoc-sidenote](https://hackage.haskell.org/package/pandoc-sidenote)
+in my pandoc compiler to convert
+standard markdown footnote syntax
+into sidenotes and margin notes.
 
 Any code snippets on this site are
 released into the public domain,
