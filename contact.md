@@ -6,7 +6,7 @@ I can be emailled at the address
 generated from this Haskell program:
 
 ```hs
-map succ "I-V`ksdqr,5?rlr-dc-`b-tj"
+map succ "vdal`rsdq?i`bnav`ksd-qr"
 ```
 
 (this obfuscation is to mitigate email scaping bots)
