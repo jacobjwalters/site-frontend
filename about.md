@@ -4,8 +4,7 @@ title: About
 
 ## About me
 I am a second-year student of
-Computer Science
-(and maybe Mathematics)
+Computer Science and Mathematics
 at the University of Edinburgh.
 
 My interests in CS areas are in
