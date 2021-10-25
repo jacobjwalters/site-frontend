@@ -73,7 +73,7 @@ While I recommend learning general category theory first
 to fully understand them,
 it's handy to know how to use them regardless.
 
-- [Nottingham course on Advanced FP](https://www.youtube.com/watch?v=2u0T7z6O9jM&list=PLF1Z-APd9zK5uFc8FKr_di9bfsYv8-lbc)
+- [Nottingham course on Advanced FP](https://www.youtube.com/watch?v=2u0T7z6O9jM&list=PLF1Z-APd9zK5uFc8FKr_di9bfsYv8-lbc):
 A series of youtube lectures from the University of Nottingham.
 If you've taken inf1a, I would skip the first five lectures here.
 They're a great introduction to functors, applicatives and monads
@@ -93,14 +93,14 @@ The following is a collection of links
 that should help you in writing more idiomatic Haskell
 and in using GHC to your full advantage.
 
-- [Tweag/Richard Eisenberg's videos](https://www.youtube.com/channel/UCI1Z201n-8OelkSg0DVOsng)
+- [Tweag/Richard Eisenberg's videos](https://www.youtube.com/channel/UCI1Z201n-8OelkSg0DVOsng):
 Richard has made an extensive series of videos
 that cover many different areas in Haskell programming.
 Richard (at the time of writing) works on GHC's internals,
 and has a wealth of knowledge
 which he shares through these videos.
 
-- [forall Type Quantifier](https://github.com/wasp-lang/haskell-handbook/blob/master/forall.md)
+- [forall Type Quantifier](https://github.com/wasp-lang/haskell-handbook/blob/master/forall.md):
 Short github post that explains how the `forall` keyword
 interacts with various different GHC extensions.
 Contains some nifty tricks for
@@ -117,7 +117,7 @@ in a very rigorous manner
 It's a natural link between Haskell,
 Category Theory and the various logic algebras.
 
-- [Homotopy Type Theory](https://homotopytypetheory.org/book/)
+- [Homotopy Type Theory](https://homotopytypetheory.org/book/):
 HoTT is a fairly recent development/discovery,
 which links together the fields of homotopy and type theory.
 It can be used as a base set of axioms
@@ -140,12 +140,12 @@ These links should serve as a decent primer
 into the various topics,
 and provide good intuition for further study.
 
-- [Clark Barwick](https://www.youtube.com/user/clarkbarwick)
+- [Clark Barwick](https://www.youtube.com/user/clarkbarwick):
 YouTube channel of a lecturer from UoE!
 He's an excellent educator
 and has a very good (and rigorous)
 series of lectures on introductory topology.
 
-- [An Antipodal Abstract Topoligist](https://www.youtube.com/channel/UClI8OrDeDbsSgbYuZoZYLjw)
+- [An Antipodal Abstract Topoligist](https://www.youtube.com/channel/UClI8OrDeDbsSgbYuZoZYLjw):
 The YouTube channel of an aussie Ph.D student
 studying algebraic topology and homotopy.
