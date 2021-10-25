@@ -29,6 +29,16 @@ the hardback version is only £25 including shipping
 (and is absolutely worth it)!
 I'd recommend checking out his other blog posts too.
 
+- [An Invitation to Applied Category Theory (by David Spivak)](https://www.cambridge.org/core/books/an-invitation-to-applied-category-theory/D4C5E5C2B019B2F9B8CE9A4E9E84D6BC)
+This book uses more examples from mathematics proper,
+and while technically an introduction to
+*Applied* Category Theory,
+which is a slightly different field,
+it serves as a very good motivator
+and gives great intuition
+if you already have some experience
+with abstract algebra.
+
 - [The Catsters](https://www.youtube.com/user/TheCatsters):
 small, old youtube channel with worryingly energetic hosts.
 They give really good, if absurdly fast,
