@@ -159,3 +159,25 @@ series of lectures on introductory topology.
 - [An Antipodal Abstract Topoligist](https://www.youtube.com/channel/UClI8OrDeDbsSgbYuZoZYLjw):
 The YouTube channel of an aussie Ph.D student
 studying algebraic topology and homotopy.
+
+
+## Combinatorial Game Theory
+- [HACKENBUSH: a window to a new world of math](https://www.youtube.com/watch?v=ZYj4NkeGPdM)
+An excellent video that walks you through
+the ideas that give rise to Combinatorial Game Theory,
+and later on to the surreal number system
+discovered by John Conway.
+You can use some of the knowledge here to cheat in gambling ;)
+
+- [Surreal Numbers (by Donald Knuth)](https://www.informit.com/store/surreal-numbers-9780201038125)
+A different take on introducing the surreal numbers,
+this novella features a couple
+who discover a clay tablet with strange markings
+while on an extended retreat...
+
+
+## Fun Things
+- [Sheaves in Minecraft](https://quoteme.github.io/posts/sheaves_in_minecraft)
+A blog post explaining categorical sheaves
+applied to minecraft chunk loading
+and nearby entity checking.
