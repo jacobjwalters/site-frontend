@@ -126,6 +126,14 @@ interacts with various different GHC extensions.
 Contains some nifty tricks for
 working with type-level programming.
 
+- [GHC Wiki article on Code Generation](https://gitlab.haskell.org/ghc/ghc/-/wikis/commentary/compiler/generated-code):
+An article on how GHC code
+gets generated,
+with an explanation of the
+Spineless Tagless G-machine intermediate representation.
+Critical reading if you wish to understand
+the execution model used by GHC.
+
 
 ## Type Theory
 Type theory is a very active area of interest
