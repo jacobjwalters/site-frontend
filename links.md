@@ -74,7 +74,7 @@ It's a really good introduction to
 the various different combinators and recursion schemes
 that allow you to write *really* terse programs.
 
-- [Catamorphisms and F-algebras](https://medium.com/@olxc/catamorphisms-and-f-algebras-b4e91380d134)
+- [Catamorphisms and F-algebras](https://medium.com/@olxc/catamorphisms-and-f-algebras-b4e91380d134):
 Similar to the above blog post,
 this article is an excellent walk
 through the motivating ideas behind catamorphisms,
