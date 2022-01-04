@@ -20,10 +20,12 @@ and frizzy,
 and simply didn't *ever* stay in the style I wanted.
 Thanks to the
 [/r/curlyhair/](https://reddit.com/r/curlyhair)
-community[^]
-(I know,
+community
+[^]:
+I know,
 taking hygiene/fashion advice from redditors.
-I was as skeptical as you are.)
+I was as skeptical as you are.
+
 I've sinced managed to change that.
 
 # What is Frizz?
@@ -63,19 +65,21 @@ Enter sulphates.
 
 Sulfates strip the hair of silicones,
 allowing them to be washed away with water as normal.
-[^](They're also responsible for the bubbly lather in shampoo!)
+[^]:
+They're also responsible for the bubbly lather in shampoo!
+
 However, they strip away the natural oils in your hair,
 which causes curly hair to dry out
 much quicker than it otherwise would.
 It's *this* that I found to cause my frizz.
 
-[^]
-(It's worth noting that there are some silicones
+[^]:
+It's worth noting that there are some silicones
 that *are* water soluble,
 and therefore don't build up as much.
 These are perfectly fine to use with curly hair!
 To check if a certain silicone is good or bad,
-use one of the tools listed later on.)
+use one of the tools listed later on.
 
 So from here, we know to avoid sulphates and
 (most) silicones.
@@ -95,7 +99,8 @@ This might sound like it's hard to find,
 but it's actually fairly easy to find these
 in the UK these days -
 I got my current one from my closest Morrison's.
-[^](Admittedly it's a big Morrison's)
+[^]:
+Admittedly it's a big Morrison's.
 
 After using that for a couple of days,
 (I usually go for three)
@@ -119,7 +124,8 @@ and work it in to your scalp,
 massaging rigorously as you work your way backwards.
 You want ideally total coverage of all your hair roots,
 so you may need to apply more than you first realise
-[^](A common theme I found. Make sure to get a cheap conditioner!)
+[^]:
+A common theme I found. Make sure to get a cheap conditioner!
 
 Then, rinse it out under water
 while still massaging your scalp
@@ -128,8 +134,10 @@ to ensure it all gets washed out.
 Co-washing doesn't work for everyone,
 and if you find that your hair isn't getting
 cleaned properly using just conditioner
-[^](I'd first make sure it's not just the specific product you're using,
-different conditioners clean differently)
+[^]:
+I'd first make sure it's not just the specific product you're using,
+different conditioners clean differently.
+
 then I would suggest using instead a "low-poo,"
 shampoo that is free of sulphates and silicones.
 
