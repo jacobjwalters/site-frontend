@@ -74,6 +74,16 @@ It's a really good introduction to
 the various different combinators and recursion schemes
 that allow you to write *really* terse programs.
 
+- [Catamorphisms and F-algebras](https://medium.com/@olxc/catamorphisms-and-f-algebras-b4e91380d134):
+Similar to the above blog post,
+this article is an excellent walk
+through the motivating ideas behind catamorphisms,
+using a simple numeric expression evaluator as an example.
+Reading the fixpoint combinator article may help as
+this post relies on it
+(although it gives a slightly less detailed explanation to what it does).
+Code examples are in both Haskell and Scala.
+
 ## Monads etc.
 Ah, monads.
 The "just trust me dude" of Haskell,
@@ -115,6 +125,14 @@ Short github post that explains how the `forall` keyword
 interacts with various different GHC extensions.
 Contains some nifty tricks for
 working with type-level programming.
+
+- [GHC Wiki article on Code Generation](https://gitlab.haskell.org/ghc/ghc/-/wikis/commentary/compiler/generated-code):
+An article on how GHC code
+gets generated,
+with an explanation of the
+Spineless Tagless G-machine intermediate representation.
+Critical reading if you wish to understand
+the execution model used by GHC.
 
 
 ## Type Theory
