@@ -20,13 +20,13 @@ and frizzy,
 and simply didn't *ever* stay in the style I wanted.
 Thanks to the
 [/r/curlyhair/](https://reddit.com/r/curlyhair)
-community
-[^]:
+community[^reddit]
+I've sinced managed to change that.
+
+[^reddit]:
 I know,
 taking hygiene/fashion advice from redditors.
 I was as skeptical as you are.
-
-I've sinced managed to change that.
 
 # What is Frizz?
 > If you know your enemy and yourself,
@@ -64,16 +64,17 @@ So silicones need to be removed.
 Enter sulphates.
 
 Sulfates strip the hair of silicones,
-allowing them to be washed away with water as normal.
-[^]:
+allowing them to be washed away with water as normal.[^lather]
+
+[^lather]:
 They're also responsible for the bubbly lather in shampoo!
 
 However, they strip away the natural oils in your hair,
 which causes curly hair to dry out
 much quicker than it otherwise would.
-It's *this* that I found to cause my frizz.
+It's *this* that I found to cause my frizz.[^soluble]
 
-[^]:
+[^soluble]:
 It's worth noting that there are some silicones
 that *are* water soluble,
 and therefore don't build up as much.
@@ -98,8 +99,9 @@ without adding any more to your hair.
 This might sound like it's hard to find,
 but it's actually fairly easy to find these
 in the UK these days -
-I got my current one from my closest Morrison's.
-[^]:
+I got my current one from my closest Morrison's.[^morrisons]
+
+[^morrisons]:
 Admittedly it's a big Morrison's.
 
 After using that for a couple of days,
@@ -123,8 +125,9 @@ emulsify some into your hands,
 and work it in to your scalp,
 massaging rigorously as you work your way backwards.
 You want ideally total coverage of all your hair roots,
-so you may need to apply more than you first realise
-[^]:
+so you may need to apply more than you first realise.[^cheap]
+
+[^cheap]:
 A common theme I found. Make sure to get a cheap conditioner!
 
 Then, rinse it out under water
@@ -133,13 +136,13 @@ to ensure it all gets washed out.
 
 Co-washing doesn't work for everyone,
 and if you find that your hair isn't getting
-cleaned properly using just conditioner
-[^]:
-I'd first make sure it's not just the specific product you're using,
-different conditioners clean differently.
-
+cleaned properly using just conditioner[^lowpoo]
 then I would suggest using instead a "low-poo,"
 shampoo that is free of sulphates and silicones.
+
+[^lowpoo]:
+I'd first make sure it's not just the specific product you're using,
+different conditioners clean differently.
 
 # Conditioning
 Conditioner is to hair as moisturiser is to skin.
