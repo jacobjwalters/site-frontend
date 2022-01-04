@@ -28,7 +28,7 @@ I know,
 taking hygiene/fashion advice from redditors.
 I was as skeptical as you are.
 
-# What is Frizz?
+## What is Frizz?
 > If you know your enemy and yourself,
 you need not fear the result
 of a hundred battles.
@@ -45,7 +45,7 @@ What you may not realise
 is that the products you apply to your hair
 may be the cause of this lack of moisture!
 
-# Silicones and Sulfates
+## Silicones and Sulfates
 Silicones, in themselves,
 are not a bad thing for your hair.
 They're effectively a lubricant,
@@ -88,7 +88,7 @@ But we can't just quit shampoo cold-turkey,
 we need to remove the silicones
 that are already in our hair.
 
-# De-cone your dome
+## De-cone your dome
 We need to do what's called a "reset wash".
 This consists of using a specific type of shampoo,
 that contains sulphates but NOT silicones.
@@ -109,7 +109,7 @@ After using that for a couple of days,
 your hair should be free of insoluble silicones.
 Now, you can move onto your new routine.
 
-# Co-washing
+## Co-washing
 The categorical dual of washing!
 Co-washing is short for "conditioner washing,"
 which largely does what it says on the tin.
@@ -144,7 +144,7 @@ shampoo that is free of sulphates and silicones.
 I'd first make sure it's not just the specific product you're using,
 different conditioners clean differently.
 
-# Conditioning
+## Conditioning
 Conditioner is to hair as moisturiser is to skin.
 It prevents damage and split ends,
 and keeps it together,
@@ -189,7 +189,7 @@ and gives great results,
 since it pretty much finds
 the correct water-conditioner balance for you.
 
-# Gel
+## Gel
 Hair gel is commonly associated with
 hardcore and Brendan Fraser,
 and might not be the first thing you'd
@@ -212,7 +212,7 @@ If you find that gel weighs your hair down too much,
 consider using a mousse instead.
 They're lighter and will usually give similar effects.
 
-# My Routine
+## My Routine
 I try to keep this up to date with the current products I use.
 They're all verified to have the right ingredients for the job,
 so you can rest easy if you wish to use them.
@@ -252,7 +252,7 @@ I don't like the dispenser cap on it though,
 since you need a lot of pumps to get anywhere near enough gel out.
 This might change one day.
 
-# How to Find Products
+## How to Find Products
 As mentioned,
 Finding the right combination of products is
 largely just trial and error.
