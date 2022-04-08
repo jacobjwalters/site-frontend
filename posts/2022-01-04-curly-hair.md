@@ -252,6 +252,25 @@ I don't like the dispenser cap on it though,
 since you need a lot of pumps to get anywhere near enough gel out.
 This might change one day.
 
+## Drying
+I use a microfibre towel to dry my hair.
+The fabric in standard Terry towels
+separates my curls in the drying process and makes eveyrthing super frizzy.
+Microfibres tend to keep things together,
+dry faster, and are much lighter and compact compared to normal towels.
+There's loads of different ones being sold on Amazon
+for under £10, so as an easy trick to improving hair defintion,
+definitely try this.
+
+## Other Things That Help
+I find using a silk pillowcase
+does wonders for keeping hair intact overnight.
+They're also super good for your skin!
+
+As I said before, a microfibre towel is a must.
+You can use an old t-shirt if you need to,
+but towels aren't that expensive and are a lot nicer to use.
+
 ## How to Find Products
 As mentioned,
 Finding the right combination of products is
