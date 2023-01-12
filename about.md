@@ -3,26 +3,34 @@ title: About
 ---
 
 ## About me
-I am a second-year student of
+I am a third-year student of
 Computer Science and Mathematics
 at the University of Edinburgh.
+
+I'm working with
+[Ohad Kammar](https://denotational.co.uk/)
+on implementing a probabilistic music composition library
+in [Idris2](https://idris-lang.org/),
+a dependently-typed language.
 
 My interests in CS areas are in
 programming language theory,
 type theory,
+probabilistic programming
 compiler design,
 operating systems and low level computing,
 and hardware synthesis.
-I'm also interested in security,
+I'm also interested in cyber security,
 though mainly as a hobby.
 
 My mathematical intrigues lie mostly in
-category theory
+category theory,
+cryptography,
 and abstract algebra,
-as well of course in (meta-)logic.
+and of course in logic as well.
 
-Outside of the nerd life,
-I enjoy casual rowing,
+Outside of the nerd life, I enjoy
+synthesizers (playing and making them),
 reading,
 and eclectic (read: bad) music.
 
