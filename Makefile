@@ -5,5 +5,3 @@ all:
 	stack run site build
 	rm -rf $(SRVDIR)
 	mv _site $(SRVDIR)
-	sudo systemctl restart site
-
