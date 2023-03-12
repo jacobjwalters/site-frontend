@@ -6,13 +6,15 @@ import           Hakyll
 
 
 --------------------------------------------------------------------------------
+-- | Root URL for the site
+root :: String
+root = "https://jacobwalte.rs"
+
+--------------------------------------------------------------------------------
 pdc :: Compiler (Item String)
 pdc = pandocCompilerWithTransform defaultHakyllReaderOptions
                                   defaultHakyllWriterOptions
                                   usingSideNotes
-
-root :: String
-root = "https://jacobwalte.rs"
 
 main :: IO ()
 main = hakyll $ do
@@ -58,8 +60,8 @@ main = hakyll $ do
             singlePages <- loadAll (fromList ["about.md", "contact.md", "links.md", "archive.html"])
             let sitemapCtx =
                     constField "root" root <>
-                    listField "singlepages" defaultContext (pure singlePages) <>
-                    listField "posts"       postCtx        (pure posts)
+                    listField "singlepages" rootCtx (pure singlePages) <>
+                    listField "posts"       postCtx (pure posts)
             makeItem ""
                 >>= loadAndApplyTemplate "templates/sitemap.xml" sitemapCtx
 
@@ -80,9 +82,13 @@ main = hakyll $ do
 
 
 --------------------------------------------------------------------------------
+-- | Extend the default context with the root of the site
+rootCtx :: Context String
+rootCtx = constField "root" root <> defaultContext
+
 postCtx :: Context String
 postCtx =
     constField "root" root <>
     dateField "isodate" "%Y-%m-%d" <>
     dateField "date" "%B %e, %Y" <>
-    defaultContext
+    rootCtx
