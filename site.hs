@@ -83,6 +83,6 @@ main = hakyll $ do
 postCtx :: Context String
 postCtx =
     constField "root" root <>
-    isoDateField "isodate" "%Y-%m-%d" <>
-    humanDateField "date" "%B %e, %Y" <>
+    dateField "isodate" "%Y-%m-%d" <>
+    dateField "date" "%B %e, %Y" <>
     defaultContext
