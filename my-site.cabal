@@ -7,8 +7,8 @@ executable site
   main-is:          site.hs
   build-depends:    base
                   , hakyll
-		  , containers
-		  , pandoc
-		  , pandoc-sidenote
+                  , containers
+                  , pandoc
+                  , pandoc-sidenote
   ghc-options:      -threaded
   default-language: Haskell2010
