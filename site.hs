@@ -55,7 +55,7 @@ main = hakyll $ do
         route idRoute
         compile $ do
             posts <- recentFirst =<< loadAll "posts/*"
-            singlePages <- loadAll (fromList ["about", "contact"])
+            singlePages <- loadAll (fromList ["about.html", "contact.html", "archive.html"])
             let pages = posts <> singlePages
                 sitemapCtx =
                     constField "root" root <>
