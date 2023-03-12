@@ -58,7 +58,7 @@ main = hakyll $ do
             singlePages <- loadAll (fromList ["about.md", "contact.md", "links.md", "archive.html"])
             let sitemapCtx =
                     constField "root" root <>
-                    listField "singlepages" defaultContext (pure singlePages)
+                    listField "singlepages" defaultContext (pure singlePages) <>
                     listField "posts"       postCtx        (pure posts)
             makeItem ""
                 >>= loadAndApplyTemplate "templates/sitemap.xml" sitemapCtx
