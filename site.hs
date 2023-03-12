@@ -56,10 +56,10 @@ main = hakyll $ do
         compile $ do
             posts <- recentFirst =<< loadAll "posts/*"
             singlePages <- loadAll (fromList ["about.md", "contact.md", "links.md", "archive.html"])
-            let pages = posts <> singlePages
-                sitemapCtx =
+            let sitemapCtx =
                     constField "root" root <>
-                    listField "pages" postCtx (return pages)
+                    listField "singlepages" defaultContext (pure singlePages)
+                    listField "posts"       postCtx        (pure posts)
             makeItem ""
                 >>= loadAndApplyTemplate "templates/sitemap.xml" sitemapCtx
 
