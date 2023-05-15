@@ -1,6 +1,7 @@
 ---
 title: How I Deal With Curly Hair
 author: Jacob Walters
+description: This is my current hair routine, and the science behind why it works.
 ---
 
 This page details my current hair routine

@@ -1,0 +1,6 @@
+$if(mode)$-*- mode: $mode$ -*-
+$endif$#+title:$title$$if(author)$
+#+author:$author$$endif$
+[[file:https://jacobwalte.rs/index.org][Home]] [[file:https://jacobwalte.rs/about.org][About]] [[file:https://jacobwalte.rs/contact.org][Contact]] [[file:https://jacobwalte.rs/archive.org][Archive]]
+
+$body$

@@ -1,0 +1,2 @@
+$for(posts)$- [[file:https://jacobwalte.rs$url$][$title$]] - $date$ $if(description)$ :: $description$$endif$
+$endfor$

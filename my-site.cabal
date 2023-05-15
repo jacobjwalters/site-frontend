@@ -9,6 +9,9 @@ executable site
                   , hakyll
                   , containers
                   , pandoc
+                  , pandoc-types
                   , pandoc-sidenote
+                  , regex-compat
+                  , text
   ghc-options:      -threaded
   default-language: Haskell2010

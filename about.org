@@ -1,0 +1,23 @@
+---
+title: About
+description: Find out about me and this site.
+---
+* About me
+I am a third-year student of Computer Science and Mathematics at the University of Edinburgh.
+
+I'm working with [[https://denotational.co.uk/][Ohad Kammar]] on implementing a probabilistic music composition library in [[https://idris-lang.org/][Idris2]], a dependently-typed language.
+
+My interests in CS areas are in programming language theory, type theory, probabilistic programming compiler design, operating systems and low level computing, and hardware synthesis. I'm also interested in cyber security, though mainly as a hobby.
+
+My mathematical intrigues lie mostly in category theory, abstract algebra, cryptography, and of course logic.
+
+Outside of the nerd life, I enjoy synthesizers (playing and making them), reading, and eclectic (read: bad) music.
+
+* About this site
+This site is generated from a set of Org files using [[https://jaspervdj.be/hakyll/][Hakyll]] (and [[https://pandoc.org/][Pandoc]]), and served to you using [[https://caddyserver.com/][Caddy]]. It's hosted on a VPS from [[https://contabo.com][Contabo]], which I've infected with [[https://nixos.org][NixOS]]. I thoroughly recommend all of these.
+
+The CSS I'm currently using is a modified [[https://edwardtufte.github.io/tufte-css/][tufte-css]]. This allows for the nice side and margin notes you can see throughout my site. To aid writing with this, I use [[https://hackage.haskell.org/package/pandoc-sidenote][pandoc-sidenote]] in my pandoc compiler to convert standard markdown footnote syntax into sidenotes and margin notes.
+
+You can alo browse this site entirely from within Emacs using Org mode! I'll have a post up detailing the (minor) configuration options you need for this to work, and how I implemented this.
+
+Any code snippets on this site are released into the public domain, except where otherwise noted. All art assets are my copyright, except where otherwise noted.

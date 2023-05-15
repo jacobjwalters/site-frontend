@@ -1,0 +1,12 @@
+---
+title: jacobwalte.rs
+mode: org
+---
+
+Welcome to my site! You're currently browsing over Org. [[https://jacobwalte.rs/][Open this link]] to view this site in your (non-Emacs) browser.
+
+* Posts
+Below is a list of my recent blog posts. You can find the complete list in the [[file:https://jacobwalte.rs/archive.org][archives]].
+$partial("templates/post-list.org")$
+* Links
+[[file:links.org][Here's]] a collection of learning resources and other links that I've found useful.
