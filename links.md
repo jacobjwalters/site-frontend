@@ -1,3 +1,7 @@
+---
+title: Links
+description: A dump of links to resources I've found to be useful.
+---
 This is a collection of links I found to be useful
 when learning about various
 theoretical computer science and

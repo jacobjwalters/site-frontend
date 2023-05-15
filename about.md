@@ -1,5 +1,6 @@
 ---
 title: About
+description: Find out about me and this website!
 ---
 
 ## About me
