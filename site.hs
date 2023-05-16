@@ -23,7 +23,7 @@ pdc :: Compiler (Item String)
 pdc = pandocCompilerWithTransform
   defaultHakyllReaderOptions
   defaultHakyllWriterOptions
-  (convertOrgLinks . usingSideNotes)
+  (convertOrgLinks . removeFootnotesHeader . usingSideNotes)
 
 -- | Convert links from .org files to .html
 convertOrgLinks :: Pandoc -> Pandoc
@@ -33,6 +33,12 @@ convertOrgLinks = walk $ \inline -> case inline of
   where
     orgRegex :: String -> String
     orgRegex str = subRegex (mkRegex "^(.*?)\\.org$") str "\\1.html"
+
+-- | Remove empty footnotes header from the bottom of the page
+removeFootnotesHeader :: Pandoc -> Pandoc
+removeFootnotesHeader = walk $ \inline -> case inline of
+    Header 1 ("footnotes", [], []) _ -> Null
+    _ -> inline
 
 main :: IO ()
 main = hakyll $ do
