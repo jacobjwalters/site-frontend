@@ -13,24 +13,29 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build the site in the stack container
+    
+    - name: Cache stack folder
+      uses: actions/cache@v3
+      with:
+        path: ~/.stack
+        key: ${{ runner.os }}-${{ hashFiles('stack.yaml') }}
+        
+    - name: Install Dependencies
+      run: sudo apt install -y pkg-config zlib1g-dev stack
+      
+    - name: Build Site
       run: |
-        docker run \
-        -v ${{ github.workspace }}:/srv/hakyll -v ${{ github.workspace }}/_site:/srv/hakyll/_site \
-        fpco/stack-build:latest /bin/bash -c \
-        "chmod 777 /srv/hakyll && \
-         cd /srv/hakyll && \
-         stack install --allow-different-user && \
-         stack build --allow-different-user --fast && \
-         stack exec site build"
-    - name: list artifacts
-      run: find ${{ github.workspace }}/_site
-    - name: SSH Remote Commands
-      uses: appleboy/ssh-action@v0.1.10
+        cd ${{ github.workspace }}
+        make build
+      
+    - name: Deploy over SSH
+      uses: appleboy/scp-action@v0.1.4
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
-        port: ${{ secrets.PORT }}
-        script: ${{ secrets.DEPLOYSCRIPT }}
-
+        # source to copy from
+        source: ${{ github.workspace }}/_site
+        # destination to download on server
+        target: ${{ secrets.DEPLOY_DIR }}
+        rm: true
