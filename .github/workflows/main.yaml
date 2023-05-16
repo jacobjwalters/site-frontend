@@ -19,6 +19,7 @@ jobs:
         -v ${{ github.workspace }}:/srv/hakyll -v ${{ github.workspace }}/_site:/srv/hakyll/_site \
         fpco/stack-build-small:latest /bin/bash -c \
         "chmod 777 /srv/hakyll && \
+         sudo apt-get install -y pkg-config zlib1g-dev \
          cd /srv/hakyll && \
          stack install --allow-different-user && \
          stack build --allow-different-user --fast && \
