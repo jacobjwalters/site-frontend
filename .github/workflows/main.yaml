@@ -25,3 +25,6 @@ jobs:
          stack exec site build"
     - name: list artifacts
       run: find ${{ github.workspace }}/_site
+    - name: SSH Remote Commands
+      uses: appleboy/ssh-action@v0.1.10
+
