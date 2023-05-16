@@ -5,7 +5,7 @@ extra-deps:
   - pandoc-sidenote-0.22.1.0
 
 nix:
-  enable: true
+  #enable: true
   packages:
     - zlib
     - pkg-config
