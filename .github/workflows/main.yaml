@@ -31,7 +31,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         # source to copy from
-        source: ${{ github.workspace }}/_site
+        source: "_site/"
         # destination to download on server
         target: ${{ secrets.DEPLOY_DIR }}
         rm: true
