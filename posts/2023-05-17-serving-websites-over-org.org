@@ -27,7 +27,7 @@ description: blah blah blah
 Welcome to my post! Today, we'll be ...
 #+end_src
 
-It's possible to define a pandoc compiler that allows you to specify these with the standard Org headers for the title and author, but I use these tags for a few purposes that aren't supported by the Org headers, so it's easier to keep using the Hakyll header. Luckily for us, we can strip it away easily using =getResourceBody=. We can then fill in the standard Org headers using a template. I [[https://github.com/9nine9nine9/site-frontend/blob/master/templates/default.org][made one]] that also has header links, like the HTML version of my site.
+It's possible to define a pandoc compiler that allows you to specify these with the standard Org headers for the title and author, but I use these tags for a few purposes that aren't supported by the Org headers, so it's easier to keep using the Hakyll header. Luckily for us, we can strip it away easily using =getResourceBody=. We can then fill in the standard Org headers using a template. I [[https://github.com/jacobjwalters/site-frontend/blob/master/templates/default.org][made one]] that also has header links, like the HTML version of my site.
 
 We do still need to produce Org files as output. This basically consists of defining additional matchers for each fie we want to generate, and applying the Org compiler and templates instead of the HTML ones. Hakyll's [[https://jaspervdj.be/hakyll/tutorials/06-versions.html][version tags]] make this really easy to do.
 
