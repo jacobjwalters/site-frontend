@@ -1,0 +1,74 @@
+---
+title: Serving Websites with Org
+description: Emacs can browse remote Org files as if they were local. We can exploit this to serve websites entirely with Org mode!
+---
+*TL;DR*: My site can be browsed over Org mode! Go to [[Emacs Setup]] to see how.
+
+I wrote in my [[file:2023-05-12-website.org][last post]] about how my blog posts are written in Org mode. It's a very nice format for writing this sort of thing, with built in support for heading structure, links, images, and much more. It's also nice for reading, as you can collapse sections, use your favourite Emacs focus package[fn:1] for greater comfort, and even link directly to sections from your own Org notes. If you're reading a technical post, you can even execute code blocks from within the post!
+
+This got me thinking.
+
+Since Org provides such a nice reading environment, why not also serve my site's content over Org? Hakyll, the site generator I use, makes this very simple, as I can just tell it to serve the same Org files I write my posts in. Surely Emacs is flexible enough to allow this?
+
+* The Emacs Side
+It turns out, as always, that it is. There's a built-in mode called ~url-handler-mode~ that lets us treat remote files as if they're local. 
+This works by wrapping the Emacs file handling primitives, which means it affects any function that tries to load a file. Crucially, this includes Org links, so we can link to remote pages and have them download and open entirely with Emacs.
+
+By default, Org won't download images and render them inline, even if you have inline images enabled by default. Luckily, the variable =org-display-remote-inline-images= lets us control this behaviour. You can choose to =skip= files (the default), =download= them every time, or =cache= them whenever the remote file is updated. I recommend the latter. With this, we have pretty much everything we need on the client.
+
+* The Hakyll Side
+Hakyll is actually a bit finicky when dealing with Org input. It requires a yaml heading with variables for templating purposes, like this:
+#+begin_src yaml
+---
+title: This is the title of my amazing blog post
+author: Tim Smith
+description: blah blah blah
+---
+Welcome to my post! Today, we'll be ...
+#+end_src
+
+It's possible to define a pandoc compiler that allows you to specify these with the standard Org headers for the title and author, but I use these tags for a few purposes that aren't supported by the Org headers, so it's easier to keep using the Hakyll header. Luckily for us, we can strip it away easily using =getResourceBody=. We can then fill in the standard Org headers using a template. I [[https://github.com/9nine9nine9/site-frontend/blob/master/templates/default.org][made one]] that also has header links, like the HTML version of my site.
+
+We do still need to produce Org files as output. This basically consists of defining additional matchers for each fie we want to generate, and applying the Org compiler and templates instead of the HTML ones. Hakyll's [[https://jaspervdj.be/hakyll/tutorials/06-versions.html][version tags]] make this really easy to do.
+
+** Homepage
+With this, everything works pretty much flawlessly, except for the homepage. When we access =https://jacobwalte.rs= in a browser, it knows to automatically access =/index.html=. Org, not being built for this, doesn't. Forcing the user to remember to add =/index.org= is really bad UX, so we need to find some way to automatically redirect Emacs traffic to that page.
+
+Luckily, Emacs has its own user agent! When we browse a site (through ~url-handler-mode~ or an Emacs browser like ~w3~), we use something like =URL/Emacs Emacs/30.0.50 (PureGTK; x86_64-pc-linux-gnu)= as our user agent. You can check yours by connecting to [[https://ifconfig.me/ua]]. So if we check against the user agent, we can automatically redirect to the Org file.
+
+Caddy (the webserver I use) can do this easily, with the following rule:
+#+begin_src Caddyfile
+@emacs-ua {
+  header User-Agent *Emacs*
+  path /
+}
+redir @emacs-ua /index.org
+#+end_src
+
+This redirects any Emacs traffic from =https://jacobwalte.rs/= to =https://jacobwalte.rs/index.org=. It's important that we filter for the root path, as otherwise any file we try to access would bring us to the index page!
+
+This /nearly/ works. Unfortunately, Emacs has no way to tell this is an Org file. The way I got around this was by adding a mode descriptor line to the homepage (and the homepage only):
+#+begin_src org
+-*- mode: org -*-
+#+title: jacobwalte.rs
+...
+#+end_src
+
+This tells Emacs to use Org for that particular file. With that, everything is ready to go!
+
+* Emacs Setup
+To browse my site over Emacs, simply add the following to your config:
+#+begin_src elisp
+(url-handler-mode)
+(setq org-display-remote-inline-images 'cache)
+#+end_src
+
+You can read the full post for an explanation of how these work.
+
+
+The second line is optional, but basically allows Org to display inline images (which is disabled by default, presumably for security reasons).
+
+Now, all you have to do is run =find-file= (=C-x C-f= in vanilla Emacs, =SPC .= in DOOM), and navigate to =https://jacobwalte.rs=. You should now see my homepage, rendered in beautiful high-fidelity Org!
+
+* Footnotes
+[fn:1] I like [[https://github.com/joaotavora/darkroom][darkroom]], but there's also [[https://github.com/rnkn/olivetti][olivetti]].
