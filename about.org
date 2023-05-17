@@ -18,6 +18,6 @@ This site is generated from a set of Org files using [[https://jaspervdj.be/haky
 
 The CSS I'm currently using is a modified [[https://edwardtufte.github.io/tufte-css/][tufte-css]]. This allows for the nice side and margin notes you can see throughout my site. To aid writing with this, I use [[https://hackage.haskell.org/package/pandoc-sidenote][pandoc-sidenote]] in my pandoc compiler to convert standard markdown footnote syntax into sidenotes and margin notes.
 
-You can alo browse this site entirely from within Emacs using Org mode! I'll have a post up detailing the (minor) configuration options you need for this to work, and how I implemented this.
+You can alo browse this site entirely from within Emacs using Org mode! Find out how [[file:posts/2023-05-17-serving-websites-over-org.org][here]].
 
 Any code snippets on this site are released into the public domain, except where otherwise noted. All art assets are my copyright, except where otherwise noted.
