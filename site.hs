@@ -8,8 +8,6 @@ import           Text.Pandoc.Definition
 import           Text.Pandoc.Walk
 import           Text.Pandoc.SideNote (usingSideNotes)
 
-import Debug.Trace
-
 import           Hakyll
 
 
@@ -28,11 +26,13 @@ pdc = pandocCompilerWithTransform
 -- | Convert links from .org files to .html
 convertOrgLinks :: Pandoc -> Pandoc
 convertOrgLinks = walk $ \inline -> case inline of
-    Link attr inline (url, title) -> Link attr inline (pack (orgRegex (unpack url)), title)
+    Link attr il (url, title) -> Link attr il (pack (orgRegex (unpack url)), title)
+    Span attr@("", ["spurious-link"], [("target", tgt)]) il -> Link attr il (internalLink tgt, tgt)
     _ -> inline
   where
-    orgRegex :: String -> String
     orgRegex str = subRegex (mkRegex "^(.*?)\\.org$") str "\\1.html"
+    internalLink = cons '#' . Data.Text.intercalate "-" . splitOn " " . toLower
+    
 
 -- | Remove empty footnotes header from the bottom of the page
 removeFootnotesHeader :: Pandoc -> Pandoc

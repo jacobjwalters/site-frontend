@@ -68,7 +68,7 @@ You can read the full post for an explanation of how these work.
 
 The second line is optional, but basically allows Org to display inline images (which is disabled by default, presumably for security reasons).
 
-Now, all you have to do is run =find-file= (=C-x C-f= in vanilla Emacs, =SPC .= in DOOM), and navigate to =https://jacobwalte.rs=. You should now see my homepage, rendered in beautiful high-fidelity Org!
+Now, all you have to do is run =find-file= (that's =C-x C-f= in vanilla Emacs, or =SPC .= in DOOM), and navigate to =https://jacobwalte.rs=. You should now see my homepage, rendered in beautiful high-fidelity Org!
 
 * Footnotes
 [fn:1] I like [[https://github.com/joaotavora/darkroom][darkroom]], but there's also [[https://github.com/rnkn/olivetti][olivetti]].
