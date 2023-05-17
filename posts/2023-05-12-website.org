@@ -4,39 +4,21 @@ description: The wild and wonderful journey of how I made this site work the way
 ---
 This is how I build and host my site. If you want to look through the code while reading, it can be found [[https://github.com/9nine9nine9/site-frontend][here]].
 
-Laziness is perhaps one of Haskell's most prominent features, and I've really taken that philosophy to heart. I want
-my software to work with as little user input as possible (once set up), preferably none. With a website, this means I want to be able to just write a blog post, upload that file somewhere, and have it appear on my site. There's plenty of sites and companies that provide this directly, but they tend not to offer you much control. I already rent a VPS (to run personal services on for me and my friends), so why not use that to host my site?
+Laziness is perhaps one of Haskell's most prominent features, and I've really taken that philosophy to heart. I want my software to work with as little user input as possible (once set up), preferably none. With a website, this means I want to be able to just write a blog post, upload that file somewhere, and have it appear on my site. There's plenty of sites and companies that provide this directly, but they tend not to offer you much control. I already rent a VPS (to run personal services on for me and my friends), so why not use that to host my site?
 
 * Hakyll
-Another famous aspect of Haskell is over-engineering simple things. It's for this reason I chose to use [[https://jaspervdj.be/hakyll/][Hakyll]], a
- static site generator written entirely in Haskell, to achieve the previous paragraph's goals. Hakyll makes use of
- the fact that [[https://pandoc.org/][pandoc]] is also written in Haskell, and can be used effectively as a library, to convert files into
- HTML. This means that I can write my pages in whatever format I like, which is nice, but I can also use pandoc
- plugins[fn:1] to alter my page generation.
+Another famous aspect of Haskell is over-engineering simple things. It's for this reason I chose to use [[https://jaspervdj.be/hakyll/][Hakyll]], a static site generator written entirely in Haskell, to achieve the previous paragraph's goals. Hakyll makes use of the fact that [[https://pandoc.org/][pandoc]] is also written in Haskell, and can be used effectively as a library, to convert files into HTML. This means that I can write my pages in whatever format I like, which is nice, but I can also use pandoc plugins[fn:1] to alter my page generation.
 
- As far as formats go, I like [[https://orgmode.org/][Org mode]]. It's built into [[https://www.gnu.org/software/emacs/][Emacs]], my text editor, and has a very straightforward
- syntax (it's similar to Markdown). The reason I use it over Markdown is that Emacs has a lot of extra support
- for Org mode, allowing you to do things like manipulate headings and content easily, execute code blocks, and
- lots more. Since Emacs is infinitely extensible, you can implement whatever feature you want and have it be
- integrated automatically with the entire Org ecosystem. I already have a very advanced Org setup for writing
- course notes, so why not adopt that for my blog posts too?
+As far as formats go, I like [[https://orgmode.org/][Org mode]]. It's built into [[https://www.gnu.org/software/emacs/][Emacs]], my text editor, and has a very straightforward syntax (it's similar to Markdown). The reason I use it over Markdown is that Emacs has a lot of extra support for Org mode, allowing you to do things like manipulate headings and content easily, execute code blocks, and lots more. Since Emacs is infinitely extensible, you can implement whatever feature you want and have it be integrated automatically with the entire Org ecosystem. I already have a very advanced Org setup for writing course notes, so why not adopt that for my blog posts too?
 
-The process of using Hakyll is straight forward. It reads in some input files, applies templates to them (things
- like HTML boilerplate, and text substitution for dates, page titles etc), and spits out a folder with your generated
- HTML. You can then point your favourite web server to these files and serve them directly! It certainly satisfies
- the laziness requirement.
+The process of using Hakyll is straight forward. It reads in some input files, applies templates to them (thing like HTML boilerplate, and text substitution for dates, page titles etc), and spits out a folder with your generated HTML. You can then point your favourite web server to these files and serve them directly! It certainly satisfies the laziness requirement.
 
 ** Footnotes and Sidenotes
-You may have noticed that note on the side three paragraphs ago. I really like this form of literal marginalia,
- as it saves you from having to jump around the document to find information, and uses screen space better on
- our modern widescreen devices.
+You may have noticed that note on the side three paragraphs ago. I really like this form of literal marginalia, as it saves you from having to jump around the document to find information, and uses screen space better on our modern widescreen devices.
 
- There's a [[https://github.com/jez/pandoc-sidenote][package]] that already implements this for us, that works with the CSS I use! This makes things
- really easy, I just add that to my =stack.yaml= and add it to the pandoc compiler in Hakyll.
+There's a [[https://github.com/jez/pandoc-sidenote][package]] that already implements this for us, that works with the CSS I use! This makes things really easy, I just add that to my =stack.yaml= and add it to the pandoc compiler in Hakyll.
 
- But, Org implements its footnotes as a heading at the end of the file. The contents of this are removed, but the
- footnote heading stays! This means it still gets rendered in the HTML, which is quite ugly. Luckily, we can
- define our own pandoc compiler:
+But, Org implements its footnotes as a heading at the end of the file. The contents of this are removed, but the footnote heading stays! This means it still gets rendered in the HTML, which is quite ugly. Luckily, we can define our own pandoc compiler:
  #+begin_src haskell
  removeFootnotesHeader :: Pandoc -> Pandoc
  removeFootnotesHeader = walk $ \inline -> case inline of
@@ -44,11 +26,10 @@ You may have noticed that note on the side three paragraphs ago. I really like t
      _                                -> inline
  #+end_src
 
- This will filter out the bogus heading.
+This will filter out the bogus heading.
  
 ** Links
-For some reason, Org links to other pages on the site don't get converted to HTML correctly. We can just
- define another compiler plugin to fix this:
+For some reason, Org links to other pages on the site don't get converted to HTML correctly. We can just define another compiler plugin to fix this:
  #+begin_src haskell
  convertOrgLinks :: Pandoc -> Pandoc
  convertOrgLinks = walk $ \inline -> case inline of
@@ -59,11 +40,10 @@ For some reason, Org links to other pages on the site don't get converted to HTM
      orgRegex str = subRegex (mkRegex "^(.*?)\\.org$") str "\\1.html" 
  #+end_src
 
- This code was originally from [[https://www.jrciii.com/posts/2021-03-14-orglinktohtml.html][here]].
+This code was originally from [[https://www.jrciii.com/posts/2021-03-14-orglinktohtml.html][here]].
 
 * Caddy
-So what is my favourite web server? I've become a fan of [[https://caddyserver.com/][Caddy]], largely because of how incredibly /easy/ it is to
- use over something like nginx. To serve files from a directory, all you have to have in your config is this:
+So what is my favourite web server? I've become a fan of [[https://caddyserver.com/][Caddy]], largely because of how incredibly /easy/ it is to use over something like nginx. To serve files from a directory, all you have to have in your config is this:
  #+begin_src Caddyfile
  jacobwalte.rs {
    encode zstd gzip
@@ -72,14 +52,10 @@ So what is my favourite web server? I've become a fan of [[https://caddyserver.c
  }
  #+end_src
 
- These few lines will serve your site over ports 80 and 443, with *HTTPS already set up for you*! This is
- genuinely all you need to host a personal site. You don't even need the =encode= line, that just helps to speed up
- page loads slightly. It really is this simple!
+These few lines will serve your site over ports 80 and 443, with *HTTPS already set up for you*! This is genuinely all you need to host a personal site. You don't even need the =encode= line, that just helps to speed up page loads slightly. It really is this simple!
  
 * NixOS
-The main benefit I reap from NixOS is the declarative configuration. This means I can keep my server's entire
- configuration in one file[fn:2], which makes it very easy to keep on top of things. Furthermore, if I'm making a
- large change to my configuration, it keeps the old one around. If something breaks, I can simply roll back.
+The main benefit I reap from NixOS is the declarative configuration. This means I can keep my server's entire configuration in one file[fn:2], which makes it very easy to keep on top of things. Furthermore, if I'm making a large change to my configuration, it keeps the old one around. If something breaks, I can simply roll back.
 
 NixOS has support for configuring Caddy directly, which is nice. The config looks something like this:
 #+begin_src nix
@@ -100,29 +76,18 @@ networking.firewall.allowedTCPPorts = [ 80 443 ];
 Basically the same as the default Caddy file, but it means less to back up.
 
 * Deployment
-With the setup so far, every time I make an update to my site, I have to push the change to GitHub, =ssh= into
- my VPS, =su= into my deploy user, =cd= into the repo, =git pull=, and finally =make=. This is slow!
+With the setup so far, every time I make an update to my site, I have to push the change to GitHub, =ssh= into my VPS, =su= into my deploy user, =cd= into the repo, =git pull=, and finally =make=. This is slow!
 
-What I really need is CI/CD. This allows me to make the change on my local device, push to GitHub, and
- have GitHub automatically do the rest for me. Thankfully, they provide a service for this, called GitHub
- Actions. This lets us spin up a container, build our site, and then =scp= it over to my VPS.
+What I really need is CI/CD. This allows me to make the change on my local device, push to GitHub, and have GitHub automatically do the rest for me. Thankfully, they provide a service for this, called GitHub Actions. This lets us spin up a container, build our site, and then =scp= it over to my VPS.
 
-GitHub actions are made by placing a yaml file in =.github/workflows/= in your repo. You can do this
- through the UI too. I find it easiest to write these by stealing other's, so [[https://github.com/9nine9nine9/site-frontend/blob/master/.github/workflows/main.yaml][here's mine]] to get you started.
+GitHub actions are made by placing a yaml file in =.github/workflows/= in your repo. You can do this through the UI too. I find it easiest to write these by stealing other's, so [[https://github.com/9nine9nine9/site-frontend/blob/master/.github/workflows/main.yaml][here's mine]] to get you started.
 
 ** Caching
-If we change our =site.hs=, we obviously need to rebuild it in order to reflect the changes in our output
- HTML. This means we need to run =stack run site build= again, which is fairly quick if we've already
- built all of Hakyll's dependencies.
+If we change our =site.hs=, we obviously need to rebuild it in order to reflect the changes in our output HTML. This means we need to run =stack run site build= again, which is fairly quick if we've already built all of Hakyll's dependencies.
 
-However, presumably for various reasons, GitHub does not preserve your container once it's run its course.
- This is bad news for us Haskell enjoyers, because Haskell builds tend to be /big/. A clean =~/.stack= for my site
- totals just over one gigabyte,[fn:3] and that's after compiling! An uncached build takes around 35 minutes on
- GitHub's machines, which is quite dreadful if you're just making a small grammatical change. Since the
- container gets wiped after the build is complete, we'd hit this 35 minute build time on every change!
+However, presumably for various reasons, GitHub does not preserve your container once it's run its course. This is bad news for us Haskell enjoyers, because Haskell builds tend to be /big/. A clean =~/.stack= for my site totals just over one gigabyte,[fn:3] and that's after compiling! An uncached build takes around 35 minutes on GitHub's machines, which is quite dreadful if you're just making a small grammatical change. Since the container gets wiped after the build is complete, we'd hit this 35 minute build time on every change!
 
-Thus, it's important we add caching to our action. We can use the official GitHub caching action to achieve
- this:
+Thus, it's important we add caching to our action. We can use the official GitHub caching action to achieve this:
  #+begin_src yaml
  - name: Cache stack folder
    uses: actions/cache@v3
@@ -131,18 +96,11 @@ Thus, it's important we add caching to our action. We can use the official GitHu
      key: ${{ hashFiles('stack.yaml') }}
  #+end_src
 
- This means our =~/.stack= will be cached by the hash of our =stack.yaml=, so if this file is untouched, we'll
- reuse the already built workdir. This takes roughly 45s to happen, as the runner now needs to download
- 1GB of stack files, but it's a big improvement over 35 minutes! If we update =stack.yaml= (by e.g. adding a new dependency, or updating GHC), it will start anew.
+This means our =~/.stack= will be cached by the hash of our =stack.yaml=, so if this file is untouched, we'll reuse the already built workdir. This takes roughly 45s to happen, as the runner now needs to download 1GB of stack files, but it's a big improvement over 35 minutes! If we update =stack.yaml= (by e.g. adding a new dependency, or updating GHC), it will start anew.
 
- It's worth remembering also that GitHub will only keep your caches around for a week, so if you don't make
- any changes for a while, you'll once again hit that 35 minute build time. There's no real way around this, but
- you could just run builds on the deployment server itself, using one of the SSH actions.
+It's worth remembering also that GitHub will only keep your caches around for a week, so if you don't make any changes for a while, you'll once again hit that 35 minute build time. There's no real way around this, but you could just run builds on the deployment server itself, using one of the SSH actions.
 
- One final thing to remember is that caching installs two actions, one that runs at the beginning (to check if
- we hit or miss the cache), and one at the end (to update the cache if necessary). If your build fails in the
- deployment phase, your cache won't be written to! So make sure everything works downstream before
- wasting 35 minutes of your life, like I did.
+One final thing to remember is that caching installs two actions, one that runs at the beginning (to check if we hit or miss the cache), and one at the end (to update the cache if necessary). If your build fails in the deployment phase, your cache won't be written to! So make sure everything works downstream before wasting 35 minutes of your life, like I did.
  
 ** Building and Deploying
 Building is thankfully very straightforward. All you need to run Hakyll is this:
@@ -155,9 +113,7 @@ Building is thankfully very straightforward. All you need to run Hakyll is this:
 
 (Assuming =make build= does what you'd expect)
 
-Once built, our HTML is probably in =_site/=, so we need to copy the contents of that folder to our VPS.
- There are many ways of doing this, but I chose SCP, since it's very straightforward. In particular, I chose
-[[https://github.com/appleboy/scp-action][this action]], as it can empty the target directory before copying, which is what we want:
+Once built, our HTML is probably in =_site/=, so we need to copy the contents of that folder to our VPS. There are many ways of doing this, but I chose SCP, since it's very straightforward. In particular, I chose [[https://github.com/appleboy/scp-action][this action]], as it can empty the target directory before copying, which is what we want:
 #+begin_src yaml
 - name: Deploy over SSH
       uses: appleboy/scp-action@v0.1.4
@@ -170,10 +126,7 @@ Once built, our HTML is probably in =_site/=, so we need to copy the contents of
         rm: true
 #+end_src
 
-You need to set up your secrets, through the Settings page for your repo. This is straightforward, you just
- put the string values in. For the SSH key, I recommend making a dedicated one for each repo (with the
- standard =ssh-keygen=), dropping the private key into the KEY secret, and installing the public key as normal.
- On NixOS, that can be done as follows:
+You need to set up your secrets, through the Settings page for your repo. This is straightforward, you just put the string values in. For the SSH key, I recommend making a dedicated one for each repo (with the standard =ssh-keygen=), dropping the private key into the KEY secret, and installing the public key as normal. On NixOS, that can be done as follows:
 #+begin_src nix
 users.users.deploy = {
   openssh.authorizedKeys.keys = [ "ssh-rsa AAAA..." ];
