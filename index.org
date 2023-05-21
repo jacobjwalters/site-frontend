@@ -3,7 +3,9 @@ title: jacobwalte.rs
 mode: org
 ---
 
-Welcome to my site! You're currently browsing over Org. [[https://jacobwalte.rs/][Open this link]] to view this site in your (non-Emacs) browser.
+I'm Jacob Walters, an undergraduate at the University of Edinburgh, and this is my personal site. Find out more about me using the links at the top, or read through some of my posts to see what I'm thinking about.
+
+You're currently browsing over Org. [[https://jacobwalte.rs/][Open this link]] to view this site in your (non-Emacs) browser.
 
 * Posts
 Below is a list of my recent blog posts. You can find the complete list in the [[file:https://jacobwalte.rs/archive.org][archives]].
