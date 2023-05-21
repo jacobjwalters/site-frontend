@@ -1,6 +1,6 @@
 ---
 title: About
-description: Find out about me and this site.
+description: Find out about me and my interests, as well as how this site is run!
 ---
 * About me
 I am a third-year student of Computer Science and Mathematics at the University of Edinburgh.
@@ -14,7 +14,7 @@ My mathematical intrigues lie mostly in category theory, abstract algebra, crypt
 Outside of the nerd life, I enjoy synthesizers (playing and making them), reading, and eclectic (read: bad) music.
 
 * About this site
-This site is generated from a set of Org files using [[https://jaspervdj.be/hakyll/][Hakyll]] (and [[https://pandoc.org/][Pandoc]]), and served to you using [[https://caddyserver.com/][Caddy]]. It's hosted on a VPS from [[https://contabo.com][Contabo]], which I've infected with [[https://nixos.org][NixOS]]. I thoroughly recommend all of these.
+You can read in detail about how this site is made in [[file:posts/2023-05-12-website.org][this post]], but the gist is: this site is generated from a set of Org files using [[https://jaspervdj.be/hakyll/][Hakyll]] (and [[https://pandoc.org/][Pandoc]]), and served to you using [[https://caddyserver.com/][Caddy]]. It's hosted on a VPS from [[https://contabo.com][Contabo]], which I've infected with [[https://nixos.org][NixOS]]. I thoroughly recommend all of these.
 
 The CSS I'm currently using is a modified [[https://edwardtufte.github.io/tufte-css/][tufte-css]]. This allows for the nice side and margin notes you can see throughout my site. To aid writing with this, I use [[https://hackage.haskell.org/package/pandoc-sidenote][pandoc-sidenote]] in my pandoc compiler to convert standard markdown footnote syntax into sidenotes and margin notes.
 

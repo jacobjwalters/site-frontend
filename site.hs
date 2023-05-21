@@ -82,7 +82,7 @@ main = hakyll $ do
             let archiveCtx =
                     listField "posts" postCtx (return posts) <>
                     constField "title"       "Archives"      <>
-                    constField "description" "Post archives" <>
+                    constField "description" "The complete list of all posts available on this site." <>
                     defaultContext
 
             makeItem ""
