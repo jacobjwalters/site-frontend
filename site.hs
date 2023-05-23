@@ -45,7 +45,11 @@ removeFootnotesHeader = walk $ \inline -> case inline of
 
 main :: IO ()
 main = hakyll $ do
-    match (fromList ["images/*", "robots.txt", "404.html"]) $ do
+    match (fromList ["robots.txt", "404.html"]) $ do
+        route   idRoute
+        compile copyFileCompiler
+
+    match "images/*" $ do
         route   idRoute
         compile copyFileCompiler
 
