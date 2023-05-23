@@ -17,14 +17,12 @@ root = "https://jacobwalte.rs"
 
 --MAIN--------------------------------------------------------------------------
 pdc :: Compiler (Item String)
-pdc = do
-  output <- pandocCompilerWithTransform
-    defaultHakyllReaderOptions
-    defaultHakyllWriterOptions
-    ( convertOrgLinks
-    . removeFootnotesHeader
-    . usingSideNotes)
-  pure $ demoteHeaders <$> output
+pdc = fmap demoteHeaders <$> pandocCompilerWithTransform
+        defaultHakyllReaderOptions
+        defaultHakyllWriterOptions
+        ( convertOrgLinks
+        . removeFootnotesHeader
+        . usingSideNotes)
 
 -- | Convert links from .org files to .html
 convertOrgLinks :: Pandoc -> Pandoc
