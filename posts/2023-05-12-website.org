@@ -42,6 +42,17 @@ For some reason, Org links to other pages on the site don't get converted to HTM
 
 This code was originally from [[https://www.jrciii.com/posts/2021-03-14-orglinktohtml.html][here]].
 
+** Headings
+Pandoc, by default, will convert Org headings directly to HTML headings. That is to say, =*= becomes =<h1>=, =**= becomes =<h2>=, etc. However, we're already using =<h1>= for our title! We need to lower the heading depths somehow.
+
+Hakyll provides a function to do this, called =demoteHeaders=. However, its type is =String -> String=, which can't be directly applied in a compiler. So we need to map it:
+#+begin_src haskell
+comp :: Compiler (Item String)
+comp = fmap demoteHeaders <$> pandocCompiler
+#+end_src
+
+This gets us what we want. Importantly, we're running the compiler before adding the template; if we ran it after, we'd demote the heading of our title too!
+
 * Caddy
 So what is my favourite web server? I've become a fan of [[https://caddyserver.com/][Caddy]], largely because of how incredibly /easy/ it is to use over something like nginx. To serve files from a directory, all you have to have in your config is this:
  #+begin_src Caddyfile
@@ -53,6 +64,18 @@ So what is my favourite web server? I've become a fan of [[https://caddyserver.c
  #+end_src
 
 These few lines will serve your site over ports 80 and 443, with *HTTPS already set up for you*! This is genuinely all you need to host a personal site. You don't even need the =encode= line, that just helps to speed up page loads slightly. It really is this simple!
+
+** Error Page
+It's handy to let users know if they've followed a broken link somewhere. Caddy allows us to redirect requests with non-200 HTTP codes to a specific page, and we can use this to provide a 404 page:
+#+begin_src Caddyfile
+handle_errors {
+  @404 {
+    expression {http.error.status_code} == 404
+  }
+  rewrite @404 /404.html
+  file_server
+}
+#+end_src
  
 * NixOS
 The main benefit I reap from NixOS is the declarative configuration. This means I can keep my server's entire configuration in one file[fn:2], which makes it very easy to keep on top of things. Furthermore, if I'm making a large change to my configuration, it keeps the old one around. If something breaks, I can simply roll back.
