@@ -10,18 +10,21 @@ import           Text.Pandoc.SideNote (usingSideNotes)
 
 import           Hakyll
 
-
---------------------------------------------------------------------------------
+--VARIABLES---------------------------------------------------------------------
 -- | Root URL for the site
 root :: String
 root = "https://jacobwalte.rs"
 
---------------------------------------------------------------------------------
+--MAIN--------------------------------------------------------------------------
 pdc :: Compiler (Item String)
-pdc = pandocCompilerWithTransform
-  defaultHakyllReaderOptions
-  defaultHakyllWriterOptions
-  (convertOrgLinks . removeFootnotesHeader . usingSideNotes)
+pdc = do
+  output <- pandocCompilerWithTransform
+    defaultHakyllReaderOptions
+    defaultHakyllWriterOptions
+    ( convertOrgLinks
+    . removeFootnotesHeader
+    . usingSideNotes)
+  pure $ demoteHeaders <$> output
 
 -- | Convert links from .org files to .html
 convertOrgLinks :: Pandoc -> Pandoc
@@ -146,7 +149,7 @@ main = hakyll $ do
     match "templates/*" $ compile templateBodyCompiler
 
 
---------------------------------------------------------------------------------
+--CONTEXTS----------------------------------------------------------------------
 -- | Extend the default context with the root of the site
 rootCtx :: Context String
 rootCtx = constField "root" root <> defaultContext
