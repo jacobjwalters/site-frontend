@@ -4,11 +4,11 @@ description: Emacs can browse remote Org files as if they were local. We can exp
 ---
 *TL;DR*: My site can be browsed over Org mode! Go to [[Emacs Setup]] to see how.
 
-I wrote in my [[file:2023-05-12-website.org][last post]] about how my blog posts are written in Org mode. It's a very nice format for writing this sort of thing, with built in support for heading structure, links, images, and much more. It's also nice for reading, as you can collapse sections, use your favourite Emacs focus package[fn:1] for greater comfort, and even link directly to sections from your own Org notes. If you're reading a technical post, you can even execute code blocks from within the post!
+I wrote in my [[file:2023-05-12-website.org][last post]] about how my blog posts are written in Org mode. It's a nice format for writing this sort of thing, with built in support for heading structure, links, images, and much more. It's also nice for reading, as you can collapse sections, use your favourite Emacs focus package[fn:1] for greater comfort, and even link directly to sections from your own Org notes. If you're reading a technical post, you can even execute code blocks from within the post!
 
 This got me thinking.
 
-Since Org provides such a nice reading environment, why not also serve my site's content over Org? Hakyll, the site generator I use, makes this very simple, as I can just tell it to serve the same Org files I write my posts in. Surely Emacs is flexible enough to allow this?
+Since Org provides such a nice reading environment, why not also serve my site's content over Org? Hakyll, the site generator I use, makes this straightforward, as I can just tell it to serve the same Org files I write my posts in. Surely Emacs is flexible enough to allow this?
 
 * The Emacs Side
 It turns out, as always, that it is. There's a built-in mode called ~url-handler-mode~ that lets us treat remote files as if they're local. 
@@ -22,9 +22,9 @@ Hakyll is actually a bit finicky when dealing with Org input. It requires a yaml
 ---
 title: This is the title of my amazing blog post
 author: Tim Smith
-description: blah blah blah
+description: A stitch in time saves nine in time, but that's the way we all go.
 ---
-Welcome to my post! Today, we'll be ...
+Welcome to my post! Today, we'll be…
 #+end_src
 
 It's possible to define a pandoc compiler that allows you to specify these with the standard Org headers for the title and author, but I use these tags for a few purposes that aren't supported by the Org headers, so it's easier to keep using the Hakyll header. Luckily for us, we can strip it away easily using =getResourceBody=. We can then fill in the standard Org headers using a template. I [[https://github.com/jacobjwalters/site-frontend/blob/master/templates/default.org][made one]] that also has header links, like the HTML version of my site.
@@ -51,7 +51,7 @@ This /nearly/ works. Unfortunately, Emacs has no way to tell this is an Org file
 #+begin_src org
 -*- mode: org -*-
 #+title: jacobwalte.rs
-...
+…
 #+end_src
 
 This tells Emacs to use Org for that particular file. With that, everything is ready to go!

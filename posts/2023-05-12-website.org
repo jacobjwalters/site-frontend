@@ -9,7 +9,7 @@ Laziness is perhaps one of Haskell's most prominent features, and I've really ta
 * Hakyll
 Another famous aspect of Haskell is over-engineering simple things. It's for this reason I chose to use [[https://jaspervdj.be/hakyll/][Hakyll]], a static site generator written entirely in Haskell, to achieve the previous paragraph's goals. Hakyll makes use of the fact that [[https://pandoc.org/][pandoc]] is also written in Haskell, and can be used effectively as a library, to convert files into HTML. This means that I can write my pages in whatever format I like, which is nice, but I can also use pandoc plugins[fn:1] to alter my page generation.
 
-As far as formats go, I like [[https://orgmode.org/][Org mode]]. It's built into [[https://www.gnu.org/software/emacs/][Emacs]], my text editor, and has a very straightforward syntax (it's similar to Markdown). The reason I use it over Markdown is that Emacs has a lot of extra support for Org mode, allowing you to do things like manipulate headings and content easily, execute code blocks, and lots more. Since Emacs is infinitely extensible, you can implement whatever feature you want and have it be integrated automatically with the entire Org ecosystem. I already have a very advanced Org setup for writing course notes, so why not adopt that for my blog posts too?
+As far as formats go, I like [[https://orgmode.org/][Org mode]]. It's built into [[https://www.gnu.org/software/emacs/][Emacs]], my text editor, and has a straightforward syntax (it's similar to Markdown). The reason I use it over Markdown is that Emacs has a lot of extra support for Org mode, allowing you to do things like manipulate headings and content easily, execute code blocks, and lots more. Since Emacs is infinitely extensible, you can implement whatever feature you want and have it be integrated automatically with the entire Org ecosystem. I already have an advanced Org setup for writing course notes, so why not adopt that for my blog posts too?
 
 The process of using Hakyll is straight forward. It reads in some input files, applies templates to them (thing like HTML boilerplate, and text substitution for dates, page titles etc), and spits out a folder with your generated HTML. You can then point your favourite web server to these files and serve them directly! It certainly satisfies the laziness requirement.
 
@@ -18,7 +18,7 @@ You may have noticed that note on the side three paragraphs ago. I really like t
 
 There's a [[https://github.com/jez/pandoc-sidenote][package]] that already implements this for us, that works with the CSS I use! This makes things really easy, I just add that to my =stack.yaml= and add it to the pandoc compiler in Hakyll.
 
-But, Org implements its footnotes as a heading at the end of the file. The contents of this are removed, but the footnote heading stays! This means it still gets rendered in the HTML, which is quite ugly. Luckily, we can define our own pandoc compiler:
+Annoyingly, however, Org implements its footnotes as a heading at the end of the file. The contents of this are removed, but the footnote heading stays! This means it still gets rendered in the HTML, which is quite ugly. Luckily, we can define our own pandoc compiler:
  #+begin_src haskell
  removeFootnotesHeader :: Pandoc -> Pandoc
  removeFootnotesHeader = walk $ \inline -> case inline of
@@ -101,7 +101,7 @@ Basically the same as the default Caddy file, but it means less to back up.
 * Deployment
 With the setup so far, every time I make an update to my site, I have to push the change to GitHub, =ssh= into my VPS, =su= into my deploy user, =cd= into the repo, =git pull=, and finally =make=. This is slow!
 
-What I really need is CI/CD. This allows me to make the change on my local device, push to GitHub, and have GitHub automatically do the rest for me. Thankfully, they provide a service for this, called GitHub Actions. This lets us spin up a container, build our site, and then =scp= it over to my VPS.
+What I really need is CI/CD. This allows me to make the change on my local device, push to GitHub, and have GitHub automatically do the rest for me. Conveniently, they provide an integrated service for this, called GitHub Actions. This lets us spin up a container, build our site, and then =scp= it over to my VPS.
 
 GitHub actions are made by placing a yaml file in =.github/workflows/= in your repo. You can do this through the UI too. I find it easiest to write these by stealing other's, so [[https://github.com/jacobjwalters/site-frontend/blob/master/.github/workflows/main.yaml][here's mine]] to get you started.
 
