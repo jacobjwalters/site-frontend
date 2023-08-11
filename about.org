@@ -5,7 +5,7 @@ description: Find out about me and my interests, as well as how this site is run
 * About me
 I am a third-year student of Computer Science and Mathematics at the University of Edinburgh.
 
-I'm working with [[https://denotational.co.uk/][Ohad Kammar]] on implementing a probabilistic music composition library in [[https://idris-lang.org/][Idris2]], a dependently-typed language.
+I'm working with [[https://denotational.co.uk/][Ohad Kammar]] on implementing a probabilistic music composition library in [[https://idris-lang.org/][Idris2]], a dependently typed language.
 
 My interests in CS areas are in programming language theory, type theory, probabilistic programming compiler design, operating systems and low level computing, and hardware synthesis. I'm also interested in cyber security, though mainly as a hobby.
 
