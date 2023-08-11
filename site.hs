@@ -58,7 +58,7 @@ main = hakyll $ do
     match (fromList ["about.org", "contact.md", "links.org"]) $ do
         route   $ setExtension "html"
         compile $ pdc
-            >>= loadAndApplyTemplate "templates/default.html" defaultContext
+            >>= loadAndApplyTemplate "templates/default.html" rootCtx
             >>= relativizeUrls
 
     match (fromList ["about.org", "contact.org", "links.org"]) $ version "org" $ do
@@ -88,7 +88,7 @@ main = hakyll $ do
                     listField "posts" postCtx (return posts) <>
                     constField "title"       "Archives"      <>
                     constField "description" "The complete list of all posts available on this site." <>
-                    defaultContext
+                    rootCtx
 
             makeItem ""
                 >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
@@ -128,7 +128,7 @@ main = hakyll $ do
             posts <- recentFirst =<< loadAll ("posts/*" .&&. hasNoVersion)
             let indexCtx =
                     listField "posts" postCtx (return posts) <>
-                    defaultContext
+                    rootCtx
 
             getResourceBody
                 >>= applyAsTemplate indexCtx
@@ -154,11 +154,17 @@ main = hakyll $ do
 --CONTEXTS----------------------------------------------------------------------
 -- | Extend the default context with the root of the site
 rootCtx :: Context String
-rootCtx = constField "root" root <> defaultContext
+rootCtx =
+    constField "root" root <>
+    pathNoExt <>
+    defaultContext
 
 postCtx :: Context String
 postCtx =
-    constField "root" root <>
     dateField "isodate" "%Y-%m-%d" <>
     dateField "date" "%B %e, %Y" <>
     rootCtx
+
+pathNoExt :: Context a
+pathNoExt = field "pathNoExt" $ pure . Prelude.takeWhile (/= '.') . toFilePath . itemIdentifier
+
