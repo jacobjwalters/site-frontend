@@ -1,0 +1,41 @@
+---
+title: Installing idris2-pack on NixOS
+description: A simple note-to-self on how to install Pack, the package manager for Idris 2, on NixOS
+---
+
+This post acts as a simple note-to-self on how to install [[https://github.com/stefan-hoeck/idris2-pack][Pack]], the primary package manager for Idris 2, on NixOS.
+
+The Idris community currently doesn't overlap much with the Nix community. Ignoring a basic nixpkgs entry for the compiler itself, and editor plugins for Vim and Emacs, there is nothing packaged for Idris 2 at all.
+
+The primary package manager that has arisen is Stefan Hoeck's /Pack/. It follows a [[https://github.com/commercialhaskell/stack][Stack]]-like model, but the main thing that we care about is it's what the community has settled on. Most libraries that have been written for Idris 2 can be installed through Pack, and it can even manage the version of the Idris 2 compiler[fn:1] itself!
+
+So Pack is a pretty indispensible tool for the Idris 2 programmer. How can we use it on NixOS?
+
+The Pack repo offers a simple command to install it to the current user's home directory on a standard Linux system.
+#+begin_src sh
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/stefan-hoeck/idris2-pack/main/install.bash)"
+#+end_src
+
+But NixOS is no standard Linux system.
+
+The first hurdle is the shebang at the start of the file. Trying to run this command as-is can return:
+#+begin_src
+bash: line 1: #!/usr/bin/env: No such file or directory
+#+end_src
+
+This can be fixed by downloading the file and running it directly with =bash install.bash=.
+
+Then, the script may complain about missing dependencies such as ~git~ or ~make~[fn:2]. These can simply be installed system-wide, or you can enter a shell that provides them.
+
+Finally, when trying to compile the RefC backend, the script may complain about not being able to access the C headers for GMP. This can't be solved by installing the ~gmp~ package globally, due to the nature of NixOS. The quickest way around this is to enter a Nix shell that exposes the package to the linker:
+#+begin_src sh
+nix-shell -p bash gcc gmp gnumake
+#+end_src
+
+The above command will expose all the needed dependencies. From here, you should be able to install Pack as normal.
+
+Ideally, a ~nixpkgs~ derivation would be made that does all of this, but I'm not experienced enough with writing Nix packages to do this myself. Maybe some day in the future.
+
+* Footnotes
+[fn:1] Since, of course, the Idris 2 compiler is just another Idris 2 library.
+[fn:2] Which tends to happen to me, as Idris is one of the first programs I try to install on a new machine :)
