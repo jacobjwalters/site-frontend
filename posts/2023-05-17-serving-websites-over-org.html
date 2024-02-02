@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Serving Websites with Org - jacobwalte.rs</title>
+        <link rel="icon" type="image/x-icon" href="../images/favicon.png">
+        <link rel="stylesheet" href="../css/tufte.css" />
+        <link rel="canonical" href="https://jacobwalte.rs/posts/2023-05-17-serving-websites-over-org.html">
+        <meta name="description" content="Emacs can browse remote Org files as if they were local. We can exploit this to serve websites entirely with Org mode!">
+    </head>
+    <body>
+	<a name="top"></a>
+        <header>
+            <div class="logo">
+                <a href="../">jacobwalte.rs</a>
+            </div>
+            <nav>
+                <a href="../">Home</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+                <a href="../archive.html">Archive</a>
+            </nav>
+        </header>
+
+        <main role="main">
+            <section>
+                <h1>Serving Websites with Org</h1>
+                <article>
+    <section class="header">
+        Posted on May 17, 2023
+        
+    </section>
+    <section>
+        <p><strong>TL;DR</strong>: My site can be browsed over Org mode! Go to <a href="#emacs-setup" class="spurious-link" target="Emacs Setup" title="Emacs Setup"><em>Emacs Setup</em></a> to see how.</p>
+<p>I wrote in my <a href="2023-05-12-website.html">last post</a> about how my blog posts are written in Org mode. It’s a nice format for writing this sort of thing, with built in support for heading structure, links, images, and much more. It’s also nice for reading, as you can collapse sections, use your favourite Emacs focus package<span class="sidenote-wrapper"><label for="sn-0" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-0" class="margin-toggle" /><span class="sidenote">I like <a href="https://github.com/joaotavora/darkroom">darkroom</a>, but there’s also <a href="https://github.com/rnkn/olivetti">olivetti</a>.<br />
+<br />
+</span></span> for greater comfort, and even link directly to sections from your own Org notes. If you’re reading a technical post, you can even execute code blocks from within the post!</p>
+<p>This got me thinking.</p>
+<p>Since Org provides such a nice reading environment, why not also serve my site’s content over Org? Hakyll, the site generator I use, makes this straightforward, as I can just tell it to serve the same Org files I write my posts in. Surely Emacs is flexible enough to allow this?</p>
+<h2 id="the-emacs-side">The Emacs Side</h2>
+<p>It turns out, as always, that it is. There’s a built-in mode called <code>url-handler-mode</code> that lets us treat remote files as if they’re local.
+This works by wrapping the Emacs file handling primitives, which means it affects any function that tries to load a file. Crucially, this includes Org links, so we can link to remote pages and have them download and open entirely with Emacs.</p>
+<p>By default, Org won’t download images and render them inline, even if you have inline images enabled by default. Luckily, the variable <code class="verbatim">org-display-remote-inline-images</code> lets us control this behaviour. You can choose to <code class="verbatim">skip</code> files (the default), <code class="verbatim">download</code> them every time, or <code class="verbatim">cache</code> them whenever the remote file is updated. I recommend the latter. With this, we have pretty much everything we need on the client.</p>
+<h2 id="the-hakyll-side">The Hakyll Side</h2>
+<p>Hakyll is actually a bit finicky when dealing with Org input. It requires a yaml heading with variables for templating purposes, like this:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> This is the title of my amazing blog post</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> Tim Smith</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">description</span><span class="kw">:</span><span class="at"> A stitch in time saves nine in time, but that's the way we all go.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">Welcome to my post! Today, we'll be…</span></span></code></pre></div>
+<p>It’s possible to define a pandoc compiler that allows you to specify these with the standard Org headers for the title and author, but I use these tags for a few purposes that aren’t supported by the Org headers, so it’s easier to keep using the Hakyll header. Luckily for us, we can strip it away easily using <code class="verbatim">getResourceBody</code>. We can then fill in the standard Org headers using a template. I <a href="https://github.com/jacobjwalters/site-frontend/blob/master/templates/default.html">made one</a> that also has header links, like the HTML version of my site.</p>
+<p>We do still need to produce Org files as output. This basically consists of defining additional matchers for each fie we want to generate, and applying the Org compiler and templates instead of the HTML ones. Hakyll’s <a href="https://jaspervdj.be/hakyll/tutorials/06-versions.html">version tags</a> make this really easy to do.</p>
+<h3 id="homepage">Homepage</h3>
+<p>With this, everything works pretty much flawlessly, except for the homepage. When we access <code class="verbatim">https://jacobwalte.rs</code> in a browser, it knows to automatically access <code class="verbatim">/index.html</code>. Org, not being built for this, doesn’t. Forcing the user to remember to add <code class="verbatim">/index.org</code> is really bad UX, so we need to find some way to automatically redirect Emacs traffic to that page.</p>
+<p>Luckily, Emacs has its own user agent! When we browse a site (through <code>url-handler-mode</code> or an Emacs browser like <code>w3</code>), we use something like <code class="verbatim">URL/Emacs Emacs/30.0.50 (PureGTK; x86_64-pc-linux-gnu)</code> as our user agent. You can check yours by connecting to <a href="https://ifconfig.me/ua">https://ifconfig.me/ua</a>. So if we check against the user agent, we can automatically redirect to the Org file.</p>
+<p>Caddy (the webserver I use) can do this easily, with the following rule:</p>
+<pre class="Caddyfile"><code>@emacs-ua {
+  header User-Agent *Emacs*
+  path /
+}
+redir @emacs-ua /index.org
+</code></pre>
+<p>This redirects any Emacs traffic from <code class="verbatim">https://jacobwalte.rs/</code> to <code class="verbatim">https://jacobwalte.rs/index.org</code>. It’s important that we filter for the root path, as otherwise any file we try to access would bring us to the index page!</p>
+<p>This <em>nearly</em> works. Unfortunately, Emacs has no way to tell this is an Org file. The way I got around this was by adding a mode descriptor line to the homepage (and the homepage only):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode org"><code class="sourceCode orgmode"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>-*- mode: org -*-</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>#+title: jacobwalte.rs</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>…</span></code></pre></div>
+<p>This tells Emacs to use Org for that particular file. With that, everything is ready to go!</p>
+<h2 id="emacs-setup">Emacs Setup</h2>
+<p>To browse my site over Emacs, simply add the following to your config:</p>
+<pre class="elisp"><code>(url-handler-mode)
+(setq org-display-remote-inline-images 'cache)
+</code></pre>
+<p>You can read the full post for an explanation of how these work.</p>
+<p>The second line is optional, but basically allows Org to display inline images (which is disabled by default, presumably for security reasons).</p>
+<p>Now, all you have to do is run <code class="verbatim">find-file</code> (that’s <code class="verbatim">C-x C-f</code> in vanilla Emacs, or <code class="verbatim">SPC .</code> in DOOM), and navigate to <code class="verbatim">https://jacobwalte.rs</code>. You should now see my homepage, rendered in beautiful high-fidelity Org!</p>
+    </section>
+</article>
+
+            </section>
+        </main>
+
+        <footer>
+            <a href="#top">top</a> | <a href="../">home</a>
+        </footer>
+    </body>
+</html>

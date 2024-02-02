@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Installing idris2-pack on NixOS - jacobwalte.rs</title>
+        <link rel="icon" type="image/x-icon" href="../images/favicon.png">
+        <link rel="stylesheet" href="../css/tufte.css" />
+        <link rel="canonical" href="https://jacobwalte.rs/posts/2024-01-07-nixos-idris2-pack.html">
+        <meta name="description" content="A simple note-to-self on how to install Pack, the package manager for Idris 2, on NixOS">
+    </head>
+    <body>
+	<a name="top"></a>
+        <header>
+            <div class="logo">
+                <a href="../">jacobwalte.rs</a>
+            </div>
+            <nav>
+                <a href="../">Home</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+                <a href="../archive.html">Archive</a>
+            </nav>
+        </header>
+
+        <main role="main">
+            <section>
+                <h1>Installing idris2-pack on NixOS</h1>
+                <article>
+    <section class="header">
+        Posted on January  7, 2024
+        
+    </section>
+    <section>
+        <p>This post acts as a simple note-to-self on how to install <a href="https://github.com/stefan-hoeck/idris2-pack">Pack</a>, the primary package manager for Idris 2, on NixOS.</p>
+<p>The Idris community currently doesn’t overlap much with the Nix community. Ignoring a basic nixpkgs entry for the compiler itself, and editor plugins for Vim and Emacs, there is nothing packaged for Idris 2 at all.</p>
+<p>The primary package manager that has arisen is Stefan Hoeck’s <em>Pack</em>. It follows a <a href="https://github.com/commercialhaskell/stack">Stack</a>-like model, but the main thing that we care about is it’s what the community has settled on. Most libraries that have been written for Idris 2 can be installed through Pack, and it can even manage the version of the Idris 2 compiler<span class="sidenote-wrapper"><label for="sn-0" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-0" class="margin-toggle" /><span class="sidenote">Since, of course, the Idris 2 compiler is just another Idris 2 library.<br />
+<br />
+</span></span> itself!</p>
+<p>So Pack is a pretty indispensible tool for the Idris 2 programmer. How can we use it on NixOS?</p>
+<p>The Pack repo offers a simple command to install it to the current user’s home directory on a standard Linux system.</p>
+<div class="sourceCode" id="cb1" data-org-language="sh"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> <span class="at">-c</span> <span class="st">&quot;</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://raw.githubusercontent.com/stefan-hoeck/idris2-pack/main/install.bash<span class="va">)</span><span class="st">&quot;</span></span></code></pre></div>
+<p>But NixOS is no standard Linux system.</p>
+<p>The first hurdle is the shebang at the start of the file. Trying to run this command as-is can return:</p>
+<pre><code>bash: line 1: #!/usr/bin/env: No such file or directory
+</code></pre>
+<p>This can be fixed by downloading the file and running it directly with <code class="verbatim">bash install.bash</code>.</p>
+<p>Then, the script may complain about missing dependencies such as <code>git</code> or <code>make</code><span class="sidenote-wrapper"><label for="sn-1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-1" class="margin-toggle" /><span class="sidenote">Which tends to happen to me, as Idris is one of the first programs I try to install on a new machine :)<br />
+<br />
+</span></span>. These can simply be installed system-wide, or you can enter a shell that provides them.</p>
+<p>Finally, when trying to compile the RefC backend, the script may complain about not being able to access the C headers for GMP. This can’t be solved by installing the <code>gmp</code> package globally, due to the nature of NixOS. The quickest way around this is to enter a Nix shell that exposes the package to the linker:</p>
+<div class="sourceCode" id="cb3" data-org-language="sh"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nix-shell</span> <span class="at">-p</span> bash gcc gmp gnumake</span></code></pre></div>
+<p>The above command will expose all the needed dependencies. From here, you should be able to install Pack as normal.</p>
+<p>Ideally, a <code>nixpkgs</code> derivation would be made that does all of this, but I’m not experienced enough with writing Nix packages to do this myself. Maybe some day in the future.</p>
+    </section>
+</article>
+
+            </section>
+        </main>
+
+        <footer>
+            <a href="#top">top</a> | <a href="../">home</a>
+        </footer>
+    </body>
+</html>

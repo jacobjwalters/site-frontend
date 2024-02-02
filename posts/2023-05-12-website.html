@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Making a website with Org mode, Hakyll, and NixOS - jacobwalte.rs</title>
+        <link rel="icon" type="image/x-icon" href="../images/favicon.png">
+        <link rel="stylesheet" href="../css/tufte.css" />
+        <link rel="canonical" href="https://jacobwalte.rs/posts/2023-05-12-website.html">
+        <meta name="description" content="The wild and wonderful journey of how I made this site work the way it does!">
+    </head>
+    <body>
+	<a name="top"></a>
+        <header>
+            <div class="logo">
+                <a href="../">jacobwalte.rs</a>
+            </div>
+            <nav>
+                <a href="../">Home</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+                <a href="../archive.html">Archive</a>
+            </nav>
+        </header>
+
+        <main role="main">
+            <section>
+                <h1>Making a website with Org mode, Hakyll, and NixOS</h1>
+                <article>
+    <section class="header">
+        Posted on May 12, 2023
+        
+    </section>
+    <section>
+        <p>This is how I build and host my site. If you want to look through the code while reading, it can be found <a href="https://github.com/jacobjwalters/site-frontend">here</a>.</p>
+<p>Laziness is perhaps one of Haskell’s most prominent features, and I’ve really taken that philosophy to heart. I want my software to work with as little user input as possible (once set up), preferably none. With a website, this means I want to be able to just write a blog post, upload that file somewhere, and have it appear on my site. There’s plenty of sites and companies that provide this directly, but they tend not to offer you much control. I already rent a VPS (to run personal services on for me and my friends), so why not use that to host my site?</p>
+<h2 id="hakyll">Hakyll</h2>
+<p>Another famous aspect of Haskell is over-engineering simple things. It’s for this reason I chose to use <a href="https://jaspervdj.be/hakyll/">Hakyll</a>, a static site generator written entirely in Haskell, to achieve the previous paragraph’s goals. Hakyll makes use of the fact that <a href="https://pandoc.org/">pandoc</a> is also written in Haskell, and can be used effectively as a library, to convert files into HTML. This means that I can write my pages in whatever format I like, which is nice, but I can also use pandoc plugins<span class="sidenote-wrapper"><label for="sn-0" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-0" class="margin-toggle" /><span class="sidenote">More on this later!<br />
+<br />
+</span></span> to alter my page generation.</p>
+<p>As far as formats go, I like <a href="https://orgmode.org/">Org mode</a>. It’s built into <a href="https://www.gnu.org/software/emacs/">Emacs</a>, my text editor, and has a straightforward syntax (it’s similar to Markdown). The reason I use it over Markdown is that Emacs has a lot of extra support for Org mode, allowing you to do things like manipulate headings and content easily, execute code blocks, and lots more. Since Emacs is infinitely extensible, you can implement whatever feature you want and have it be integrated automatically with the entire Org ecosystem. I already have an advanced Org setup for writing course notes, so why not adopt that for my blog posts too?</p>
+<p>The process of using Hakyll is straight forward. It reads in some input files, applies templates to them (thing like HTML boilerplate, and text substitution for dates, page titles etc), and spits out a folder with your generated HTML. You can then point your favourite web server to these files and serve them directly! It certainly satisfies the laziness requirement.</p>
+<h3 id="footnotes-and-sidenotes">Footnotes and Sidenotes</h3>
+<p>You may have noticed that note on the side three paragraphs ago. I really like this form of literal marginalia, as it saves you from having to jump around the document to find information, and uses screen space better on our modern widescreen devices.</p>
+<p>There’s a <a href="https://github.com/jez/pandoc-sidenote">package</a> that already implements this for us, that works with the CSS I use! This makes things really easy, I just add that to my <code class="verbatim">stack.yaml</code> and add it to the pandoc compiler in Hakyll.</p>
+<p>Annoyingly, however, Org implements its footnotes as a heading at the end of the file. The contents of this are removed, but the footnote heading stays! This means it still gets rendered in the HTML, which is quite ugly. Luckily, we can define our own pandoc compiler:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ot">removeFootnotesHeader ::</span> <span class="dt">Pandoc</span> <span class="ot">-&gt;</span> <span class="dt">Pandoc</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>removeFootnotesHeader <span class="ot">=</span> walk <span class="op">$</span> \inline <span class="ot">-&gt;</span> <span class="kw">case</span> inline <span class="kw">of</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Header</span> <span class="dv">1</span> (<span class="st">&quot;footnotes&quot;</span>, [], []) _ <span class="ot">-&gt;</span> <span class="dt">Null</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    _                                <span class="ot">-&gt;</span> inline</span></code></pre></div>
+<p>This will filter out the bogus heading.</p>
+<h3 id="links">Links</h3>
+<p>For some reason, Org links to other pages on the site don’t get converted to HTML correctly. We can just define another compiler plugin to fix this:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ot">convertOrgLinks ::</span> <span class="dt">Pandoc</span> <span class="ot">-&gt;</span> <span class="dt">Pandoc</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>convertOrgLinks <span class="ot">=</span> walk <span class="op">$</span> \inline <span class="ot">-&gt;</span> <span class="kw">case</span> inline <span class="kw">of</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Link</span> attr inline (url, title) <span class="ot">-&gt;</span> <span class="dt">Link</span> attr inline (<span class="fu">pack</span> (orgRegex (unpack url)), title)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    _                             <span class="ot">-&gt;</span> inline</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ot">    orgRegex ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    orgRegex str <span class="ot">=</span> subRegex (mkRegex <span class="st">&quot;^(.*?)\\.org$&quot;</span>) str <span class="st">&quot;\\1.html&quot;</span> </span></code></pre></div>
+<p>This code was originally from <a href="https://www.jrciii.com/posts/2021-03-14-orglinktohtml.html">here</a>.</p>
+<h3 id="headings">Headings</h3>
+<p>Pandoc, by default, will convert Org headings directly to HTML headings. That is to say, <code class="verbatim">*</code> becomes <code class="verbatim">&lt;h1&gt;</code>, <code class="verbatim">**</code> becomes <code class="verbatim">&lt;h2&gt;</code>, etc. However, we’re already using <code class="verbatim">&lt;h1&gt;</code> for our title! We need to lower the heading depths somehow.</p>
+<p>Hakyll provides a function to do this, called <code class="verbatim">demoteHeaders</code>. However, its type is <code class="verbatim">String -&gt; String</code>, which can’t be directly applied in a compiler. So we need to map it:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ot">comp ::</span> <span class="dt">Compiler</span> (<span class="dt">Item</span> <span class="dt">String</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>comp <span class="ot">=</span> <span class="fu">fmap</span> demoteHeaders <span class="op">&lt;$&gt;</span> pandocCompiler</span></code></pre></div>
+<p>This gets us what we want. Importantly, we’re running the compiler before adding the template; if we ran it after, we’d demote the heading of our title too!</p>
+<h2 id="caddy">Caddy</h2>
+<p>So what is my favourite web server? I’ve become a fan of <a href="https://caddyserver.com/">Caddy</a>, largely because of how incredibly <em>easy</em> it is to use over something like nginx. To serve files from a directory, all you have to have in your config is this:</p>
+<pre class="Caddyfile"><code>jacobwalte.rs {
+  encode zstd gzip
+  root * /srv/http/
+  file_server
+}
+</code></pre>
+<p>These few lines will serve your site over ports 80 and 443, with <strong>HTTPS already set up for you</strong>! This is genuinely all you need to host a personal site. You don’t even need the <code class="verbatim">encode</code> line, that just helps to speed up page loads slightly. It really is this simple!</p>
+<h3 id="error-page">Error Page</h3>
+<p>It’s handy to let users know if they’ve followed a broken link somewhere. Caddy allows us to redirect requests with non-200 HTTP codes to a specific page, and we can use this to provide a 404 page:</p>
+<pre class="Caddyfile"><code>handle_errors {
+  @404 {
+    expression {http.error.status_code} == 404
+  }
+  rewrite @404 /404.html
+  file_server
+}
+</code></pre>
+<h2 id="nixos">NixOS</h2>
+<p>The main benefit I reap from NixOS is the declarative configuration. This means I can keep my server’s entire configuration in one file<span class="sidenote-wrapper"><label for="sn-1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-1" class="margin-toggle" /><span class="sidenote">In actuality, I separate them by service, so my password manager is in a different file to my web server. This has no semantic difference, it’s basically the same as separating different files in a codebase.<br />
+<br />
+</span></span>, which makes it very easy to keep on top of things. Furthermore, if I’m making a large change to my configuration, it keeps the old one around. If something breaks, I can simply roll back.</p>
+<p>NixOS has support for configuring Caddy directly, which is nice. The config looks something like this:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode nix"><code class="sourceCode nix"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>services.caddy = <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">enable</span> <span class="op">=</span> <span class="cn">true</span><span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">virtualHosts</span>.<span class="st">&quot;jacobwalte.rs&quot;</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">serverAliases</span> <span class="op">=</span> <span class="op">[</span> <span class="st">&quot;www.jacobwalte.rs&quot;</span> <span class="op">];</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">extraConfig</span> <span class="op">=</span> <span class="st">''</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">      encode zstd gzip</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="st">      ...</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="st">    ''</span><span class="op">;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>networking.firewall.allowedTCPPorts = <span class="op">[</span> <span class="dv">80</span> <span class="dv">443</span> <span class="op">]</span>;</span></code></pre></div>
+<p>Basically the same as the default Caddy file, but it means less to back up.</p>
+<h2 id="deployment">Deployment</h2>
+<p>With the setup so far, every time I make an update to my site, I have to push the change to GitHub, <code class="verbatim">ssh</code> into my VPS, <code class="verbatim">su</code> into my deploy user, <code class="verbatim">cd</code> into the repo, <code class="verbatim">git pull</code>, and finally <code class="verbatim">make</code>. This is slow!</p>
+<p>What I really need is CI/CD. This allows me to make the change on my local device, push to GitHub, and have GitHub automatically do the rest for me. Conveniently, they provide an integrated service for this, called GitHub Actions. This lets us spin up a container, build our site, and then <code class="verbatim">scp</code> it over to my VPS.</p>
+<p>GitHub actions are made by placing a yaml file in <code class="verbatim">.github/workflows/</code> in your repo. You can do this through the UI too. I find it easiest to write these by stealing other’s, so <a href="https://github.com/jacobjwalters/site-frontend/blob/master/.github/workflows/main.yaml">here’s mine</a> to get you started.</p>
+<h3 id="caching">Caching</h3>
+<p>If we change our <code class="verbatim">site.hs</code>, we obviously need to rebuild it in order to reflect the changes in our output HTML. This means we need to run <code class="verbatim">stack run site build</code> again, which is fairly quick if we’ve already built all of Hakyll’s dependencies.</p>
+<p>However, presumably for various reasons, GitHub does not preserve your container once it’s run its course. This is bad news for us Haskell enjoyers, because Haskell builds tend to be <em>big</em>. A clean <code class="verbatim">~/.stack</code> for my site totals just over one gigabyte,<span class="sidenote-wrapper"><label for="sn-2" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-2" class="margin-toggle" /><span class="sidenote">Genuinely, it’s 1004MB. Almost suspicious.<br />
+<br />
+</span></span> and that’s after compiling! An uncached build takes around 35 minutes on GitHub’s machines, which is quite dreadful if you’re just making a small grammatical change. Since the container gets wiped after the build is complete, we’d hit this 35 minute build time on every change!</p>
+<p>Thus, it’s important we add caching to our action. We can use the official GitHub caching action to achieve this:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Cache stack folder</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/cache@v3</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">path</span><span class="kw">:</span><span class="at"> ~/.stack</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">key</span><span class="kw">:</span><span class="at"> ${{ hashFiles('stack.yaml') }}</span></span></code></pre></div>
+<p>This means our <code class="verbatim">~/.stack</code> will be cached by the hash of our <code class="verbatim">stack.yaml</code>, so if this file is untouched, we’ll reuse the already built workdir. This takes roughly 45s to happen, as the runner now needs to download 1GB of stack files, but it’s a big improvement over 35 minutes! If we update <code class="verbatim">stack.yaml</code> (by e.g. adding a new dependency, or updating GHC), it will start anew.</p>
+<p>It’s worth remembering also that GitHub will only keep your caches around for a week, so if you don’t make any changes for a while, you’ll once again hit that 35 minute build time. There’s no real way around this, but you could just run builds on the deployment server itself, using one of the SSH actions.</p>
+<p>One final thing to remember is that caching installs two actions, one that runs at the beginning (to check if we hit or miss the cache), and one at the end (to update the cache if necessary). If your build fails in the deployment phase, your cache won’t be written to! So make sure everything works downstream before wasting 35 minutes of your life, like I did.</p>
+<h3 id="building-and-deploying">Building and Deploying</h3>
+<p>Building is thankfully very straightforward. All you need to run Hakyll is this:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Build Site</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">  run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    cd ${{ github.workspace }}</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    make build</span></code></pre></div>
+<p>(Assuming <code class="verbatim">make build</code> does what you’d expect)</p>
+<p>Once built, our HTML is probably in <code class="verbatim">_site/</code>, so we need to copy the contents of that folder to our VPS. There are many ways of doing this, but I chose SCP, since it’s very straightforward. In particular, I chose <a href="https://github.com/appleboy/scp-action">this action</a>, as it can empty the target directory before copying, which is what we want:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Deploy over SSH</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> appleboy/scp-action@v0.1.4</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">host</span><span class="kw">:</span><span class="at"> ${{ secrets.HOST }}</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">username</span><span class="kw">:</span><span class="at"> ${{ secrets.USERNAME }}</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">key</span><span class="kw">:</span><span class="at"> ${{ secrets.KEY }}</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">source</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;_site/*&quot;</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">target</span><span class="kw">:</span><span class="at"> ${{ secrets.DEPLOY_DIR }}</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">rm</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div>
+<p>You need to set up your secrets, through the Settings page for your repo. This is straightforward, you just put the string values in. For the SSH key, I recommend making a dedicated one for each repo (with the standard <code class="verbatim">ssh-keygen</code>), dropping the private key into the KEY secret, and installing the public key as normal. On NixOS, that can be done as follows:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode nix"><code class="sourceCode nix"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>users.users.deploy = <span class="op">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">openssh</span>.<span class="va">authorizedKeys</span>.<span class="va">keys</span> <span class="op">=</span> <span class="op">[</span> <span class="st">&quot;ssh-rsa AAAA...&quot;</span> <span class="op">];</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>This should be it! Your site should now automatically be deployed whenever you commit.</p>
+    </section>
+</article>
+
+            </section>
+        </main>
+
+        <footer>
+            <a href="#top">top</a> | <a href="../">home</a>
+        </footer>
+    </body>
+</html>
