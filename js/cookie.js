@@ -26,6 +26,7 @@ let state = defaultState
 
 // ENVIRONMENT STATE
 let started = false  // Has the game started?
+let ticker = null  // ref to interval for ticker
 const tps = 20  // Ticks per second
 
 // DISPLAY CODE
@@ -116,10 +117,16 @@ function init() {
   // Initialise the game values and start the ticker
   started = true
   restore()
-  window.setInterval(tick, 1000/tps)
+  ticker = window.setInterval(tick, 1000/tps)
   for (let name in state.acs) displayAC(name)
   displayCPS()
   console.log("Started cookie clicker")
+}
+
+function stop() {
+  // Stop the game
+  started = false
+  clearInterval(ticker)
 }
 
 
