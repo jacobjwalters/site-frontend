@@ -6,8 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Jacob Walters' Homepage'</title>
         <link rel="icon" type="image/x-icon" href="/images/favicon.png">
-        <link rel="stylesheet" href="/css/tufte.css" />
         <link rel="canonical" href="https://jacobwalte.rs/">
+        <link rel="stylesheet" href="/css/tufte.css" />
+        <link rel="stylesheet" href="/css/cookie.css" />
+        <script type="text/javascript" src="/js/cookie.js"></script>
         <meta name="description" content="This is the personal site of Jacob Walters, a Computer Science researcher currently based in Edinburgh, Scotland.">
     </head>
     <body>
@@ -33,5 +35,67 @@
         <footer>
             <a href="#top">top</a>
         </footer>
+
+        <!-- COOKIE BANNER / SETTINGS -->
+        <div id="cookie_settings" style="visibility:hidden;">
+          <h2>Manage Cookies</h2>
+
+          <div style="text-align:center;">
+            <button id="cookies" onclick="click_cookie()">Cookie Clicker</button>
+            <a id="cps">0 CPS</a><br>
+          </div>
+
+          <p>Cursors:
+            <a id="cursors">0</a>
+            <button class="rightAlign" id="buycursors" onclick="buy('cursors')"></button></p>
+          <p>Grandmas:
+            <a id="grandmas">0</a>
+            <button class="rightAlign" id="buygrandmas" onclick="buy('grandmas')"></button></p>
+          <p>Farms:
+            <a id="farms">0</a>
+            <button class="rightAlign" id="buyfarms" onclick="buy('farms')"></button></p>
+          <p>Mines:
+            <a id="mines">0</a>
+            <button class="rightAlign" id="buymines" onclick="buy('mines')"></button></p>
+          <p>Factories:
+            <a id="factories">0</a>
+            <button class="rightAlign" id="buyfactories" onclick="buy('factories')"></button></p>
+          <p>Banks:
+            <a id="banks">0</a>
+            <button class="rightAlign" id="buybanks" onclick="buy('banks')"></button></p>
+          <p>Temples:
+            <a id="temples">0</a>
+            <button class="rightAlign" id="buytemples" onclick="buy('temples')"></button></p>
+          <p>Wizard Towers:
+            <a id="wizards">0</a>
+            <button class="rightAlign" id="buywizards" onclick="buy('wizards')"></button></p>
+          <p>Spaceships:
+            <a id="spaceships">0</a>
+            <button class="rightAlign" id="buyspaceships" onclick="buy('spaceships')"></button></p>
+          <p>Alchemists:
+            <a id="alchemists">0</a>
+            <button class="rightAlign" id="buyalchemists" onclick="buy('alchemists')"></button></p>
+          <p>Portals:
+            <a id="portals">0</a>
+            <button class="rightAlign" id="buyportals" onclick="buy('portals')"></button></p>
+          <p>Time Machines:
+            <a id="timeMachines">0</a>
+            <button class="rightAlign" id="buytimeMachines" onclick="buy('timeMachines')"></button></p><br>
+
+
+          <button id="cookies" onclick="reset()">Reset</button>
+          <button class="rightAlign inverseButton" id="close" onclick="hideSettings()">Save and Close</button>
+        </div>
+
+        <div id="cookie_bar">
+          <div id="cookie_bar_text">
+            <a>This site does not use cooies to improve your experience.</a>
+          </div>
+          <div id="cookie_bar_buttons">
+            <button class="inverseButton" id="cookie_bar_settings" onclick="hideBar(); showSettings(); init()" href="#">Manage Cookies</button>
+            <button class="rightAlign" onclick="hideBar();">Close</button>
+          </div>
+        </div>
+
     </body>
 </html>
