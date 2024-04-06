@@ -55,6 +55,10 @@ main = hakyll $ do
         route   idRoute
         compile compressCssCompiler
 
+    match "js/*" $ do
+        route   idRoute
+        compile copyFileCompiler
+
     match (fromList ["about.org", "contact.md", "links.org"]) $ do
         route   $ setExtension "html"
         compile $ pdc
