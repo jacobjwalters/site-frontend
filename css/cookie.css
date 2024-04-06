@@ -35,8 +35,8 @@
   position: fixed;
   left: 0;
   top: 0;
-  background: white;
-  box-shadow: 5px 0px 10px lightgrey;
+  background: inherit;
+  box-shadow: 5px 0px 10px grey;
   font-size: 14px;
   padding: 5px 2% 10px 2%;
   font-family: sans-serif;
