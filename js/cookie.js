@@ -110,7 +110,7 @@ function updateCPS() {
 function tick() {
   // Perform one tick of the game
   state.cookies += state.cps / tps
-  cookies.innerHTML = displayUnit(state.cookies, "cookie", "cookies")
+  document.getElementById("cookies").innerHTML = displayUnit(state.cookies, "cookie", "cookies")
 }
 
 function init() {
