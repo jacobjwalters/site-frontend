@@ -15,6 +15,10 @@ My mathematical intrigues lie mostly in category theory, abstract algebra, crypt
 
 Outside of the nerd life, I enjoy synthesizers (playing and making them), reading, and eclectic (read: bad) music.
 
+Here's a map of where I've been:
+[[file:images/countries.svg][A map showing countries that I've lived in or visited. The UK is marked as lived in, and most of western Europe is visited.]]
+(you can find the script that made this image [[https://github.com/jacobjwalters/countries][here]])
+
 * About this site
 You can read in detail about how this site is made in [[file:posts/2023-05-12-website.org][this post]], but the gist is: this site is generated from a set of Org files using [[https://jaspervdj.be/hakyll/][Hakyll]] (and [[https://pandoc.org/][Pandoc]]), and served to you using [[https://caddyserver.com/][Caddy]]. It's hosted on a VPS from [[https://contabo.com][Contabo]], which I've infected with [[https://nixos.org][NixOS]]. I thoroughly recommend all of these.
 
