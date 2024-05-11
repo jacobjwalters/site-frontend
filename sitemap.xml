@@ -33,6 +33,13 @@
 
 
   <url>
+    <loc>https://jacobwalte.rs/posts/2024-03-16-life-stack.html</loc>
+    <lastmod>2024-03-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
     <loc>https://jacobwalte.rs/posts/2024-01-07-nixos-idris2-pack.html</loc>
     <lastmod>2024-01-07</lastmod>
     <changefreq>weekly</changefreq>

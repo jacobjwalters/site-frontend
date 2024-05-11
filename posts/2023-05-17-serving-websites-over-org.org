@@ -13,7 +13,11 @@ Since Org provides such a nice reading environment, why not also serve my site's
 It turns out, as always, that it is. There's a built-in mode called ~url-handler-mode~ that lets us treat remote files as if they're local. 
 This works by wrapping the Emacs file handling primitives, which means it affects any function that tries to load a file. Crucially, this includes Org links, so we can link to remote pages and have them download and open entirely with Emacs.
 
-By default, Org won't download images and render them inline, even if you have inline images enabled by default. Luckily, the variable =org-display-remote-inline-images= lets us control this behaviour. You can choose to =skip= files (the default), =download= them every time, or =cache= them whenever the remote file is updated. I recommend the latter. With this, we have pretty much everything we need on the client.
+By default, Org won't download images and render them inline, even if you have inline images enabled by default. Luckily, the variable =org-display-remote-inline-images= lets us control this behaviour. You can choose to =skip= files (the default), =download= them every time, or =cache= them whenever the remote file is updated. I recommend the latter.
+
+It's also a good idea to set =org-image-actual-width= to =nil=, which allows the use of a =#+ATTR_ORG= tag to set the width of an image. I use this to make images smaller to minimise the effect of Emacs' awful image handling[fn:2].
+
+With this, we have pretty much everything we need on the client.
 
 * The Hakyll Side
 Hakyll is actually a bit finicky when dealing with Org input. It requires a yaml heading with variables for templating purposes, like this:
@@ -60,15 +64,16 @@ To browse my site over Emacs, simply add the following to your config:
 #+begin_src elisp
 (url-handler-mode)
 (setq org-display-remote-inline-images 'cache)
+(setq org-image-actual-width nil)
 #+end_src
 
 You can read the full post for an explanation of how these work.
 
-
-The second line is optional, but basically allows Org to display inline images (which is disabled by default, presumably for security reasons).
+The second and third lines are optional, but basically allow Org to display inline and resized images.
 
 Now, all you have to do is run =find-file= (that's =C-x C-f= in vanilla Emacs, or =SPC .= in DOOM), and navigate to =https://jacobwalte.rs=. You should now see my homepage, rendered in beautiful high-fidelity Org!
 
 * Footnotes
 [fn:1] I like [[https://github.com/joaotavora/darkroom][darkroom]], but there's also [[https://github.com/rnkn/olivetti][olivetti]].
+[fn:2] Try scrolling past an image and claim there's nothing wrong. 
 
