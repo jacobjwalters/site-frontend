@@ -15,6 +15,7 @@ generally if something is lower than that, it won't make it into regular use!
 ** Main Devices
 *** Framework 13 AMD
 #+ATTR_ORG: :width 700
+#+ATTR_HTML: :width 700
 [[../images/life-stack/framework-13.png]]
 5/5 - It just feels dependable.
 
@@ -26,6 +27,7 @@ I'm also in the process of replacing my desktop with this, since it gets roughly
 
 *** reMarkable 2
 #+ATTR_ORG: :width 300
+#+ATTR_HTML: :width 300
 [[../images/life-stack/rm2.png]]
 5/5 - Invaluable for research
 
@@ -39,6 +41,7 @@ In this regard, it is way better than any other tablet I've tried, even with a p
 
 *** POCO X4 Pro 5G
 #+ATTR_ORG: :width 400
+#+ATTR_HTML: :width 400
 [[../images/life-stack/poco-x4-pro-5g.png]]
 4/5 - Does the job, plenty of alternatives available.
 
@@ -52,6 +55,7 @@ By this point I use USB-C exclusively (save for my watch) to charge things, so a
 
 *** Topton R1 Pro
 #+ATTR_ORG: :width 400
+#+ATTR_HTML: :width 400
 [[../images/life-stack/topton-r1-pro.png]]
 5/5 - A very good deal, and a NAS works so much better for me than a desktop.
 
@@ -68,6 +72,7 @@ You can see which services I'm running in the software section.
 ** Peripherals
 *** Logitech Pebble
 #+ATTR_ORG: :width 400
+#+ATTR_HTML: :width 400
 [[../images/life-stack/logitech-pebble.png]]
 4/5 - Beats a touchpad
 
@@ -80,6 +85,7 @@ It's got a nice button that toggles between the USB receiver and Bluetooth for c
 
 *** Between Pro
 #+ATTR_ORG: :width 400
+#+ATTR_HTML: :width 400
 [[../images/life-stack/between-pro.png]]
 5/5 - Although they have a newer model that's presumably better
 
@@ -94,6 +100,7 @@ If I were looking to buy some of these today, Status Audio have a newer model ou
 
 *** Status Audio Flagship ANC
 #+ATTR_ORG: :width 400
+#+ATTR_HTML: :width 400
 [[../images/life-stack/flagship-anc.png]]
 5/5 - Great sound for the price.
 
@@ -108,6 +115,7 @@ Because of this, I find it super convenient to use these with my synths if I wan
 
 *** Yubico Security Key
 #+ATTR_ORG: :width 300
+#+ATTR_HTML: :width 300
 [[../images/life-stack/yubikey.png]]
 5/5 - Can't complain, it beats SMS any day.
 
@@ -118,6 +126,7 @@ It only does FIDO U2F, but that's enough for me; I'm not encrypting many emails.
 ** Smart Devices
 *** Emporio Armani Connected Gen 2 Smartwatch
 #+ATTR_ORG: :width 300
+#+ATTR_HTML: :width 300
 [[../images/life-stack/ea-connected.png]]
 4/5 - Looks very nice for a smartwatch
 
@@ -151,6 +160,7 @@ Mostly, I end up just caring about the trend lines.
 
 *** Wanbo T2 Max
 #+ATTR_ORG: :width 400
+#+ATTR_HTML: :width 400
 [[../images/life-stack/wanbo-t2-max.png]]
 3/5 - Software is /terrible/, but it's cheap!
 
@@ -208,6 +218,7 @@ Here's a bunch of small utilities I use that don't deserve their own subsection.
 * Fun
 ** Cardputer
 #+ATTR_ORG: :width 400
+#+ATTR_HTML: :width 400
 [[../images/life-stack/cardputer.png]]
 5/5 - I can't describe how much I love this.
 
@@ -236,6 +247,7 @@ the magnets make it easy to prop up against metallic objects, and the simplicity
 ** Synths
 *** Behringer DeepMind 6
 #+ATTR_ORG: :width 400
+#+ATTR_HTML: :width 400
 [[../images/life-stack/deepmind-6.png]]
 5/5 - Very fun synth to use!
 
@@ -244,6 +256,7 @@ It's an absolute blast to play with!
 
 *** UNO Synth
 #+ATTR_ORG: :width 400
+#+ATTR_HTML: :width 400
 [[../images/life-stack/uno-synth.png]]
 5/5 - A nice portable monosynth!
 
@@ -259,6 +272,7 @@ As a result, I generally either play this manually or just play a pre-written ba
 
 *** UNO Drum
 #+ATTR_ORG: :width 500
+#+ATTR_HTML: :width 500
 [[../images/life-stack/uno-drum.png]]
 5/5 - Great little drum machine
 
