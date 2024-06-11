@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Making a website with Org mode, Hakyll, and NixOS - jacobwalte.rs</title>
         <link rel="icon" type="image/x-icon" href="../images/favicon.png">
-        <link rel="stylesheet" href="../css/tufte.css" />
+        <link rel="stylesheet" href="../css/style.css" />
         <script type="text/javascript" src="../js/common.js"></script>
         <link rel="canonical" href="https://jacobwalte.rs/posts/2023-05-12-website.html">
         <meta name="description" content="The wild and wonderful journey of how I made this site work the way it does!">
@@ -18,15 +18,14 @@
             <div class="logo">
                 <a href="../">jacobwalte.rs</a>
             </div>
-            <nav>
-                <a href="../">Home</a>
+            <nav class="header-nav">
                 <a href="../about.html">About</a>
                 <a href="../contact.html">Contact</a>
                 <a href="../archive.html">Archive</a>
             </nav>
         </header>
 
-        <main role="main">
+        <main role="main" class="main" id="main">
             <section>
                 <h1>Making a website with Org mode, Hakyll, and NixOS</h1>
                 <article>
@@ -38,9 +37,7 @@
         <p>This is how I build and host my site. If you want to look through the code while reading, it can be found <a href="https://github.com/jacobjwalters/site-frontend">here</a>.</p>
 <p>Laziness is perhaps one of Haskell’s most prominent features, and I’ve really taken that philosophy to heart. I want my software to work with as little user input as possible (once set up), preferably none. With a website, this means I want to be able to just write a blog post, upload that file somewhere, and have it appear on my site. There’s plenty of sites and companies that provide this directly, but they tend not to offer you much control. I already rent a VPS (to run personal services on for me and my friends), so why not use that to host my site?</p>
 <h2 id="hakyll">Hakyll</h2>
-<p>Another famous aspect of Haskell is over-engineering simple things. It’s for this reason I chose to use <a href="https://jaspervdj.be/hakyll/">Hakyll</a>, a static site generator written entirely in Haskell, to achieve the previous paragraph’s goals. Hakyll makes use of the fact that <a href="https://pandoc.org/">pandoc</a> is also written in Haskell, and can be used effectively as a library, to convert files into HTML. This means that I can write my pages in whatever format I like, which is nice, but I can also use pandoc plugins<span class="sidenote-wrapper"><label for="sn-0" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-0" class="margin-toggle" /><span class="sidenote">More on this later!<br />
-<br />
-</span></span> to alter my page generation.</p>
+<p>Another famous aspect of Haskell is over-engineering simple things. It’s for this reason I chose to use <a href="https://jaspervdj.be/hakyll/">Hakyll</a>, a static site generator written entirely in Haskell, to achieve the previous paragraph’s goals. Hakyll makes use of the fact that <a href="https://pandoc.org/">pandoc</a> is also written in Haskell, and can be used effectively as a library, to convert files into HTML. This means that I can write my pages in whatever format I like, which is nice, but I can also use pandoc plugins<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> to alter my page generation.</p>
 <p>As far as formats go, I like <a href="https://orgmode.org/">Org mode</a>. It’s built into <a href="https://www.gnu.org/software/emacs/">Emacs</a>, my text editor, and has a straightforward syntax (it’s similar to Markdown). The reason I use it over Markdown is that Emacs has a lot of extra support for Org mode, allowing you to do things like manipulate headings and content easily, execute code blocks, and lots more. Since Emacs is infinitely extensible, you can implement whatever feature you want and have it be integrated automatically with the entire Org ecosystem. I already have an advanced Org setup for writing course notes, so why not adopt that for my blog posts too?</p>
 <p>The process of using Hakyll is straight forward. It reads in some input files, applies templates to them (thing like HTML boilerplate, and text substitution for dates, page titles etc), and spits out a folder with your generated HTML. You can then point your favourite web server to these files and serve them directly! It certainly satisfies the laziness requirement.</p>
 <h3 id="footnotes-and-sidenotes">Footnotes and Sidenotes</h3>
@@ -88,9 +85,7 @@
 }
 </code></pre>
 <h2 id="nixos">NixOS</h2>
-<p>The main benefit I reap from NixOS is the declarative configuration. This means I can keep my server’s entire configuration in one file<span class="sidenote-wrapper"><label for="sn-1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-1" class="margin-toggle" /><span class="sidenote">In actuality, I separate them by service, so my password manager is in a different file to my web server. This has no semantic difference, it’s basically the same as separating different files in a codebase.<br />
-<br />
-</span></span>, which makes it very easy to keep on top of things. Furthermore, if I’m making a large change to my configuration, it keeps the old one around. If something breaks, I can simply roll back.</p>
+<p>The main benefit I reap from NixOS is the declarative configuration. This means I can keep my server’s entire configuration in one file<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, which makes it very easy to keep on top of things. Furthermore, if I’m making a large change to my configuration, it keeps the old one around. If something breaks, I can simply roll back.</p>
 <p>NixOS has support for configuring Caddy directly, which is nice. The config looks something like this:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode nix"><code class="sourceCode nix"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>services.caddy = <span class="op">{</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">enable</span> <span class="op">=</span> <span class="cn">true</span><span class="op">;</span></span>
@@ -111,9 +106,7 @@
 <p>GitHub actions are made by placing a yaml file in <code class="verbatim">.github/workflows/</code> in your repo. You can do this through the UI too. I find it easiest to write these by stealing other’s, so <a href="https://github.com/jacobjwalters/site-frontend/blob/master/.github/workflows/main.yaml">here’s mine</a> to get you started.</p>
 <h3 id="caching">Caching</h3>
 <p>If we change our <code class="verbatim">site.hs</code>, we obviously need to rebuild it in order to reflect the changes in our output HTML. This means we need to run <code class="verbatim">stack run site build</code> again, which is fairly quick if we’ve already built all of Hakyll’s dependencies.</p>
-<p>However, presumably for various reasons, GitHub does not preserve your container once it’s run its course. This is bad news for us Haskell enjoyers, because Haskell builds tend to be <em>big</em>. A clean <code class="verbatim">~/.stack</code> for my site totals just over one gigabyte,<span class="sidenote-wrapper"><label for="sn-2" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-2" class="margin-toggle" /><span class="sidenote">Genuinely, it’s 1004MB. Almost suspicious.<br />
-<br />
-</span></span> and that’s after compiling! An uncached build takes around 35 minutes on GitHub’s machines, which is quite dreadful if you’re just making a small grammatical change. Since the container gets wiped after the build is complete, we’d hit this 35 minute build time on every change!</p>
+<p>However, presumably for various reasons, GitHub does not preserve your container once it’s run its course. This is bad news for us Haskell enjoyers, because Haskell builds tend to be <em>big</em>. A clean <code class="verbatim">~/.stack</code> for my site totals just over one gigabyte,<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> and that’s after compiling! An uncached build takes around 35 minutes on GitHub’s machines, which is quite dreadful if you’re just making a small grammatical change. Since the container gets wiped after the build is complete, we’d hit this 35 minute build time on every change!</p>
 <p>Thus, it’s important we add caching to our action. We can use the official GitHub caching action to achieve this:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Cache stack folder</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/cache@v3</span></span>
@@ -145,6 +138,14 @@
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">openssh</span>.<span class="va">authorizedKeys</span>.<span class="va">keys</span> <span class="op">=</span> <span class="op">[</span> <span class="st">&quot;ssh-rsa AAAA...&quot;</span> <span class="op">];</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>This should be it! Your site should now automatically be deployed whenever you commit.</p>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>More on this later!<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>In actuality, I separate them by service, so my password manager is in a different file to my web server. This has no semantic difference, it’s basically the same as separating different files in a codebase.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Genuinely, it’s 1004MB. Almost suspicious.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
     </section>
 </article>
 
