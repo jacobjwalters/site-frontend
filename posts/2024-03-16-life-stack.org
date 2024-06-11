@@ -17,9 +17,10 @@ generally if something is lower than that, it won't make it into regular use!
 #+ATTR_ORG: :width 700
 #+ATTR_HTML: :width 700
 [[../images/life-stack/framework-13.png]]
+
 5/5 - It just feels dependable.
 
-At the start of 2024, I bought a [[https://frame.work][Framework 13]], which had just released.
+At the start of 2024, I bought a [[https://frame.work][Framework 13 AMD]], which had just released.
 This was to replace my previous laptop, an XPS 13 7390 2-in-1.
 That machine was lovely in most aspects, but I was constantly running low on RAM, and the webcam and fingerprint sensors didn't have driver support on Linux.
 The Framework, of course, has perfect Linux support, and given the whole gimmick of the device is to be upgradeable, being stuck on 8GB of RAM will not be an issue.
@@ -29,6 +30,7 @@ I'm also in the process of replacing my desktop with this, since it gets roughly
 #+ATTR_ORG: :width 300
 #+ATTR_HTML: :width 300
 [[../images/life-stack/rm2.png]]
+
 5/5 - Invaluable for research
 
 The reMarkable has fully replaced paper for me.
@@ -43,6 +45,7 @@ In this regard, it is way better than any other tablet I've tried, even with a p
 #+ATTR_ORG: :width 400
 #+ATTR_HTML: :width 400
 [[../images/life-stack/poco-x4-pro-5g.png]]
+
 4/5 - Does the job, plenty of alternatives available.
 
 This is a very cheap Android phone for its specifications:
@@ -57,6 +60,7 @@ By this point I use USB-C exclusively (save for my watch) to charge things, so a
 #+ATTR_ORG: :width 400
 #+ATTR_HTML: :width 400
 [[../images/life-stack/topton-r1-pro.png]]
+
 5/5 - A very good deal, and a NAS works so much better for me than a desktop.
 
 This is a cute two bay NAS enclosure with an Intel N100-based motherboard I recently picked up.
@@ -74,6 +78,7 @@ You can see which services I'm running in the software section.
 #+ATTR_ORG: :width 400
 #+ATTR_HTML: :width 400
 [[../images/life-stack/logitech-pebble.png]]
+
 4/5 - Beats a touchpad
 
 This is a pretty uncomfortable mouse to use for long periods of time.
@@ -87,6 +92,7 @@ It's got a nice button that toggles between the USB receiver and Bluetooth for c
 #+ATTR_ORG: :width 400
 #+ATTR_HTML: :width 400
 [[../images/life-stack/between-pro.png]]
+
 5/5 - Although they have a newer model that's presumably better
 
 These true wireless earbuds are great:
@@ -102,6 +108,7 @@ If I were looking to buy some of these today, Status Audio have a newer model ou
 #+ATTR_ORG: :width 400
 #+ATTR_HTML: :width 400
 [[../images/life-stack/flagship-anc.png]]
+
 5/5 - Great sound for the price.
 
 Given how much I liked the Between Pros, I ended up snagging a pair of Flagship ANCs, also by Status Audio.
@@ -117,6 +124,7 @@ Because of this, I find it super convenient to use these with my synths if I wan
 #+ATTR_ORG: :width 300
 #+ATTR_HTML: :width 300
 [[../images/life-stack/yubikey.png]]
+
 5/5 - Can't complain, it beats SMS any day.
 
 For 2FA, I've been making use of this thing.
@@ -128,6 +136,7 @@ It only does FIDO U2F, but that's enough for me; I'm not encrypting many emails.
 #+ATTR_ORG: :width 300
 #+ATTR_HTML: :width 300
 [[../images/life-stack/ea-connected.png]]
+
 4/5 - Looks very nice for a smartwatch
 
 I received this smartwatch as a gift.
@@ -144,6 +153,7 @@ I have Home Assistant set up to turn them on alongside my alarm, and turn them o
 They also adjust their colour temperature and brightness throughout the day.
 
 *** Renpho Smart Scales
+
 4/5 - Pretty much the same price as regular scales but they do way more.
 
 Since I'm trying to get a better understanding of my health, I thought smart scales were a decent option to get started.
@@ -162,6 +172,7 @@ Mostly, I end up just caring about the trend lines.
 #+ATTR_ORG: :width 400
 #+ATTR_HTML: :width 400
 [[../images/life-stack/wanbo-t2-max.png]]
+
 3/5 - Software is /terrible/, but it's cheap!
 
 This was the cheapest true 1080p projector I could find.
@@ -249,6 +260,7 @@ the magnets make it easy to prop up against metallic objects, and the simplicity
 #+ATTR_ORG: :width 400
 #+ATTR_HTML: :width 400
 [[../images/life-stack/deepmind-6.png]]
+
 5/5 - Very fun synth to use!
 
 This hardware, analogue synth has six voices of polyphony and sliders all over it.
@@ -258,6 +270,7 @@ It's an absolute blast to play with!
 #+ATTR_ORG: :width 400
 #+ATTR_HTML: :width 400
 [[../images/life-stack/uno-synth.png]]
+
 5/5 - A nice portable monosynth!
 
 This was the first synthesizer I ever bought.
@@ -274,6 +287,7 @@ As a result, I generally either play this manually or just play a pre-written ba
 #+ATTR_ORG: :width 500
 #+ATTR_HTML: :width 500
 [[../images/life-stack/uno-drum.png]]
+
 5/5 - Great little drum machine
 
 This obviously pairs well with the UNO Synth above, and has many of the same portability features.
