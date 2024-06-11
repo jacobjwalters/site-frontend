@@ -1,0 +1,151 @@
+:root {
+--light: #f5fffA;
+--dark: #001604;
+--hl1: #00a871;
+--hl2: #335839;
+
+--fg: var(--dark);
+--bg: var(--light);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: var(--light);
+    --bg: var(--dark);
+  }
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-size: 1.4em;
+  line-height: 1.3em;
+  margin: 0;
+}
+
+header {
+  overflow: hidden;
+  background-color: var(--fg);
+  left: 0;
+  padding: 4px 30px;
+  font-family: sans-serif;
+}
+.logo {
+  float: left;
+  font-weight: bold;
+}
+.header-nav {
+  float: right;
+}
+@media screen and (max-width: 550px) {
+  header .logo {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .header-nav {
+    float: none;
+  }
+}
+
+.skip {
+  left: 50%;
+  position: absolute;
+  transform: translateY(-200%);
+}
+
+.hero {
+  margin: auto;
+  font-size: 2em;
+  line-height: 1em;
+  padding: 1em;
+  border: 1px none var(--fg);
+  border-bottom-style: solid;
+  background-color: var(--hl1);
+}
+.heroText {
+  font-weight: bold;
+}
+.heroText span {
+  display: table;
+  margin: 0 auto;
+  line-height: 0.9em;
+}
+
+h1.heroText:hover span {
+  display: none;
+}
+h1.heroText:hover:before {
+  content:'/ˈʤeɪkəb ˈwɔːltəz/';
+  display:table;
+  margin:0 auto;
+  padding-top: 0.265em;
+}
+.main {
+  margin: auto;
+  padding: 1em;
+}
+
+footer {
+  margin: auto;
+  padding: 1em;
+  font-family: sans-serif;
+}
+@media only screen and (min-width: 768px) {
+  .main {
+    width: 50%;
+    min-width: calc(768px - 2em);
+    border: 1px solid var(--fg);
+    border-style: none solid solid solid;
+  }
+  footer {
+    width: 50%;
+    min-width: calc(768px - 2em);
+    border: 1px solid var(--fg);
+    border-style: none solid solid solid;
+  }
+}
+
+a {
+  text-decoration: none;
+  position: relative;
+  font-family: sans-serif;
+}
+a:link {
+  color: var(--hl1);
+}
+a:visited {
+  color: var(--hl1);
+}
+
+img {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+hr {
+  width: calc(100% + 2em);
+  margin-left: -1em;
+  border: 0px solid var(--fg);
+  border-top: 1px solid var(--fg);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: sans-serif;
+}
+
+code, .verbatim {
+  font-size: 1.4em;
+}
+pre {
+  width: calc(100% + 1.4em);
+  margin: 0 auto;
+  margin-left: -1.7em;
+  overflow: auto;
+  color: var(--bg);
+  background-color: var(--fg);
+  padding: 1em;
+  font-size: 0.8em;
+}

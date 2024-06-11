@@ -6,7 +6,7 @@ import           Text.Regex
 
 import           Text.Pandoc.Definition
 import           Text.Pandoc.Walk
-import           Text.Pandoc.SideNote (usingSideNotes)
+--import           Text.Pandoc.SideNote (usingSideNotes)
 
 import           Hakyll
 
@@ -22,7 +22,8 @@ pdc = fmap demoteHeaders <$> pandocCompilerWithTransform
         defaultHakyllWriterOptions
         ( convertOrgLinks
         . removeFootnotesHeader
-        . usingSideNotes)
+        -- . usingSideNotes
+        )
 
 -- | Convert links from .org files to .html
 convertOrgLinks :: Pandoc -> Pandoc
