@@ -81,6 +81,7 @@ h1.heroText:hover:before {
   display:table;
   margin:0 auto;
   padding-top: 0.265em;
+  line-height: 1em;
 }
 .main {
   margin: auto;
