@@ -2,7 +2,6 @@ resolver: lts-20.10  # Adapt this as needed
 packages:
   - .
 extra-deps:
-  - .
 
 nix:
   #enable: true
