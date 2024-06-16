@@ -1,6 +1,7 @@
 ---
 title: Contact
 description: Various different ways you can personally contact me.
+permalink: /contact
 ---
 
 You can find me on

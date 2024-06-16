@@ -1,6 +1,8 @@
 ---
 title: Making a website with Org mode, Hakyll, and NixOS
 description: The wild and wonderful journey of how I made this site work the way it does!
+published: 2023-05-12
+permalink: posts/website.html
 ---
 This is how I build and host my site. If you want to look through the code while reading, it can be found [[https://github.com/jacobjwalters/site-frontend][here]].
 

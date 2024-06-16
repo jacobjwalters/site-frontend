@@ -2,7 +2,7 @@ resolver: lts-20.10  # Adapt this as needed
 packages:
   - .
 extra-deps:
-  - pandoc-sidenote-0.22.1.0
+  - .
 
 nix:
   #enable: true

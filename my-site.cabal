@@ -8,9 +8,9 @@ executable site
   build-depends:    base
                   , hakyll
                   , containers
+                  , filepath
                   , pandoc
                   , pandoc-types
-                  , pandoc-sidenote
                   , regex-compat
                   , text
   ghc-options:      -threaded

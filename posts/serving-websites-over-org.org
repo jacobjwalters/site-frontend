@@ -1,6 +1,8 @@
 ---
 title: Serving Websites with Org
 description: Emacs can browse remote Org files as if they were local. We can exploit this to serve websites entirely with Org mode!
+published: 2023-05-17
+permalink: posts/serving-websites-over-org.html
 ---
 *TL;DR*: My site can be browsed over Org mode! Go to [[Emacs Setup]] to see how.
 

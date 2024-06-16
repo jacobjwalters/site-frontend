@@ -3,10 +3,10 @@
 import           Data.Monoid (mappend)
 import           Data.Text
 import           Text.Regex
+import           System.FilePath (replaceExtension)
 
 import           Text.Pandoc.Definition
 import           Text.Pandoc.Walk
---import           Text.Pandoc.SideNote (usingSideNotes)
 
 import           Hakyll
 
@@ -22,7 +22,6 @@ pdc = fmap demoteHeaders <$> pandocCompilerWithTransform
         defaultHakyllWriterOptions
         ( convertOrgLinks
         . removeFootnotesHeader
-        -- . usingSideNotes
         )
 
 -- | Convert links from .org files to .html
@@ -34,13 +33,18 @@ convertOrgLinks = walk $ \inline -> case inline of
   where
     orgRegex str = subRegex (mkRegex "^(.*?)\\.org$") str "\\1.html"
     internalLink = cons '#' . Data.Text.intercalate "-" . splitOn " " . toLower
-    
 
 -- | Remove empty footnotes header from the bottom of the page
 removeFootnotesHeader :: Pandoc -> Pandoc
 removeFootnotesHeader = walk $ \inline -> case inline of
-    Header 1 ("footnotes", [], []) _ -> Null
-    _ -> inline
+  Header 1 ("footnotes", [], []) _ -> Null
+  _ -> inline
+
+permalinkExt :: String -> Routes
+permalinkExt ext = metadataRoute $ \m ->
+  case lookupString "permalink" m of
+    Just pl -> constRoute $ replaceExtension pl ext
+    Nothing -> setExtension ext
 
 main :: IO ()
 main = hakyll $ do
@@ -73,14 +77,15 @@ main = hakyll $ do
             >>= relativizeUrls
 
     match "posts/*" $ do
-        route $ setExtension "html"
+        --route $ setExtension "html"
+        route $ permalinkExt "html"
         compile $ pdc
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
 
     match "posts/*" $ version "org" $ do
-        route idRoute
+        route $ setExtension "org"
         compile $ getResourceBody
           >>= loadAndApplyTemplate "templates/default.org"    postCtx
           >>= relativizeUrls
