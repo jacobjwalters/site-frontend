@@ -3,7 +3,6 @@
 
 Welcome!
 This page gives a rough description of my personal computing stack.
-Last updated: 11/05/2024
 
 I've seen a [[https://aaronparecki.com/life-stack/][few]] [[https://www.johnpe.art/life-stack][people]] around the web with a page similar to this one, and I thought I'd try my hand at it too.
 I've added a rating to each item, and a brief sentence trying to give my overall thoughts about it.

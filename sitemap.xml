@@ -33,35 +33,28 @@
 
 
   <url>
-    <loc>https://jacobwalte.rs/posts/2024-03-16-life-stack.html</loc>
-    <lastmod>2024-03-16</lastmod>
+    <loc>https://jacobwalte.rs/posts/life-stack.html</loc>
+    <lastmod>2024-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://jacobwalte.rs/posts/2024-01-07-nixos-idris2-pack.html</loc>
+    <loc>https://jacobwalte.rs/posts/nixos-idris2-pack.html</loc>
     <lastmod>2024-01-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://jacobwalte.rs/posts/2023-08-10-desktop-noise.html</loc>
-    <lastmod>2023-08-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
-    <loc>https://jacobwalte.rs/posts/2023-05-17-serving-websites-over-org.html</loc>
+    <loc>https://jacobwalte.rs/posts/serving-websites-over-org.html</loc>
     <lastmod>2023-05-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://jacobwalte.rs/posts/2023-05-12-website.html</loc>
+    <loc>https://jacobwalte.rs/posts/website.html</loc>
     <lastmod>2023-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

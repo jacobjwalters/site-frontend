@@ -8,11 +8,10 @@ You're currently browsing over Org. [[https://jacobwalte.rs/][Open this link]] t
 
 * Posts
 Below is a list of my recent blog posts. You can find the complete list in the [[file:https://jacobwalte.rs/archive.org][archives]].
-- [[file:https://jacobwalte.rs/posts/2024-03-16-life-stack.org][Life Stack]] - March 16, 2024 :: A list of all of the important pieces of technology I use in my day-to-day life.
-- [[file:https://jacobwalte.rs/posts/2024-01-07-nixos-idris2-pack.org][Installing idris2-pack on NixOS]] - January  7, 2024 :: A simple note-to-self on how to install Pack, the package manager for Idris 2, on NixOS
-- [[file:https://jacobwalte.rs/posts/2023-08-10-desktop-noise.org][How I Made My Desktop 6.839x Quieter]] - August 10, 2023 :: Join me on a practical exploration of how I drastically reduced my desktop's noise by almost 700%. Discover practical methods to assess and minimize your PC's noise, creating a tranquil environment that boosts focus and creativity.
-- [[file:https://jacobwalte.rs/posts/2023-05-17-serving-websites-over-org.org][Serving Websites with Org]] - May 17, 2023 :: Emacs can browse remote Org files as if they were local. We can exploit this to serve websites entirely with Org mode!
-- [[file:https://jacobwalte.rs/posts/2023-05-12-website.org][Making a website with Org mode, Hakyll, and NixOS]] - May 12, 2023 :: The wild and wonderful journey of how I made this site work the way it does!
+- [[file:https://jacobwalte.rs/posts/life-stack.org][Life Stack]] - March 16, 2024 :: A list of all of the important pieces of technology I use in my day-to-day life.
+- [[file:https://jacobwalte.rs/posts/nix-idris2-pack.org][Installing idris2-pack on NixOS]] - January  7, 2024 :: A simple note-to-self on how to install Pack, the package manager for Idris 2, on NixOS
+- [[file:https://jacobwalte.rs/posts/serving-websites-over-org.org][Serving Websites with Org]] - May 17, 2023 :: Emacs can browse remote Org files as if they were local. We can exploit this to serve websites entirely with Org mode!
+- [[file:https://jacobwalte.rs/posts/website.org][Making a website with Org mode, Hakyll, and NixOS]] - May 12, 2023 :: The wild and wonderful journey of how I made this site work the way it does!
 
 
 * Links
