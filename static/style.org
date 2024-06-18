@@ -127,7 +127,7 @@ h1.heroText:hover:before {
 #+end_src
 
 * Main Content Style
-I've defined the main body in a mobile-first manner. All we enforce here is 1em padding, and a sans serif font for the links in the footer.
+I've defined the main body in a mobile-first manner. All we enforce here is 1em padding, and a sans serif font for the links in the footer. To separate the footer from the page content, we want a horizonal line above and below it:
 #+begin_src css
 .main {
   margin: auto;
@@ -136,7 +136,10 @@ I've defined the main body in a mobile-first manner. All we enforce here is 1em 
 footer {
   margin: auto;
   padding: 1em;
+  margin-bottom: 1em;
   font-family: sans-serif;
+  border: 1px solid var(--fg);
+  border-style: solid none;
 }
 #+end_src
 
