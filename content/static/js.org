@@ -1,0 +1,262 @@
+---
+title: This Site's JavaScript
+description: A literate JS file used for this website.
+permalink: static/js
+published: 2024-06-16
+---
+Much like my [[static/style.org][literate CSS system]], I've implemented a literate JS system for this site. Naturally, the features implemented here are only available on a web browser, and not when [[posts/serving-websites-over-org.org][browsing via Org mode]]. The JS here is purely for easter eggs on my site; the page will function perfectly well with JS disabled.
+
+* Vim Bindings
+I've implemented simple vim-like bindings for scrolling the page with =j= and =k=:
+#+begin_src js
+document.addEventListener('keydown', function(e) {
+    switch (e.key) {
+        case 'j':
+            window.scrollBy(0, 20);
+            break;
+        case 'k':
+            window.scrollBy(0, -20);
+            break;
+        case 'J':
+            window.scrollBy(0, window.innerHeight / 2);
+            break;
+        case 'K':
+            window.scrollBy(0, -window.innerHeight / 2);
+            break;
+    }
+});
+#+end_src
+
+This code is mostly self explanatory; pressing =j= or =k= scrolls the page by 20px vertically, and =J= and =K= scroll by half a page at a time.
+
+* Cookies
+On the [[https://jacobwalte.rs][front page of my site]], there's a cookie banner. If you read closely, you'll notice it isn't an ordinary cookie banner. If you then click =Manage cookies=, it takes you to a window where you can manage your cookies.
+
+Cookie management here consists of the accumulation of cookies and cookie producing objects in an homage to Orteil's cookie clicker. This is a bare-bones reimplementation of the basics of the game.
+
+** State
+All of the game's state and configuration (read: magic numbers) is kept in a single data structure. On each tick of the game, new values for cookie counts are computed based on the cost and CPS of each autoclicker, and these computed values are stored back in the current state.
+
+Here's the default values used when loading a new game:
+#+begin_src js
+const defaultState = {
+  cookies: 0,  // Number of cookies the player has
+  cps: 0,  // Total cookies per second
+  lastPlayed: 0,  // Unix timestamp of the last time the game was played
+  acs: {  // Set of all autoclickers available for purchase
+    cursors:      {count: 0, cost: 15,    cps: 0.1},
+    grandmas:     {count: 0, cost: 100,   cps: 1},
+    farms:        {count: 0, cost: 1.1e3, cps: 8},
+    mines:        {count: 0, cost: 12e3,  cps: 47},
+    factories:    {count: 0, cost: 130e3, cps: 260},
+    banks:        {count: 0, cost: 1.4e6, cps: 1.43e3},
+    temples:      {count: 0, cost: 20e6,  cps: 7.8e3},
+    wizards:      {count: 0, cost: 330e6, cps: 44e3},
+    spaceships:   {count: 0, cost: 5.1e9, cps: 260e3},
+    alchemists:   {count: 0, cost: 75e9,  cps: 1.6e6},
+    portals:      {count: 0, cost: 1e12,  cps: 10e6},
+    timeMachines: {count: 0, cost: 14e12, cps: 65e6}
+  }
+}
+#+end_src
+
+By default, we'll initialise our game's state to this:
+#+begin_src js
+let state = defaultState
+#+end_src
+
+Outside of the internal game state, there is also some necessary state for the game loop to run. First, we want to keep track of whether or not the game has been started:
+#+begin_src js
+let started = false  // Has the game started?
+#+end_src
+
+Next, =ticker= stores the reference for the javascript object that calls the =tick= function later on. We need it globally so that we can stop the ticker arbitrarily, and we declare the variable here to keep things in one place.
+#+begin_src js
+let ticker = null  // ref to interval for ticker
+#+end_src
+
+We'll set the TPS of the game to 20. Values past this aren't really noticeable in my opinion:
+#+begin_src js
+const tps = 20  // Ticks per second
+#+end_src
+
+** Display Code
+The numbers in cookie clicker can quickly get quite big, so we want a way to display large numbers in a readable format. The following function pretty prints a number in engineering notation:
+#+begin_src js
+function engineering(number) {
+  const suffixes = ['', 'K', 'M', 'B', 'T'];
+  const fix = Number.isInteger(number) ? 0 : 2
+  
+  if (number < 1000) return number.toFixed(fix)
+  
+  const exponent = Math.floor(Math.log10(number) / 3);
+  const rounded = (number / Math.pow(1000, exponent)).toFixed(fix);
+  const suffix = (exponent >= suffixes.length)
+    ? `e${exponent*3}`
+    : `${suffixes[exponent]}`
+
+  return `${rounded}${suffix}`
+}
+#+end_src
+
+Now we need a helper to use the correct singular/plural form of a given unit:
+#+begin_src js
+function displayUnit(value, singular, plural) {
+  // Display a value with a unit in either singular or plural form
+  let unit = (value == 1) ? singular : plural
+  return `${engineering(value)} ${unit}`
+}
+#+end_src
+
+Here's another helper that displays the name, amount, and cost of an autoclicker:
+#+begin_src js
+function displayAC(name) {
+  // Update the count and cost for an autoclicker
+  document.getElementById(name).innerHTML = state.acs[name].count
+  document.getElementById("buy"+name).innerHTML = displayUnit(state.acs[name].cost, "cookie", "cookies")
+}
+#+end_src
+
+And a quick function to display the current cookies per second:
+#+begin_src js
+function displayCPS() {
+  // Display the current cookies per second
+  document.getElementById("cps").innerHTML = `${engineering(state.cps)} CPS`
+}
+#+end_src
+
+** Save and Restore
+An idle game that doesn't save its state isn't very fun to play. We can save the state locally via LocalStorage:
+#+begin_src js
+function save() {
+  // Save the game to local storage
+  state.lastPlayed = Date.now()
+  localStorage.setItem("state", JSON.stringify(state))
+}
+#+end_src
+
+This stores the entire state structure defined above into local storage. It can thus be modified by the user to cheat. I /did/ say it was bare-bones.
+
+We obviously need to load our state back in for it to be of any use. Loading the saved state is straightforward; but we want to compute the cookies produced in the time the game was closed. Since we saved the time of the last save point, we can compute the number of seconds elapsed since the save occurred, and multiply that by the cookies per second to get the updated value. If I was evil, I'd add an offline penalty here too. We have a quick check to prevent someone from cheating by changing their local clock, mainly because that's a boring way to cheat.
+#+begin_src js
+function restore() {
+  // Restore from local storage if the game was saved
+  let savedState = JSON.parse(localStorage.getItem("state"))
+  if (!savedState) return
+    
+  state = savedState
+  console.log("Restored the following state:", state)
+  
+  // Compute cookies generated during idle time
+  now = Date.now()
+  if (state.lastPlayed < now) {
+    delta = now - state.lastPlayed
+    state.cookies += state.cps * delta / 1000
+    state.lastPlayed = now
+  }
+}
+#+end_src
+
+Finally, we'll add a reset functionality (with a confirmation!) to erase the save state.
+#+begin_src js
+function reset() {
+  // Reset the game
+  if (confirm("Resetting will erase all progress! Are you sure?")) {
+    localStorage.removeItem("state")
+    state = defaultState
+    location.reload(true)  // Reload the page to refresh displayed values
+  }
+}
+#+end_src
+
+** Game Logic
+First off, we want a helper function that calculates the current CPS based on the currently owned autoclickers.
+#+begin_src js
+function updateCPS() {
+  total = 0
+  for (let i in state.acs) {
+    total += state.acs[i].count * state.acs[i].cps
+  }
+  state.cps = total
+}
+#+end_src
+
+Here's the main tick function. Since the game is so simple, this effectively is a one-liner:
+#+begin_src js
+function tick() {
+  // Perform one tick of the game
+  state.cookies += state.cps / tps
+  document.getElementById("cookies").innerHTML = displayUnit(state.cookies, "cookie", "cookies")
+}
+#+end_src
+
+When starting the game up, we need to set all of our default values. =init= loads the saved state, starts the ticker, and displays the shop values for the autoclickers:
+#+begin_src js
+function init() {
+  // Initialise the game values and start the ticker
+  started = true
+  restore()
+  ticker = window.setInterval(tick, 1000/tps)
+  for (let name in state.acs) displayAC(name)
+  displayCPS()
+  console.log("Started cookie clicker")
+}
+#+end_src
+
+Once the game is closed, we want to stop the ticker to save on battery life/CPU cycles:
+#+begin_src js
+function stop() {
+  // Stop the game
+  started = false
+  clearInterval(ticker)
+}
+#+end_src
+
+** User Interaction
+Clicking the cookie is a very important feature! I use the cookie button for two purposes; to start the game if it's not already running (a check which may no longer be necessary), and to increment the number of cookies. This action automatically saves the game.
+#+begin_src js
+// USER INTERACTION
+function click_cookie() {
+  // Start the game if it hasn't been started already, and add a cookie
+  if (!started) init()
+  state.cookies++
+  save()
+}
+#+end_src
+
+Saving for and purchasing autoclickers forms the main gameplay loop. If the player has enough cookies to buy an autoclicker, then we remove the cost from their balance, increment the amount of that autoclicker, increase its cost by 15%, update our displays, and save the game.
+#+begin_src js
+function buy(name) {
+  // Buy an autoclicker
+  let item = state.acs[name]
+  if (state.cookies >= item.cost) {
+    state.cookies -= item.cost
+    item.count++
+    item.cost *= 1.15
+    updateCPS()
+    save()
+    
+    displayAC(name)
+    displayCPS()
+  }
+}
+#+end_src
+
+** The Cookie Banner
+Finally, we need to be able to hide/show the cookie banner and the "manage cookies" page itself. This could be done in CSS, but I decided to throw it in JS to keep things in one place. These functions are all called via =onclick= tags in the page's HTML.
+#+begin_src js
+function hideBar() {
+  bar = document.getElementById("cookie_bar")
+  bar.classList.toggle("fadeOut");
+}
+
+function showSettings() {
+  settings = document.getElementById("cookie_settings")
+  settings.style.visibility = "visible"
+}
+
+function hideSettings() {
+  settings = document.getElementById("cookie_settings")
+  settings.classList.toggle("fadeOut")
+}
+#+end_src

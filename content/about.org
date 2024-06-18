@@ -1,7 +1,7 @@
 ---
 title: About
 description: Find out about me and my interests, as well as how this site is run!
-permalink: /about
+permalink: about
 ---
 * About me
 I am a fourth and final year student of Computer Science and Mathematics at the University of Edinburgh.

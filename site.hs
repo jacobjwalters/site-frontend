@@ -1,12 +1,16 @@
 -------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
+import           Data.List (stripPrefix)
+import           Data.Maybe (fromMaybe)
 import           Data.Monoid (mappend)
-import           Data.Text
+import           Data.Text hiding (take, stripPrefix)
 import           Text.Regex
 import           System.FilePath (replaceExtension)
 
+import           Text.Pandoc.Class (runPure)
 import           Text.Pandoc.Definition
 import           Text.Pandoc.Walk
+import           Text.Pandoc.Writers (writePlain)
 
 import           Hakyll
 
@@ -16,10 +20,14 @@ root :: String
 root = "https://jacobwalte.rs"
 
 --MAIN--------------------------------------------------------------------------
+pandocWith :: (Pandoc -> Pandoc) -> Compiler (Item String)
+pandocWith =
+  pandocCompilerWithTransform
+    defaultHakyllReaderOptions
+    defaultHakyllWriterOptions
+  
 pdc :: Compiler (Item String)
-pdc = fmap demoteHeaders <$> pandocCompilerWithTransform
-        defaultHakyllReaderOptions
-        defaultHakyllWriterOptions
+pdc = fmap demoteHeaders <$> pandocWith
         ( convertOrgLinks
         . removeFootnotesHeader
         )
@@ -40,62 +48,102 @@ removeFootnotesHeader = walk $ \inline -> case inline of
   Header 1 ("footnotes", [], []) _ -> Null
   _ -> inline
 
+-- | Remove everything apart from code blocks
+extractCodeBlocks :: Pandoc -> Pandoc
+extractCodeBlocks = walk $ \block -> case block of
+  CodeBlock _ text -> Plain [Str text]
+  _ -> Null
+
+-- | Plaintext form of stripped code blocks
+codeCompiler :: Compiler (Item String)
+codeCompiler = do
+  i <- getResourceBody
+  d <- readPandocWith defaultHakyllReaderOptions i
+  writePandoc <$> (traverse (pure . extractCodeBlocks) d)
+  where writePandoc (Item itemi doc) =
+          case runPure $ writePlain defaultHakyllWriterOptions doc of
+            Left  err   -> error $ "Hakyll.Web.Pandoc.writePandocWith: " ++ show err
+            Right item' -> Item itemi $ unpack item'
+
+-- | Sets the route to the `permalink` tag, with the given extension.
 permalinkExt :: String -> Routes
 permalinkExt ext = metadataRoute $ \m ->
   case lookupString "permalink" m of
     Just pl -> constRoute $ replaceExtension pl ext
     Nothing -> setExtension ext
 
+contentRoute :: Routes
+contentRoute = customRoute ((fromMaybe <*> (stripPrefix "content/")) . toFilePath)
+
+htmlc :: Compiler (Item String)
+htmlc = pdc
+    >>= loadAndApplyTemplate "templates/default.html" rootCtx
+    >>= relativizeUrls
+
+orgc :: Compiler (Item String)
+orgc = getResourceBody
+   >>= loadAndApplyTemplate "templates/default.org" defaultContext
+   >>= relativizeUrls
+
+htmlContent :: Rules ()
+htmlContent = version "html" $ do
+  route   (composeRoutes contentRoute (permalinkExt "html"))
+  compile htmlc
+
+orgContent :: Rules ()
+orgContent = version "org" $ do
+  route   (composeRoutes contentRoute (permalinkExt "org"))
+  compile orgc
+
+rawContent :: Rules ()
+rawContent = do
+  route   contentRoute
+  compile copyFileCompiler
+
 main :: IO ()
 main = hakyll $ do
-    match (fromList ["robots.txt", "404.html"]) $ do
-        route   idRoute
-        compile copyFileCompiler
+    -- Static pages
+    match (fromList ["content/about.org", "content/contact.md",  "content/links.org"]) htmlContent
+    match (fromList ["content/about.org", "content/contact.org", "content/links.org"]) orgContent
 
-    match "images/**" $ do
-        route   idRoute
-        compile copyFileCompiler
+    match (fromList ["content/robots.txt", "content/404.html"]) rawContent
+    match "content/static/images/**" rawContent
 
-    match "css/*" $ do
-        route   idRoute
-        compile compressCssCompiler
+    -- CSS
+    match "content/static/style.org" $ version "css" $ do
+        route   $ constRoute "static/style.css"
+        compile $ fmap compressCss <$> codeCompiler
 
-    match "js/*" $ do
-        route   idRoute
-        compile copyFileCompiler
+    match "content/static/style.org" htmlContent
+    match "content/static/style.org" orgContent
 
-    match (fromList ["about.org", "contact.md", "links.org"]) $ do
-        route   $ setExtension "html"
-        compile $ pdc
-            >>= loadAndApplyTemplate "templates/default.html" rootCtx
-            >>= relativizeUrls
+    -- JS
+    match "content/static/js.org" $ version "css" $ do
+        route   $ constRoute "static/site.js"
+        compile $ codeCompiler
 
-    match (fromList ["about.org", "contact.org", "links.org"]) $ version "org" $ do
-        route   $ setExtension "org"
-        compile $ getResourceBody
-            >>= loadAndApplyTemplate "templates/default.org" defaultContext
-            >>= relativizeUrls
+    match "content/static/js.org" htmlContent
+    match "content/static/js.org" orgContent
 
-    match "posts/*" $ do
+    -- Posts
+    match "content/posts/*" $ version "html" $ do
         --route $ setExtension "html"
-        route $ permalinkExt "html"
+        route   $ composeRoutes contentRoute (permalinkExt "html")
         compile $ pdc
-            >>= loadAndApplyTemplate "templates/post.html"    postCtx
-            >>= loadAndApplyTemplate "templates/default.html" postCtx
-            >>= relativizeUrls
+              >>= loadAndApplyTemplate "templates/post.html"    postCtx
+              >>= loadAndApplyTemplate "templates/default.html" postCtx
+              >>= relativizeUrls
 
-    match "posts/*" $ version "org" $ do
-        route $ setExtension "org"
-        compile $ getResourceBody
-          >>= loadAndApplyTemplate "templates/default.org"    postCtx
-          >>= relativizeUrls
+    match "content/posts/*" orgContent
 
+
+    -- Post archives
     create ["archive.html"] $ do
         route idRoute
         compile $ do
-            posts <- recentFirst =<< loadAll ("posts/*" .&&. hasNoVersion)
+            posts <- recentFirst =<< loadAll ("content/posts/*" .&&. hasVersion "html")
             let archiveCtx =
-                    listField "posts" postCtx (return posts) <>
+                    listField  "posts" postCtx (pure posts) <>
                     constField "title"       "Archives"      <>
                     constField "description" "The complete list of all posts available on this site." <>
                     rootCtx
@@ -108,9 +156,9 @@ main = hakyll $ do
     create ["archive.org"] $ do
         route idRoute
         compile $ do
-            posts <- recentFirst =<< loadAll ("posts/*" .&&. hasVersion "org")
+            posts <- recentFirst =<< loadAll ("content/posts/*" .&&. hasVersion "org")
             let archiveCtx =
-                    listField "posts" postCtx (return posts) <>
+                    listField "posts" postCtx (pure posts) <>
                     constField "title"       "Archives"      <>
                     constField "description" "Post archives" <>
                     defaultContext
@@ -120,6 +168,8 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/default.org" archiveCtx
                 >>= relativizeUrls
 
+
+    -- Sitemap
     create ["sitemap.xml"] $ do
         route idRoute
         compile $ do
@@ -132,12 +182,14 @@ main = hakyll $ do
             makeItem ""
                 >>= loadAndApplyTemplate "templates/sitemap.xml" sitemapCtx
 
-    match "index.html" $ do
-        route idRoute
+
+    -- Homepages
+    match "content/index.html" $ do
+        route contentRoute
         compile $ do
-            posts <- recentFirst =<< loadAll ("posts/*" .&&. hasNoVersion)
+            posts <- recentFirst =<< loadAll ("content/posts/*" .&&. hasVersion "html")
             let indexCtx =
-                    listField "posts" postCtx (return posts) <>
+                    listField "posts" postCtx (pure $ take 5 posts) <>
                     rootCtx
 
             getResourceBody
@@ -145,12 +197,12 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/homepage.html" indexCtx
                 >>= relativizeUrls
 
-    match "index.org" $ do
-        route idRoute
+    match "content/index.org" $ do
+        route contentRoute
         compile $ do
-            posts <- recentFirst =<< loadAll ("posts/*" .&&. hasVersion "org")
+            posts <- recentFirst =<< loadAll ("content/posts/*" .&&. hasVersion "org")
             let indexCtx =
-                    listField "posts" postCtx (return posts) <>
+                    listField "posts" postCtx (pure $ take 5 posts) <>
                     defaultContext
 
             getResourceBody
@@ -158,6 +210,8 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/default.org" indexCtx
                 >>= relativizeUrls
 
+
+    -- Templates
     match "templates/*" $ compile templateBodyCompiler
 
 

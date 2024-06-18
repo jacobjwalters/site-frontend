@@ -12,3 +12,5 @@ Below is a list of my recent blog posts. You can find the complete list in the [
 $partial("templates/post-list.org")$
 * Links
 [[file:links.org][Here's]] a collection of learning resources and other links that I've found useful.
+* How the Sausage is Made
+Want to see how this site was made? Find out generally [[posts/website.org][here]], and see my literate [[static/style.org][CSS]] and [[static/js.org][JavaScript]] files too!
