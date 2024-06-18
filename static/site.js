@@ -1,7 +1,20 @@
-// This is a very small tribute to Orteil's Cookie Clicker game:
-// https://orteil.dashnet.org/cookieclicker/
+document.addEventListener('keydown', function(e) {
+    switch (e.key) {
+        case 'j':
+            window.scrollBy(0, 20);
+            break;
+        case 'k':
+            window.scrollBy(0, -20);
+            break;
+        case 'J':
+            window.scrollBy(0, window.innerHeight / 2);
+            break;
+        case 'K':
+            window.scrollBy(0, -window.innerHeight / 2);
+            break;
+    }
+});
 
-// GAME STATE
 const defaultState = {
   cookies: 0,  // Number of cookies the player has
   cps: 0,  // Total cookies per second
@@ -24,24 +37,24 @@ const defaultState = {
 
 let state = defaultState
 
-// ENVIRONMENT STATE
 let started = false  // Has the game started?
+
 let ticker = null  // ref to interval for ticker
+
 const tps = 20  // Ticks per second
 
-// DISPLAY CODE
 function engineering(number) {
-  // Pretty-print a number as a string using engineering notation
   const suffixes = ['', 'K', 'M', 'B', 'T'];
   const fix = Number.isInteger(number) ? 0 : 2
-  
-  if (number < 1000) return number.toFixed(fix)
-  
-  const exponent = Math.floor(Math.log10(number) / 3);
 
+  if (number < 1000) return number.toFixed(fix)
+
+  const exponent = Math.floor(Math.log10(number) / 3);
   const rounded = (number / Math.pow(1000, exponent)).toFixed(fix);
-  const suffix = (exponent >= suffixes.length) ? `e${exponent*3}` : `${suffixes[exponent]}`
-  
+  const suffix = (exponent >= suffixes.length)
+    ? `e${exponent*3}`
+    : `${suffixes[exponent]}`
+
   return `${rounded}${suffix}`
 }
 
@@ -62,8 +75,6 @@ function displayCPS() {
   document.getElementById("cps").innerHTML = `${engineering(state.cps)} CPS`
 }
 
-
-// SAVE AND RESTORE
 function save() {
   // Save the game to local storage
   state.lastPlayed = Date.now()
@@ -74,10 +85,10 @@ function restore() {
   // Restore from local storage if the game was saved
   let savedState = JSON.parse(localStorage.getItem("state"))
   if (!savedState) return
-    
+
   state = savedState
   console.log("Restored the following state:", state)
-  
+
   // Compute cookies generated during idle time
   now = Date.now()
   if (state.lastPlayed < now) {
@@ -96,10 +107,7 @@ function reset() {
   }
 }
 
-
-// GAME LOGIC
 function updateCPS() {
-  // Recalculate the total CPS of all ACs the player owns
   total = 0
   for (let i in state.acs) {
     total += state.acs[i].count * state.acs[i].cps
@@ -129,7 +137,6 @@ function stop() {
   clearInterval(ticker)
 }
 
-
 // USER INTERACTION
 function click_cookie() {
   // Start the game if it hasn't been started already, and add a cookie
@@ -147,14 +154,12 @@ function buy(name) {
     item.cost *= 1.15
     updateCPS()
     save()
-    
+
     displayAC(name)
     displayCPS()
   }
 }
 
-
-// COOKIE BAR AND SETTINGS VIEW
 function hideBar() {
   bar = document.getElementById("cookie_bar")
   bar.classList.toggle("fadeOut");

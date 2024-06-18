@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>This Site's JavaScript - jacobwalte.rs</title>
+        <link rel="icon" type="image/x-icon" href="../images/favicon.png">
+        <link rel="stylesheet" href="../static/style.css" />
+        <script type="text/javascript" src="../js/common.js"></script>
+        <link rel="canonical" href="https://jacobwalte.rs/content/static/js.html">
+        <meta name="description" content="A literate JS file used for this website.">
+    </head>
+    <body>
+	<a name="top"></a>
+        <header>
+            <a href="#main" class="skip">Skip to main content</a>
+            <div class="logo">
+                <a href="../">jacobwalte.rs</a>
+            </div>
+            <nav class="header-nav">
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+                <a href="../archive.html">Archive</a>
+            </nav>
+        </header>
+
+        <main role="main" class="main" id="main">
+            <section>
+                <h1>This Site's JavaScript</h1>
+                <p>Much like my <a href="#static/style.org" class="spurious-link" target="static/style.org" title="static/style.org"><em>literate CSS system</em></a>, I’ve implemented a literate JS system for this site. Naturally, the features implemented here are only available on a web browser, and not when <a href="#posts/serving-websites-over-org.org" class="spurious-link" target="posts/serving-websites-over-org.org" title="posts/serving-websites-over-org.org"><em>browsing via Org mode</em></a>. The JS here is purely for easter eggs on my site; the page will function perfectly well with JS disabled.</p>
+<h2 id="vim-bindings">Vim Bindings</h2>
+<p>I’ve implemented simple vim-like bindings for scrolling the page with <code class="verbatim">j</code> and <code class="verbatim">k</code>:</p>
+<div class="sourceCode" id="cb1" data-org-language="js"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">document</span><span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">'keydown'</span><span class="op">,</span> <span class="kw">function</span>(e) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">switch</span> (e<span class="op">.</span><span class="at">key</span>) {</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> <span class="st">'j'</span><span class="op">:</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>            <span class="bu">window</span><span class="op">.</span><span class="fu">scrollBy</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">20</span>)<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> <span class="st">'k'</span><span class="op">:</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>            <span class="bu">window</span><span class="op">.</span><span class="fu">scrollBy</span>(<span class="dv">0</span><span class="op">,</span> <span class="op">-</span><span class="dv">20</span>)<span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> <span class="st">'J'</span><span class="op">:</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>            <span class="bu">window</span><span class="op">.</span><span class="fu">scrollBy</span>(<span class="dv">0</span><span class="op">,</span> <span class="bu">window</span><span class="op">.</span><span class="at">innerHeight</span> <span class="op">/</span> <span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> <span class="st">'K'</span><span class="op">:</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>            <span class="bu">window</span><span class="op">.</span><span class="fu">scrollBy</span>(<span class="dv">0</span><span class="op">,</span> <span class="op">-</span><span class="bu">window</span><span class="op">.</span><span class="at">innerHeight</span> <span class="op">/</span> <span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+<p>This code is mostly self explanatory; pressing <code class="verbatim">j</code> or <code class="verbatim">k</code> scrolls the page by 20px vertically, and <code class="verbatim">J</code> and <code class="verbatim">K</code> scroll by half a page at a time.</p>
+<h2 id="cookies">Cookies</h2>
+<p>On the <a href="https://jacobwalte.rs">front page of my site</a>, there’s a cookie banner. If you read closely, you’ll notice it isn’t an ordinary cookie banner. If you then click <code class="verbatim">Manage cookies</code>, it takes you to a window where you can manage your cookies.</p>
+<p>Cookie management here consists of the accumulation of cookies and cookie producing objects in an homage to Orteil’s cookie clicker. This is a bare-bones reimplementation of the basics of the game.</p>
+<h3 id="state">State</h3>
+<p>All of the game’s state and configuration (read: magic numbers) is kept in a single data structure. On each tick of the game, new values for cookie counts are computed based on the cost and CPS of each autoclicker, and these computed values are stored back in the current state.</p>
+<p>Here’s the default values used when loading a new game:</p>
+<div class="sourceCode" id="cb2" data-org-language="js"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> defaultState <span class="op">=</span> {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">cookies</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span>  <span class="co">// Number of cookies the player has</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">cps</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span>  <span class="co">// Total cookies per second</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">lastPlayed</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span>  <span class="co">// Unix timestamp of the last time the game was played</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">acs</span><span class="op">:</span> {  <span class="co">// Set of all autoclickers available for purchase</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">cursors</span><span class="op">:</span>      {<span class="dt">count</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">cost</span><span class="op">:</span> <span class="dv">15</span><span class="op">,</span>    <span class="dt">cps</span><span class="op">:</span> <span class="fl">0.1</span>}<span class="op">,</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grandmas</span><span class="op">:</span>     {<span class="dt">count</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">cost</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span>   <span class="dt">cps</span><span class="op">:</span> <span class="dv">1</span>}<span class="op">,</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">farms</span><span class="op">:</span>        {<span class="dt">count</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">cost</span><span class="op">:</span> <span class="fl">1.1e3</span><span class="op">,</span> <span class="dt">cps</span><span class="op">:</span> <span class="dv">8</span>}<span class="op">,</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">mines</span><span class="op">:</span>        {<span class="dt">count</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">cost</span><span class="op">:</span> <span class="fl">12e3</span><span class="op">,</span>  <span class="dt">cps</span><span class="op">:</span> <span class="dv">47</span>}<span class="op">,</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">factories</span><span class="op">:</span>    {<span class="dt">count</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">cost</span><span class="op">:</span> <span class="fl">130e3</span><span class="op">,</span> <span class="dt">cps</span><span class="op">:</span> <span class="dv">260</span>}<span class="op">,</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">banks</span><span class="op">:</span>        {<span class="dt">count</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">cost</span><span class="op">:</span> <span class="fl">1.4e6</span><span class="op">,</span> <span class="dt">cps</span><span class="op">:</span> <span class="fl">1.43e3</span>}<span class="op">,</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">temples</span><span class="op">:</span>      {<span class="dt">count</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">cost</span><span class="op">:</span> <span class="fl">20e6</span><span class="op">,</span>  <span class="dt">cps</span><span class="op">:</span> <span class="fl">7.8e3</span>}<span class="op">,</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">wizards</span><span class="op">:</span>      {<span class="dt">count</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">cost</span><span class="op">:</span> <span class="fl">330e6</span><span class="op">,</span> <span class="dt">cps</span><span class="op">:</span> <span class="fl">44e3</span>}<span class="op">,</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">spaceships</span><span class="op">:</span>   {<span class="dt">count</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">cost</span><span class="op">:</span> <span class="fl">5.1e9</span><span class="op">,</span> <span class="dt">cps</span><span class="op">:</span> <span class="fl">260e3</span>}<span class="op">,</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">alchemists</span><span class="op">:</span>   {<span class="dt">count</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">cost</span><span class="op">:</span> <span class="fl">75e9</span><span class="op">,</span>  <span class="dt">cps</span><span class="op">:</span> <span class="fl">1.6e6</span>}<span class="op">,</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">portals</span><span class="op">:</span>      {<span class="dt">count</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">cost</span><span class="op">:</span> <span class="fl">1e12</span><span class="op">,</span>  <span class="dt">cps</span><span class="op">:</span> <span class="fl">10e6</span>}<span class="op">,</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">timeMachines</span><span class="op">:</span> {<span class="dt">count</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">cost</span><span class="op">:</span> <span class="fl">14e12</span><span class="op">,</span> <span class="dt">cps</span><span class="op">:</span> <span class="fl">65e6</span>}</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>By default, we’ll initialise our game’s state to this:</p>
+<div class="sourceCode" id="cb3" data-org-language="js"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> state <span class="op">=</span> defaultState</span></code></pre></div>
+<p>Outside of the internal game state, there is also some necessary state for the game loop to run. First, we want to keep track of whether or not the game has been started:</p>
+<div class="sourceCode" id="cb4" data-org-language="js"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> started <span class="op">=</span> <span class="kw">false</span>  <span class="co">// Has the game started?</span></span></code></pre></div>
+<p>Next, <code class="verbatim">ticker</code> stores the reference for the javascript object that calls the <code class="verbatim">tick</code> function later on. We need it globally so that we can stop the ticker arbitrarily, and we declare the variable here to keep things in one place.</p>
+<div class="sourceCode" id="cb5" data-org-language="js"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> ticker <span class="op">=</span> <span class="kw">null</span>  <span class="co">// ref to interval for ticker</span></span></code></pre></div>
+<p>We’ll set the TPS of the game to 20. Values past this aren’t really noticeable in my opinion:</p>
+<div class="sourceCode" id="cb6" data-org-language="js"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> tps <span class="op">=</span> <span class="dv">20</span>  <span class="co">// Ticks per second</span></span></code></pre></div>
+<h3 id="display-code">Display Code</h3>
+<p>The numbers in cookie clicker can quickly get quite big, so we want a way to display large numbers in a readable format. The following function pretty prints a number in engineering notation:</p>
+<div class="sourceCode" id="cb7" data-org-language="js"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">engineering</span>(number) {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> suffixes <span class="op">=</span> [<span class="st">''</span><span class="op">,</span> <span class="st">'K'</span><span class="op">,</span> <span class="st">'M'</span><span class="op">,</span> <span class="st">'B'</span><span class="op">,</span> <span class="st">'T'</span>]<span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> fix <span class="op">=</span> <span class="bu">Number</span><span class="op">.</span><span class="fu">isInteger</span>(number) <span class="op">?</span> <span class="dv">0</span> <span class="op">:</span> <span class="dv">2</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (number <span class="op">&lt;</span> <span class="dv">1000</span>) <span class="cf">return</span> number<span class="op">.</span><span class="fu">toFixed</span>(fix)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> exponent <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(number) <span class="op">/</span> <span class="dv">3</span>)<span class="op">;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> rounded <span class="op">=</span> (number <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">pow</span>(<span class="dv">1000</span><span class="op">,</span> exponent))<span class="op">.</span><span class="fu">toFixed</span>(fix)<span class="op">;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> suffix <span class="op">=</span> (exponent <span class="op">&gt;=</span> suffixes<span class="op">.</span><span class="at">length</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">?</span> <span class="vs">`e</span><span class="sc">${</span>exponent<span class="op">*</span><span class="dv">3</span><span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> <span class="vs">`</span><span class="sc">${</span>suffixes[exponent]<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="vs">`</span><span class="sc">${</span>rounded<span class="sc">}${</span>suffix<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Now we need a helper to use the correct singular/plural form of a given unit:</p>
+<div class="sourceCode" id="cb8" data-org-language="js"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">displayUnit</span>(value<span class="op">,</span> singular<span class="op">,</span> plural) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Display a value with a unit in either singular or plural form</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> unit <span class="op">=</span> (value <span class="op">==</span> <span class="dv">1</span>) <span class="op">?</span> singular <span class="op">:</span> plural</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="vs">`</span><span class="sc">${</span><span class="fu">engineering</span>(value)<span class="sc">}</span><span class="vs"> </span><span class="sc">${</span>unit<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Here’s another helper that displays the name, amount, and cost of an autoclicker:</p>
+<div class="sourceCode" id="cb9" data-org-language="js"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">displayAC</span>(name) {</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Update the count and cost for an autoclicker</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(name)<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> state<span class="op">.</span><span class="at">acs</span>[name]<span class="op">.</span><span class="at">count</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">&quot;buy&quot;</span><span class="op">+</span>name)<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> <span class="fu">displayUnit</span>(state<span class="op">.</span><span class="at">acs</span>[name]<span class="op">.</span><span class="at">cost</span><span class="op">,</span> <span class="st">&quot;cookie&quot;</span><span class="op">,</span> <span class="st">&quot;cookies&quot;</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>And a quick function to display the current cookies per second:</p>
+<div class="sourceCode" id="cb10" data-org-language="js"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">displayCPS</span>() {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Display the current cookies per second</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">&quot;cps&quot;</span>)<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> <span class="vs">`</span><span class="sc">${</span><span class="fu">engineering</span>(state<span class="op">.</span><span class="at">cps</span>)<span class="sc">}</span><span class="vs"> CPS`</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="save-and-restore">Save and Restore</h3>
+<p>An idle game that doesn’t save its state isn’t very fun to play. We can save the state locally via LocalStorage:</p>
+<div class="sourceCode" id="cb11" data-org-language="js"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">save</span>() {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Save the game to local storage</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  state<span class="op">.</span><span class="at">lastPlayed</span> <span class="op">=</span> <span class="bu">Date</span><span class="op">.</span><span class="fu">now</span>()</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  localStorage<span class="op">.</span><span class="fu">setItem</span>(<span class="st">&quot;state&quot;</span><span class="op">,</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(state))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>This stores the entire state structure defined above into local storage. It can thus be modified by the user to cheat. I <em>did</em> say it was bare-bones.</p>
+<p>We obviously need to load our state back in for it to be of any use. Loading the saved state is straightforward; but we want to compute the cookies produced in the time the game was closed. Since we saved the time of the last save point, we can compute the number of seconds elapsed since the save occurred, and multiply that by the cookies per second to get the updated value. If I was evil, I’d add an offline penalty here too. We have a quick check to prevent someone from cheating by changing their local clock, mainly because that’s a boring way to cheat.</p>
+<div class="sourceCode" id="cb12" data-org-language="js"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">restore</span>() {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Restore from local storage if the game was saved</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> savedState <span class="op">=</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&quot;state&quot;</span>))</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span>savedState) <span class="cf">return</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  state <span class="op">=</span> savedState</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;Restored the following state:&quot;</span><span class="op">,</span> state)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Compute cookies generated during idle time</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  now <span class="op">=</span> <span class="bu">Date</span><span class="op">.</span><span class="fu">now</span>()</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (state<span class="op">.</span><span class="at">lastPlayed</span> <span class="op">&lt;</span> now) {</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    delta <span class="op">=</span> now <span class="op">-</span> state<span class="op">.</span><span class="at">lastPlayed</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    state<span class="op">.</span><span class="at">cookies</span> <span class="op">+=</span> state<span class="op">.</span><span class="at">cps</span> <span class="op">*</span> delta <span class="op">/</span> <span class="dv">1000</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    state<span class="op">.</span><span class="at">lastPlayed</span> <span class="op">=</span> now</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Finally, we’ll add a reset functionality (with a confirmation!) to erase the save state.</p>
+<div class="sourceCode" id="cb13" data-org-language="js"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">reset</span>() {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Reset the game</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">confirm</span>(<span class="st">&quot;Resetting will erase all progress! Are you sure?&quot;</span>)) {</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    localStorage<span class="op">.</span><span class="fu">removeItem</span>(<span class="st">&quot;state&quot;</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    state <span class="op">=</span> defaultState</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    location<span class="op">.</span><span class="fu">reload</span>(<span class="kw">true</span>)  <span class="co">// Reload the page to refresh displayed values</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="game-logic">Game Logic</h3>
+<p>First off, we want a helper function that calculates the current CPS based on the currently owned autoclickers.</p>
+<div class="sourceCode" id="cb14" data-org-language="js"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">updateCPS</span>() {</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  total <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="kw">in</span> state<span class="op">.</span><span class="at">acs</span>) {</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    total <span class="op">+=</span> state<span class="op">.</span><span class="at">acs</span>[i]<span class="op">.</span><span class="at">count</span> <span class="op">*</span> state<span class="op">.</span><span class="at">acs</span>[i]<span class="op">.</span><span class="at">cps</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  state<span class="op">.</span><span class="at">cps</span> <span class="op">=</span> total</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Here’s the main tick function. Since the game is so simple, this effectively is a one-liner:</p>
+<div class="sourceCode" id="cb15" data-org-language="js"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">tick</span>() {</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Perform one tick of the game</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  state<span class="op">.</span><span class="at">cookies</span> <span class="op">+=</span> state<span class="op">.</span><span class="at">cps</span> <span class="op">/</span> tps</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">&quot;cookies&quot;</span>)<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> <span class="fu">displayUnit</span>(state<span class="op">.</span><span class="at">cookies</span><span class="op">,</span> <span class="st">&quot;cookie&quot;</span><span class="op">,</span> <span class="st">&quot;cookies&quot;</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>When starting the game up, we need to set all of our default values. <code class="verbatim">init</code> loads the saved state, starts the ticker, and displays the shop values for the autoclickers:</p>
+<div class="sourceCode" id="cb16" data-org-language="js"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">init</span>() {</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Initialise the game values and start the ticker</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  started <span class="op">=</span> <span class="kw">true</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">restore</span>()</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  ticker <span class="op">=</span> <span class="bu">window</span><span class="op">.</span><span class="fu">setInterval</span>(tick<span class="op">,</span> <span class="dv">1000</span><span class="op">/</span>tps)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> name <span class="kw">in</span> state<span class="op">.</span><span class="at">acs</span>) <span class="fu">displayAC</span>(name)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">displayCPS</span>()</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;Started cookie clicker&quot;</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Once the game is closed, we want to stop the ticker to save on battery life/CPU cycles:</p>
+<div class="sourceCode" id="cb17" data-org-language="js"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">stop</span>() {</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Stop the game</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  started <span class="op">=</span> <span class="kw">false</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="pp">clearInterval</span>(ticker)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="user-interaction">User Interaction</h3>
+<p>Clicking the cookie is a very important feature! I use the cookie button for two purposes; to start the game if it’s not already running (a check which may no longer be necessary), and to increment the number of cookies. This action automatically saves the game.</p>
+<div class="sourceCode" id="cb18" data-org-language="js"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">// USER INTERACTION</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">click_cookie</span>() {</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Start the game if it hasn't been started already, and add a cookie</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span>started) <span class="fu">init</span>()</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  state<span class="op">.</span><span class="at">cookies</span><span class="op">++</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">save</span>()</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Saving for and purchasing autoclickers forms the main gameplay loop. If the player has enough cookies to buy an autoclicker, then we remove the cost from their balance, increment the amount of that autoclicker, increase its cost by 15%, update our displays, and save the game.</p>
+<div class="sourceCode" id="cb19" data-org-language="js"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">buy</span>(name) {</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Buy an autoclicker</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> item <span class="op">=</span> state<span class="op">.</span><span class="at">acs</span>[name]</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (state<span class="op">.</span><span class="at">cookies</span> <span class="op">&gt;=</span> item<span class="op">.</span><span class="at">cost</span>) {</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    state<span class="op">.</span><span class="at">cookies</span> <span class="op">-=</span> item<span class="op">.</span><span class="at">cost</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    item<span class="op">.</span><span class="at">count</span><span class="op">++</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    item<span class="op">.</span><span class="at">cost</span> <span class="op">*=</span> <span class="fl">1.15</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">updateCPS</span>()</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">save</span>()</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">displayAC</span>(name)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">displayCPS</span>()</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="the-cookie-banner">The Cookie Banner</h3>
+<p>Finally, we need to be able to hide/show the cookie banner and the “manage cookies” page itself. This could be done in CSS, but I decided to throw it in JS to keep things in one place. These functions are all called via <code class="verbatim">onclick</code> tags in the page’s HTML.</p>
+<div class="sourceCode" id="cb20" data-org-language="js"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">hideBar</span>() {</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  bar <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">&quot;cookie_bar&quot;</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  bar<span class="op">.</span><span class="at">classList</span><span class="op">.</span><span class="fu">toggle</span>(<span class="st">&quot;fadeOut&quot;</span>)<span class="op">;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">showSettings</span>() {</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  settings <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">&quot;cookie_settings&quot;</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  settings<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">visibility</span> <span class="op">=</span> <span class="st">&quot;visible&quot;</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">hideSettings</span>() {</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  settings <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">&quot;cookie_settings&quot;</span>)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  settings<span class="op">.</span><span class="at">classList</span><span class="op">.</span><span class="fu">toggle</span>(<span class="st">&quot;fadeOut&quot;</span>)</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+            </section>
+        </main>
+
+        <footer>
+            <a href="#top">top</a> | <a href="../">home</a>
+        </footer>
+    </body>
+</html>

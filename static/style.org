@@ -1,0 +1,346 @@
+#+title:CSS Styling
+[[file:https://jacobwalte.rs/index.org][Home]] [[file:https://jacobwalte.rs/about.org][About]] [[file:https://jacobwalte.rs/contact.org][Contact]] [[file:https://jacobwalte.rs/archive.org][Archive]]
+
+CSS isn't my strong suit. I generally find myself having to re-learn it every time I want to make a substantial change to this website. In an effort to leave notes to my future self, I've decided to use literate programming to annotate my CSS file.
+
+This page is tangled during the build process of my site by a custom pandoc compiler. Thanks to the power of Hakyll, this takes only 4 lines of code. Due to the 'C' in CSS, the order of code blocks is significant in this file. Since the pandoc compiler simply strips anything that isn't a code block, and doesn't perform proper tangling, I'm required to introduce code blocks in the order they must appear in the output. One day I hope to replace this with a full tangling system.
+
+* Colours
+I find it's easiest to specify the site's colours globally, in a set of variables. We can attach them to the root node, and place this definition first such that it is inherited by the other rules:
+#+begin_src css
+:root {
+  --light: #f5fffA;
+  --dark: #001604;
+  --hl1: #00a871;
+  --hl2: #335839;
+
+  --fg: var(--dark);
+  --bg: var(--light);
+}
+#+end_src
+
+While I don't use dark mode myself, it's certainly a nice thing to provide for others. My light and dark colours have a high relative contrast, so I've decided I can get away with just swapping them:
+#+begin_src css
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: var(--light);
+    --bg: var(--dark);
+  }
+} 
+#+end_src
+
+Now let's set the foreground and background colours in the document body. While we're at it, we'll set some font defaults, and ensure there's no default margin on the body:
+#+begin_src css
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--fg);
+  font-size: 1.4em;
+  line-height: 1.3em;
+  font-family: serif;
+}
+#+end_src
+
+* Header
+Now to style the header at the top of the page.
+
+We give it a contrasting colour, add some chunky horizontal padding, and give everything a nice sans serif:
+#+begin_src css
+header {
+  overflow: hidden;
+  background-color: var(--fg);
+  left: 0;
+  padding: 4px 30px;
+  font-family: sans-serif;
+}
+#+end_src
+
+The "logo," being my URL and acting as a home button, goes on the left in bold.
+#+begin_src css
+.logo {
+  float: left;
+  font-weight: bold;
+}
+#+end_src
+
+The other navigation links go on the right.
+#+begin_src css
+.header-nav {
+  float: right;
+}
+#+end_src
+
+When on small screens, we progressively move the navigation links below the home link:
+#+begin_src css
+@media screen and (max-width: 550px) {
+  header .logo {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .header-nav {
+    float: none;
+  }
+}
+#+end_src
+
+* Front Page Style
+The front page features a large, bright green box with my name in it:
+#+begin_src css
+.hero {
+  margin: auto;
+  font-size: 2em;
+  line-height: 1em;
+  padding: 1em;
+  border: 1px none var(--fg);
+  border-bottom-style: solid;
+  background-color: var(--hl1);
+}
+#+end_src
+
+I'm the most important person on this site so my name gets to be in bold:
+#+begin_src css
+.heroText {
+  font-weight: bold;
+}
+#+end_src
+
+And when you hover on it, it switches into the IPA pronunciation of my name. This is currently really janky due to different font sizes, so I've just hacked it to work on my devices at least:
+#+begin_src css
+.heroText span {
+  display: table;
+  margin: 0 auto;
+  line-height: 0.9em;
+}
+
+h1.heroText:hover span {
+  display: none;
+}
+h1.heroText:hover:before {
+  content:'/ˈʤeɪkəb ˈwɔːltəz/';
+  display:table;
+  margin:0 auto;
+  padding-top: 0.265em;
+  line-height: 1em;
+}
+#+end_src
+
+* Main Content Style
+I've defined the main body in a mobile-first manner. All we enforce here is 1em padding, and a sans serif font for the links in the footer.
+#+begin_src css
+.main {
+  margin: auto;
+  padding: 1em;
+}
+footer {
+  margin: auto;
+  padding: 1em;
+  font-family: sans-serif;
+}
+#+end_src
+
+When the screen width is large enough, we introduce vertical rules to keep the content at a fixed, readable width:
+#+begin_src css
+@media only screen and (min-width: 768px) {
+  .main {
+    width: 50%;
+    min-width: calc(768px - 2em);
+    border: 1px solid var(--fg);
+    border-style: none solid solid solid;
+  }
+  footer {
+    width: 50%;
+    min-width: calc(768px - 2em);
+    border: 1px solid var(--fg);
+    border-style: none solid solid solid;
+  }
+}
+#+end_src
+
+I don't want the skip-to-content button to be visible by default. (You can still access it by pressing tab):
+#+begin_src css
+.skip {
+  left: 50%;
+  position: absolute;
+  transform: translateY(-200%);
+}
+#+end_src
+
+Let's set images to fit within the borders:
+#+begin_src css
+img {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+#+end_src
+
+And let's extend horizontal rules to touch both sides, and be 1px wide:
+#+begin_src css
+hr {
+  width: calc(100% + 2em);
+  margin-left: -1em;
+  border: 0px solid var(--fg);
+  border-top: 1px solid var(--fg);
+}
+#+end_src
+
+The horizontal rules are mainly as a hack around the fact that pandoc inserts one before footnotes. I couldn't be bothered to find out why, and the resulting look works well enough for me.
+
+* Headings and Links
+For contrast, I've set headings to sans serif:
+#+begin_src css
+h1, h2, h3, h4, h5, h6 {
+  font-family: sans-serif;
+}
+#+end_src
+
+And links are also green:
+#+begin_src css
+a {
+  text-decoration: none;
+  position: relative;
+  font-family: sans-serif;
+}
+a:link {
+  color: var(--hl1);
+}
+a:visited {
+  color: var(--hl1);
+}
+#+end_src
+
+* Code Blocks
+First, we want to set the text size of code snippets to match the body:
+#+begin_src css
+code, .verbatim {
+  font-size: 1.4em;
+}
+#+end_src
+
+Let's also extend code blocks to the full width of the body, and give them some nice colours:
+#+begin_src css
+pre {
+  width: calc(100% + 1.4em);
+  margin: 0 auto;
+  margin-left: -1.7em;
+  overflow: auto;
+  color: var(--bg);
+  background-color: var(--fg);
+  padding: 1em;
+  font-size: 0.8em;
+}
+#+end_src
+
+At some point I'll get around to adding syntax highlighting. This will get put here.
+
+* Cookie Banner
+The cookie banner is a rounded bar at the bottom of the page, in inverted colours to make it (vaguely) stand out.
+#+begin_src css
+#cookie_bar {
+  width: calc(100% - 10px);
+  align: center;
+  z-index: 999999999;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background: var(--fg);
+  color: var(--bg);
+  font-size: 14px;
+  margin: 5px;
+  padding: 0px;
+  font-family: sans-serif;
+  line-height: 20px;
+  box-sizing: border-box;
+  border-radius: 16px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+#cookie_bar_text {
+  margin: 0px 15px;
+  padding: 5px 0px;
+}
+#cookie_bar_buttons {
+  padding: 5px 5px;
+  flex-grow: 1;
+}
+#+end_src
+
+The "manage cookies" page appears as a side panel, with a slight shadow to distinguish it from the main content. Obviously, it should be hidden by default:
+#+begin_src css
+#cookie_settings {
+  width: 100%;
+  height: 100vh;
+  max-width: 360px;
+  z-index: 999999999;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: inherit;
+  box-shadow: 5px 0px 10px grey;
+  font-size: 14px;
+  padding: 5px 2% 10px 2%;
+  font-family: sans-serif;
+  line-height: 24px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  display: inline-block;
+  visibility: hidden;
+}
+#+end_src
+
+We want some nice styling for the buttons. This gives a nice pill shape, with a border that expands slightly when clicked:
+#+begin_src css
+button {
+  background: var(--bg);
+  border: 2px solid var(--fg);
+  border-radius: 45px;
+  padding: 0px 8px;
+  margin: 1px 1px;
+  outline: none;
+}
+button:hover {
+  border: 3px solid var(--fg);
+  margin: 0px;
+}
+button:active {
+  background: var(--fg);
+  color: var(--bg);
+}
+#+end_src
+
+As with all proper cookie banners, we want to use dark patterns to discourage the user from managing their preferences. We'll make a button with inverse colours that blends in more:
+#+begin_src css
+.inverseButton {
+  background: var(--fg);
+  border: 2px solid var(--bg);
+  color: var(--bg);
+}
+.inverseButton:hover {
+  border: 3px solid var(--bg);
+  margin: 0px;
+}
+.inverseButton:active {
+  background: var(--bg);
+  color: var(--fg);
+}
+#+end_src
+
+Lastly, some helper rules for formatting entries, and fading out the settings page:
+#+begin_src css
+.rightAlign {
+  left: auto;
+  right: 0;
+  float: right;
+}
+
+.fadeOut {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 300ms, opacity 300ms;
+}
+#+end_src
+

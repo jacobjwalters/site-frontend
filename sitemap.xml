@@ -14,50 +14,10 @@
   </url>
 
   <url>
-    <loc>https://jacobwalte.rs/about.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
     <loc>https://jacobwalte.rs/archive.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
 
-  <url>
-    <loc>https://jacobwalte.rs/links.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-
-  <url>
-    <loc>https://jacobwalte.rs/posts/life-stack.html</loc>
-    <lastmod>2024-05-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
-    <loc>https://jacobwalte.rs/posts/nixos-idris2-pack.html</loc>
-    <lastmod>2024-01-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
-    <loc>https://jacobwalte.rs/posts/serving-websites-over-org.html</loc>
-    <lastmod>2023-05-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
-    <loc>https://jacobwalte.rs/posts/website.html</loc>
-    <lastmod>2023-05-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
 
 </urlset>
