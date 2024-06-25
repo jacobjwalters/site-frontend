@@ -1,10 +1,6 @@
 <article>
     <section class="header">
-        <p>Posted on $date$
-        $if(author)$
-            by $author$
-        $endif$
-        .</p>
+        <p>Posted on $date$$if(author)$ by $author$$endif$.</p>
 
         $if(updated)$
             <p>Last updated on $updated$.</p>
