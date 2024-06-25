@@ -27,9 +27,9 @@ Here's a map of countries I've been to:
 (you can find the script that made this image [[https://github.com/jacobjwalters/countries][here]])
 
 * About this site
-You can read in detail about how this site is made in [[file:posts/2023-05-12-website.org][this post]], but the gist is: this site is generated from a set of Org files using [[https://jaspervdj.be/hakyll/][Hakyll]] (and [[https://pandoc.org/][Pandoc]]), and served to you using [[https://caddyserver.com/][Caddy]]. It's hosted on a VPS from [[https://contabo.com][Contabo]], which I've infected with [[https://nixos.org][NixOS]]. I thoroughly recommend all of these.
+You can read in detail about how this site is made in [[file:posts/2023-05-12-website.org][this post]], but the gist is: this site is generated from a set of Org files using [[https://jaspervdj.be/hakyll/][Hakyll]] (and [[https://pandoc.org/][Pandoc]]), and served to you via Github Pages.
 
-The CSS I'm currently using is a modified [[https://edwardtufte.github.io/tufte-css/][tufte-css]]. This allows for the nice side and margin notes you can see throughout my site. To aid writing with this, I use [[https://hackage.haskell.org/package/pandoc-sidenote][pandoc-sidenote]] in my pandoc compiler to convert standard markdown footnote syntax into sidenotes and margin notes.
+I've used literate programming to document the [[./static/style.org][CSS]] and [[./static/js.org][JS]] for this site. The actual =.css= and =.js= files are generated directly from the previously linked pages.
 
 You can also browse this site entirely from within Emacs using Org mode! Find out how [[file:posts/2023-05-17-serving-websites-over-org.org][here]].
 
