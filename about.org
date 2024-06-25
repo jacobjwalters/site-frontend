@@ -21,7 +21,7 @@ Outside of the nerd life, I enjoy synthesizers (both playing and making them), r
 In order to truly fit the PL stereotype, I've recently taken up climbing.
 
 Here's a map of countries I've been to:
-[[./images/countries.svg]]
+[[./static/images/countries.svg]]
 (you can find the script that made this image [[https://github.com/jacobjwalters/countries][here]])
 
 * About this site
