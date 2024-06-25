@@ -11,4 +11,3 @@ You can find me on
 
 I can also be emailed at the address
 `me (at) <this domain>`.
-My PGP fingerprint is `C8944D768314A60351CC2D2158D47088A33ACF41`, if you wish to use it.

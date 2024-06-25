@@ -5,4 +5,4 @@ permalink: contact
 ---
 You can find me on [[https://types.pl/@jw][Mastodon]], [[https://github.com/jacobjwalters][GitHub]], and [[https://linkedin.com/in/jacobjwalters][LinkedIn]] (I generally don't post anything here).
 
-I can also be emailed at the address =me (at) <this domain>=. My PGP fingerprint is =C8944D768314A60351CC2D2158D47088A33ACF41=, if you wish to use it.
+I can also be emailed at the address =me (at) <this domain>=.
