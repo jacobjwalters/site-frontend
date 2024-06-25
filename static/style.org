@@ -347,3 +347,73 @@ Lastly, some helper rules for formatting entries, and fading out the settings pa
 }
 #+end_src
 
+* Printing
+You can specify a separate set of rules used when printing the page. Generally, the purpose of these rules is to undo all of the fancy styling you've already done to your page, so things appear presentable on paper. You can specify print rules in a separate stylesheet, but in the interest of keeping things in one place, I'm specifying it in the same file as the rest of the CSS. Since we're overriding every other rule, it's important that these rules occur last.
+
+We use a media selector, much like the ones we used earlier for screen size and dark mode, to enable our printing rules:
+#+begin_src css
+@media print {
+#+end_src
+
+Most of the page's interactive elements don't have any purpose on paper, so we'll make sure they stay hidden:
+#+begin_src css
+  header,
+  footer,
+  .skip,
+  .footnote-back,
+  [aria-hidden="true"],
+  #cookie_bar,
+  nav {
+    display: none !important;
+  }
+#+end_src
+
+To save on ink, we want to ensure that our text is printed black on white. We also reduce our font size back down to 1em, which is usually fully readable on paper.
+#+begin_src css
+  body {
+    font-size: 1em;
+    color: #000;
+    background-color: #fff;
+  }
+#+end_src
+
+We also want to remove the colour for links, and add an underline to highlight that they were interactive elements:
+#+begin_src css
+  a:link {
+    color:#000;
+    text-decoration: underline;
+  }
+  a:visited {
+    color:#000;
+  }
+#+end_src
+
+However, it's no use knowing that there was a link if you don't know where it went! This little snippet includes the URL in the text body, just after the link's name.
+#+begin_src css
+  a:after {
+    content: " (" attr(href) ")";
+    font-family: monospace;
+  }
+#+end_src
+
+Since this is a technical blog, it's important to pay close attention to the rendering of code blocks. The first two lines here reset the size and position of the code block. The next three will force long lines to wrap. Without these, the text will be cut off, or worse, fit in by shrinking the rest of the document! The last three lines add a swanky black bar to the edge of the code block, to visually distinguish code from prose without using excess ink.
+#+begin_src css
+  pre {
+    width: 100%;
+    margin-left: 0;
+
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    overflow:visible;
+
+    border-left: 4px solid #000;
+    padding: 0;
+    padding-left: 1.4em;
+  }
+#+end_src
+
+Finally, let's close our =@media print= block:
+#+begin_src css
+}
+#+end_src
+
