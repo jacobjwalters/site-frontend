@@ -237,6 +237,14 @@ pre {
 }
 #+end_src
 
+This does most of the job, but there's no right padding on the code content. This is a [[https://www.brunildo.org/test/overscrollback.html][general "feature"]] with scrolling overflow, and we can fix it by manually adding a margin to the child elements:
+#+begin_src css
+pre > code {
+  margin-right:1em;
+  display: inline-block;
+}
+#+end_src
+
 At some point I'll get around to adding syntax highlighting. This will get put here.
 
 * Cookie Banner
