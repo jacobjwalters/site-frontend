@@ -1,7 +1,7 @@
 name:               my-site
 version:            0.1.0.0
 build-type:         Simple
-cabal-version:      >= 1.10
+cabal-version:      1.18
 
 executable site
   main-is:          site.hs
@@ -9,8 +9,8 @@ executable site
                   , hakyll
                   , containers
                   , filepath
-                  , pandoc
-                  , pandoc-types
+                  , pandoc < 3.0
+                  , pandoc-types < 1.23
                   , regex-compat
                   , text
   ghc-options:      -threaded
