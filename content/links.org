@@ -5,6 +5,9 @@ permalink: links
 ---
 This is a collection of links I found to be useful when learning about various theoretical computer science and abstract algebra concepts. It's largely made for myself, but I've structured it so that anybody should be able to make use of it. They assume a basic knowledge of functional programming (if you're at Edi, that implies you've taken inf1a-fp at least), but I've tried to note where extra learning is necessary.
 
+* Writing
+- [[https://jsomers.net/blog/dictionary][You're probably using the wrong dictionary]] - A simple hack for using an older dictionary for more poetic descriptions of words.
+
 *  Category Theory
 You've probably heard that Haskell is based around Category Theory. CT is a really abstract mathematical field, and isn't usually taught at undergrad. However, the underlying concepts are often deceptively simple, and with the right frame of mind, you could easily learn enough to massively improve your Haskell skills.
 
