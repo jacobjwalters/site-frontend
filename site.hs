@@ -100,6 +100,28 @@ rawContent = do
   route   contentRoute
   compile copyFileCompiler
 
+data FeedType = RSS | Atom
+
+feedConfig :: FeedConfiguration
+feedConfig = FeedConfiguration
+  { feedTitle       = "Jacob Walters' Blog"
+  , feedDescription = "This feed serves the posts from my blog."
+  , feedAuthorName  = "Jacob Walters"
+  , feedAuthorEmail = "blog {- at -} this.domain"
+  , feedRoot        = "https://jacobwalte.rs"
+  }
+
+feed :: FeedType -> Rules ()
+feed ft = do
+  route idRoute
+  compile $ do
+      posts <- recentFirst =<< loadAllSnapshots ("content/posts/*" .&&. hasVersion "html") "htmlContent"
+      let compiler = case ft of
+                       RSS  -> renderRss
+                       Atom -> renderAtom
+      compiler feedConfig postCtx posts
+
+
 main :: IO ()
 main = hakyll $ do
     -- Static pages
@@ -131,11 +153,16 @@ main = hakyll $ do
         route   $ composeRoutes contentRoute (permalinkExt "html")
         compile $ pdc
               >>= loadAndApplyTemplate "templates/post.html"    postCtx
+              >>= saveSnapshot "htmlContent"
               >>= loadAndApplyTemplate "templates/default.html" postCtx
               >>= relativizeUrls
 
     match "content/posts/*" orgContent
 
+
+    -- Feeds
+    create ["atom.xml"] $ feed Atom
+    create ["rss.xml"]  $ feed RSS
 
     -- Post archives
     create ["archive.html"] $ do
