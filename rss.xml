@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel>
+        <title>Jacob Walters' Blog</title>
+        <link>https://jacobwalte.rs</link>
+        <description><![CDATA[This feed serves the posts from my blog.]]></description>
+        <atom:link href="https://jacobwalte.rs/rss.xml" rel="self"
+                   type="application/rss+xml" />
+        <lastBuildDate>2024-05-11</lastBuildDate>
+        <item>
+    <title>Life Stack</title>
+    <link>https://jacobwalte.rs/posts/life-stack.html</link>
+    <description><![CDATA[A list of all of the important pieces of technology I use in my day-to-day life.]]></description>
+    <pubDate>2024-03-16</pubDate>
+    <guid>https://jacobwalte.rs/posts/life-stack.html</guid>
+    <dc:creator>Jacob Walters</dc:creator>
+</item>
+<item>
+    <title>Installing idris2-pack on NixOS</title>
+    <link>https://jacobwalte.rs/posts/nixos-idris2-pack.html</link>
+    <description><![CDATA[A simple note-to-self on how to install Pack, the package manager for Idris 2, on NixOS]]></description>
+    <pubDate>2024-01-07</pubDate>
+    <guid>https://jacobwalte.rs/posts/nixos-idris2-pack.html</guid>
+    <dc:creator>Jacob Walters</dc:creator>
+</item>
+<item>
+    <title>Serving Websites with Org</title>
+    <link>https://jacobwalte.rs/posts/serving-websites-over-org.html</link>
+    <description><![CDATA[Emacs can browse remote Org files as if they were local. We can exploit this to serve websites entirely with Org mode!]]></description>
+    <pubDate>2023-05-17</pubDate>
+    <guid>https://jacobwalte.rs/posts/serving-websites-over-org.html</guid>
+    <dc:creator>Jacob Walters</dc:creator>
+</item>
+<item>
+    <title>Making a website with Org mode, Hakyll, and NixOS</title>
+    <link>https://jacobwalte.rs/posts/website.html</link>
+    <description><![CDATA[The wild and wonderful journey of how I made this site work the way it does!]]></description>
+    <pubDate>2023-05-12</pubDate>
+    <guid>https://jacobwalte.rs/posts/website.html</guid>
+    <dc:creator>Jacob Walters</dc:creator>
+</item>
+
+    </channel>
+</rss>
