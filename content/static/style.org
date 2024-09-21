@@ -102,10 +102,11 @@ The front page features a large, bright green box with my name in it:
 }
 #+end_src
 
-I'm the most important person on this site so my name gets to be in bold:
+I'm the most important person on this site so my name gets to be in bold. On mobile screens, we want to wrap my name so it doesn't go past the edge of the screen:
 #+begin_src css
 .heroText {
   font-weight: bold;
+  overflow-wrap: anywhere;
 }
 #+end_src
 
