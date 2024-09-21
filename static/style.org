@@ -107,12 +107,12 @@ I'm the most important person on this site so my name gets to be in bold. On mob
 }
 #+end_src
 
-And when you hover on it, it switches into the IPA pronunciation of my name. This is currently really janky due to different font sizes, so I've just hacked it to work on my devices at least:
+And when you hover on it, it switches into the IPA pronunciation of my name:
 #+begin_src css
 .heroText span {
   display: table;
   margin: 0 auto;
-  line-height: 0.9em;
+  line-height: 1em;
 }
 
 h1.heroText:hover span {
@@ -122,7 +122,6 @@ h1.heroText:hover:before {
   content:'/ˈʤeɪkəb ˈwɔːltəz/';
   display:table;
   margin:0 auto;
-  padding-top: 0.265em;
   line-height: 1em;
 }
 #+end_src

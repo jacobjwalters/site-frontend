@@ -104,11 +104,11 @@
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">font-weight</span>: <span class="dv">bold</span><span class="op">;</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">overflow-wrap</span>: anywhere<span class="op">;</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p>And when you hover on it, it switches into the IPA pronunciation of my name. This is currently really janky due to different font sizes, so I’ve just hacked it to work on my devices at least:</p>
+<p>And when you hover on it, it switches into the IPA pronunciation of my name:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.heroText</span> span {</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">display</span>: <span class="dv">table</span><span class="op">;</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">margin</span>: <span class="dv">0</span> <span class="bu">auto</span><span class="op">;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">line-height</span>: <span class="dv">0.9</span><span class="dt">em</span><span class="op">;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">line-height</span>: <span class="dv">1</span><span class="dt">em</span><span class="op">;</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>h1<span class="fu">.heroText</span><span class="in">:hover</span> span {</span>
@@ -118,9 +118,8 @@
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">content</span>:<span class="st">'/ˈʤeɪkəb ˈwɔːltəz/'</span><span class="op">;</span></span>
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">display</span>:<span class="dv">table</span><span class="op">;</span></span>
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">margin</span>:<span class="dv">0</span> <span class="bu">auto</span><span class="op">;</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">padding-top</span>: <span class="dv">0.265</span><span class="dt">em</span><span class="op">;</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">line-height</span>: <span class="dv">1</span><span class="dt">em</span><span class="op">;</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">line-height</span>: <span class="dv">1</span><span class="dt">em</span><span class="op">;</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <h2 id="main-content-style">Main Content Style</h2>
 <p>I’ve defined the main body in a mobile-first manner. All we enforce here is 1em padding, and a sans serif font for the links in the footer. To separate the footer from the page content, we want a horizonal line above and below it:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.main</span> {</span>
