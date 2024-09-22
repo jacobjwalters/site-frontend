@@ -28,13 +28,16 @@
         <main role="main" class="main" id="main">
             <section>
                 <h1>Making a website with Org mode, Hakyll, and NixOS</h1>
-                <article>
+                <article class="h-entry">
     <section class="header">
-        <p>Posted on May 12, 2023.</p>
+        <p>Posted on <a class="dt-published">May 12, 2023</a>.</p>
+
+        <p class="p-summary">The wild and wonderful journey of how I made this site work the way it does!</p>
 
         
     </section>
-    <section>
+    <hr>
+    <section class="e-content">
         <p>This is how I build and host my site. If you want to look through the code while reading, it can be found <a href="https://github.com/jacobjwalters/site-frontend">here</a>.</p>
 <p>Laziness is perhaps one of Haskell’s most prominent features, and I’ve really taken that philosophy to heart. I want my software to work with as little user input as possible (once set up), preferably none. With a website, this means I want to be able to just write a blog post, upload that file somewhere, and have it appear on my site. There’s plenty of sites and companies that provide this directly, but they tend not to offer you much control. I already rent a VPS (to run personal services on for me and my friends), so why not use that to host my site?</p>
 <h2 id="hakyll">Hakyll</h2>

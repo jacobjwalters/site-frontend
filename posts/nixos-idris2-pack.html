@@ -28,13 +28,16 @@
         <main role="main" class="main" id="main">
             <section>
                 <h1>Installing idris2-pack on NixOS</h1>
-                <article>
+                <article class="h-entry">
     <section class="header">
-        <p>Posted on January  7, 2024.</p>
+        <p>Posted on <a class="dt-published">January  7, 2024</a>.</p>
+
+        <p class="p-summary">A simple note-to-self on how to install Pack, the package manager for Idris 2, on NixOS</p>
 
         
     </section>
-    <section>
+    <hr>
+    <section class="e-content">
         <p>This post acts as a simple note-to-self on how to install <a href="https://github.com/stefan-hoeck/idris2-pack">Pack</a>, the primary package manager for Idris 2, on NixOS.</p>
 <p>The Idris community currently doesn’t overlap much with the Nix community. Ignoring a basic nixpkgs entry for the compiler itself, and editor plugins for Vim and Emacs, there is nothing packaged for Idris 2 at all.</p>
 <p>The primary package manager that has arisen is Stefan Hoeck’s <em>Pack</em>. It follows a <a href="https://github.com/commercialhaskell/stack">Stack</a>-like model, but the main thing that we care about is it’s what the community has settled on. Most libraries that have been written for Idris 2 can be installed through Pack, and it can even manage the version of the Idris 2 compiler<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> itself!</p>
