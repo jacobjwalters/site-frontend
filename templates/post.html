@@ -1,12 +1,15 @@
-<article>
+<article class="h-entry">
     <section class="header">
-        <p>Posted on $date$$if(author)$ by $author$$endif$.</p>
+        <p>Posted on <a class="dt-published">$date$</a>$if(author)$ by <a class="p-author" rel="author">$author$</a>$endif$.</p>
+
+        $if(description)$<p class="p-summary">$description$</p>$endif$
 
         $if(updated)$
-            <p>Last updated on $updated$.</p>
+            <p>Last updated on <a class="dt-updated">$updated$</a>.</p>
         $endif$
     </section>
-    <section>
+    <hr>
+    <section class="e-content">
         $body$
     </section>
 </article>
