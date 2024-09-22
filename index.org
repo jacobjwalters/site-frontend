@@ -2,7 +2,8 @@
 #+title:jacobwalte.rs
 [[file:https://jacobwalte.rs/index.org][Home]] [[file:https://jacobwalte.rs/about.org][About]] [[file:https://jacobwalte.rs/contact.org][Contact]] [[file:https://jacobwalte.rs/archive.org][Archive]]
 
-I'm Jacob Walters, an undergraduate at the University of Edinburgh, and this is my personal site. Find out more about me using the links at the top, or read through some of my posts to see what I'm thinking about.
+* Hello!
+You have reached the personal website of Jacob Walters. I'm an incoming Ph.D. student at the University of Edinburgh, specialising in programming language theory. Find out more about me using the links at the top, or read through some of my posts to see what I've been thinking about.</p>
 
 You're currently browsing over Org. [[https://jacobwalte.rs/][Open this link]] to view this site in your (non-Emacs) browser.
 
