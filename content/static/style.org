@@ -255,7 +255,6 @@ The cookie banner is a rounded bar at the bottom of the page, in inverted colour
 #+begin_src css
 #cookie_bar {
   width: calc(100% - 10px);
-  align: center;
   z-index: 999999999;
   position: fixed;
   left: 0;
