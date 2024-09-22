@@ -1,44 +1,46 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Jacob Walters' Homepage</title>
-        <link rel="icon" type="image/x-icon" href="./static/images/favicon.png">
-        <link rel="canonical" href="https://jacobwalte.rs/">
-        <link rel="stylesheet" href="./static/style.css" />
-        <link rel="stylesheet" href="./css/cookie.css" />
 
-        <link rel="me" href="https://github.com/jacobjwalters" />
-        <link rel="me" href="https://types.pl/@jw" />
-        <link rel="me" href="https://linkedin.com/in/jacobjwalters" />
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jacob Walters' Homepage</title>
+  <link rel="icon" type="image/x-icon" href="./static/images/favicon.png">
+  <link rel="canonical" href="https://jacobwalte.rs/">
+  <link rel="stylesheet" href="./static/style.css">
+  <link rel="stylesheet" href="./css/cookie.css">
 
-        <script type="text/javascript" src="./static/site.js"></script>
-        <link rel="webmention" href="https://webmention.io/jacobwalte.rs/webmention" />
-        <meta name="description" content="This is the personal site of Jacob Walters, a Computer Science researcher currently based in Edinburgh, Scotland.">
-    </head>
-    <body>
-        <header>
-            <div class="logo">
-                <a href="./">jacobwalte.rs</a>
-            </div>
-            <nav class="header-nav">
-                <a href="./about.html">About</a>
-                <a href="./contact.html">Contact</a>
-                <a href="./archive.html">Archive</a>
-            </nav>
-        </header>
+  <link rel="me" href="https://github.com/jacobjwalters">
+  <link rel="me" href="https://types.pl/@jw">
+  <link rel="me" href="https://linkedin.com/in/jacobjwalters">
 
-        <div class="hero">
-                <h1 class="heroText"><span>jacob<wbr>walte<wbr>.rs</span></h1>
-        </div>
+  <script src="./static/site.js"></script>
+  <link rel="webmention" href="https://webmention.io/jacobwalte.rs/webmention">
+  <meta name="description" content="This is the personal site of Jacob Walters, a Computer Science researcher currently based in Edinburgh, Scotland.">
+</head>
 
-        <main role="main" class="main">
-            <section>
-                <h2>Hello!</h2>
+<body>
+  <header>
+    <div class="logo">
+      <a href="./">jacobwalte.rs</a>
+    </div>
+    <nav class="header-nav">
+      <a href="./about.html">About</a>
+      <a href="./contact.html">Contact</a>
+      <a href="./archive.html">Archive</a>
+    </nav>
+  </header>
 
-<p><span class="h-card">You have reached the <a class="u-url" href="https://jacobwalte.rs">personal website</a> of <a class="p-name">Jacob Walters</a>. <a class="p-note">I'm an incoming <a class="p-job-title">Ph.D. student</a> at the <a class="p-org">University of Edinburgh</a>, specialising in <a class="p-category">programming language theory</a>.</a></span> Find out more about me using the links at the top, or read through some of my posts to see what I've been thinking about.</p>
+  <div class="hero">
+    <h1 class="heroText"><span>jacob<wbr>walte<wbr>.rs</span></h1>
+  </div>
+
+  <main class="main">
+    <section>
+      <h2>Hello!</h2>
+
+<p><span class="h-card">You have reached the <a class="u-url" href="https://jacobwalte.rs">personal website</a> of <a class="p-name">Jacob Walters</a>. <a class="p-note">I'm an incoming <span class="p-job-title">Ph.D. student</span> at the <span class="p-org">University of Edinburgh</span>, specialising in <span class="p-category">programming language theory</span>.</a></span> Find out more about me using the links at the top, or read through some of my posts to see what I've been thinking about.</p>
 
 <hr>
 <h2>Posts</h2>
@@ -74,73 +76,87 @@ and other links that I found to be very useful.</p>
 
 <p>Want to see how this site was made? Find out generally <a href="posts/website.html">here</a>, and see my literate <a href="static/style.html">CSS</a> and <a href="static/js.html">JavaScript</a> files too!
 
-	    </section>
-        </main>
+    </section>
+  </main>
 
-        <footer>
-            <a href="#">top</a>
-        </footer>
+  <footer>
+    <a href="#">top</a>
+  </footer>
 
-        <!-- COOKIE BANNER / SETTINGS -->
-        <div id="cookie_settings" style="visibility:hidden;">
-          <h2>Manage Cookies</h2>
+  <!-- COOKIE BANNER / SETTINGS -->
+  <div id="cookie_settings" style="visibility:hidden;">
+    <h2>Manage Cookies</h2>
 
-          <div style="text-align:center;">
-            <button id="cookies" onclick="javascript:click_cookie()">Cookie Clicker</button>
-            <a id="cps">0 CPS</a><br>
-          </div>
+    <div style="text-align:center;">
+      <button id="cookies" onclick="javascript:click_cookie()">Cookie Clicker</button>
+      <a id="cps">0 CPS</a><br>
+    </div>
 
-          <p>Cursors:
-            <a id="cursors">0</a>
-            <button class="rightAlign" id="buycursors" onclick="javascript:buy('cursors')"></button></p>
-          <p>Grandmas:
-            <a id="grandmas">0</a>
-            <button class="rightAlign" id="buygrandmas" onclick="javascript:buy('grandmas')"></button></p>
-          <p>Farms:
-            <a id="farms">0</a>
-            <button class="rightAlign" id="buyfarms" onclick="javascript:buy('farms')"></button></p>
-          <p>Mines:
-            <a id="mines">0</a>
-            <button class="rightAlign" id="buymines" onclick="javascript:buy('mines')"></button></p>
-          <p>Factories:
-            <a id="factories">0</a>
-            <button class="rightAlign" id="buyfactories" onclick="javascript:buy('factories')"></button></p>
-          <p>Banks:
-            <a id="banks">0</a>
-            <button class="rightAlign" id="buybanks" onclick="javascript:buy('banks')"></button></p>
-          <p>Temples:
-            <a id="temples">0</a>
-            <button class="rightAlign" id="buytemples" onclick="javascript:buy('temples')"></button></p>
-          <p>Wizard Towers:
-            <a id="wizards">0</a>
-            <button class="rightAlign" id="buywizards" onclick="javascript:buy('wizards')"></button></p>
-          <p>Spaceships:
-            <a id="spaceships">0</a>
-            <button class="rightAlign" id="buyspaceships" onclick="javascript:buy('spaceships')"></button></p>
-          <p>Alchemists:
-            <a id="alchemists">0</a>
-            <button class="rightAlign" id="buyalchemists" onclick="javascript:buy('alchemists')"></button></p>
-          <p>Portals:
-            <a id="portals">0</a>
-            <button class="rightAlign" id="buyportals" onclick="javascript:buy('portals')"></button></p>
-          <p>Time Machines:
-            <a id="timeMachines">0</a>
-            <button class="rightAlign" id="buytimeMachines" onclick="javascript:buy('timeMachines')"></button></p><br>
+    <p>Cursors:
+      <a id="cursors">0</a>
+      <button class="rightAlign" id="buycursors" onclick="javascript:buy('cursors')"></button>
+    </p>
+    <p>Grandmas:
+      <a id="grandmas">0</a>
+      <button class="rightAlign" id="buygrandmas" onclick="javascript:buy('grandmas')"></button>
+    </p>
+    <p>Farms:
+      <a id="farms">0</a>
+      <button class="rightAlign" id="buyfarms" onclick="javascript:buy('farms')"></button>
+    </p>
+    <p>Mines:
+      <a id="mines">0</a>
+      <button class="rightAlign" id="buymines" onclick="javascript:buy('mines')"></button>
+    </p>
+    <p>Factories:
+      <a id="factories">0</a>
+      <button class="rightAlign" id="buyfactories" onclick="javascript:buy('factories')"></button>
+    </p>
+    <p>Banks:
+      <a id="banks">0</a>
+      <button class="rightAlign" id="buybanks" onclick="javascript:buy('banks')"></button>
+    </p>
+    <p>Temples:
+      <a id="temples">0</a>
+      <button class="rightAlign" id="buytemples" onclick="javascript:buy('temples')"></button>
+    </p>
+    <p>Wizard Towers:
+      <a id="wizards">0</a>
+      <button class="rightAlign" id="buywizards" onclick="javascript:buy('wizards')"></button>
+    </p>
+    <p>Spaceships:
+      <a id="spaceships">0</a>
+      <button class="rightAlign" id="buyspaceships" onclick="javascript:buy('spaceships')"></button>
+    </p>
+    <p>Alchemists:
+      <a id="alchemists">0</a>
+      <button class="rightAlign" id="buyalchemists" onclick="javascript:buy('alchemists')"></button>
+    </p>
+    <p>Portals:
+      <a id="portals">0</a>
+      <button class="rightAlign" id="buyportals" onclick="javascript:buy('portals')"></button>
+    </p>
+    <p>Time Machines:
+      <a id="timeMachines">0</a>
+      <button class="rightAlign" id="buytimeMachines" onclick="javascript:buy('timeMachines')"></button>
+    </p><br>
 
 
-          <button id="cookies" onclick="javascript:reset()">Reset</button>
-          <button class="rightAlign inverseButton" id="close" onclick="javascript:hideSettings(); stop()">Save and Close</button>
-        </div>
+    <button id="reset" onclick="javascript:reset()">Reset</button>
+    <button class="rightAlign inverseButton" id="close" onclick="javascript:hideSettings(); stop()">Save and
+      Close</button>
+  </div>
 
-        <div id="cookie_bar">
-          <div id="cookie_bar_text">
-            <a>This site does not use cooies to improve your experience.</a>
-          </div>
-          <div id="cookie_bar_buttons">
-            <button class="inverseButton" id="cookie_bar_settings" onclick="javascript:hideBar(); showSettings(); init()" href="#">Manage Cookies</button>
-            <button class="rightAlign" onclick="javascript:hideBar();">Close</button>
-          </div>
-        </div>
+  <div id="cookie_bar">
+    <div id="cookie_bar_text">
+      <a>This site does not use cooies to improve your experience.</a>
+    </div>
+    <div id="cookie_bar_buttons">
+      <button class="inverseButton" id="cookie_bar_settings" onclick="javascript:hideBar(); showSettings(); init()">Manage Cookies</button>
+      <button class="rightAlign" onclick="javascript:hideBar();">Close</button>
+    </div>
+  </div>
 
-    </body>
+</body>
+
 </html>
