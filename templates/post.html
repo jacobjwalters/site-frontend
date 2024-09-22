@@ -1,15 +1,15 @@
-<article class="h-entry">
-    <section class="header">
-        <p>Posted on <a class="dt-published u-url" href="$url$">$date$</a> by <a class="p-author" rel="author">$if(author)$$author$$else$Jacob Walters$endif$</a>.</p>
+<div class="h-entry">
+    <div class="header">
+        <p>Posted on <a class="dt-published u-url" href="$url$">$date$</a> by $if(author)$<a class="p-author" rel="author" href="$authorUrl$">$author$</a>$else$<a class="p-author" rel="author" href="https://jacobwalte.rs">Jacob Walters</a>$endif$.</p>
 
         $if(description)$<p class="p-summary">$description$</p>$endif$
 
         $if(updated)$
             <p>Last updated on <a class="dt-updated">$updated$</a>.</p>
         $endif$
-    </section>
+    </div>
     <hr>
-    <section class="e-content">
+    <div class="e-content">
         $body$
-    </section>
-</article>
+    </div>
+</div>
