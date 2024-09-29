@@ -1,0 +1,10 @@
+<item>
+    <title>$title$</title>
+    <link>https://jacobwalte.rs/$pathNoExt$.html</link>
+    <description><![CDATA[$description$]]></description>
+    <content>$body$</content>
+    <pubDate>$published$</pubDate>
+    <guid>https://jacobwalte.rs/$pathNoExt$</guid>
+    <dc:creator>$authorName$</dc:creator>
+</item>
+

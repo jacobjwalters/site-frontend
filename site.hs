@@ -107,7 +107,7 @@ feedConfig = FeedConfiguration
   { feedTitle       = "Jacob Walters' Blog"
   , feedDescription = "This feed serves the posts from my blog."
   , feedAuthorName  = "Jacob Walters"
-  , feedAuthorEmail = "blog {- at -} this.domain"
+  , feedAuthorEmail = "blog@this.domain"
   , feedRoot        = "https://jacobwalte.rs"
   }
 
@@ -116,9 +116,14 @@ feed ft = do
   route idRoute
   compile $ do
       posts <- recentFirst =<< loadAllSnapshots ("content/posts/*" .&&. hasVersion "html") "htmlContent"
+
+      rssT      <- loadBody "templates/feeds/rss.xml"
+      rssItemT  <- loadBody "templates/feeds/rss-item.xml"
+      atomT     <- loadBody "templates/feeds/atom.xml"
+      atomItemT <- loadBody "templates/feeds/atom-item.xml"
       let compiler = case ft of
-                       RSS  -> renderRss
-                       Atom -> renderAtom
+                       RSS  -> renderRssWithTemplates  rssT  rssItemT
+                       Atom -> renderAtomWithTemplates atomT atomItemT
       compiler feedConfig postCtx posts
 
 
@@ -239,7 +244,7 @@ main = hakyll $ do
 
 
     -- Templates
-    match "templates/*" $ compile templateBodyCompiler
+    match "templates/**" $ compile templateBodyCompiler
 
 
 --CONTEXTS----------------------------------------------------------------------

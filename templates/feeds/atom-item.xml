@@ -1,0 +1,9 @@
+<entry>
+    <title>$title$</title>
+    <link href="https://jacobwalte.rs/$pathNoExt$.html" />
+    <id>https://jacobwalte.rs/$pathNoExt$.html</id>
+    <published>$published$</published>
+    <updated>$updated$</updated>
+    <summary type="html"><![CDATA[$description$]]></summary>
+    <content>$body$</content>
+</entry>
