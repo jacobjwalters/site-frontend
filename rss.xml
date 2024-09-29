@@ -10,36 +10,506 @@
         <lastBuildDate>2024-05-11</lastBuildDate>
         <item>
     <title>Life Stack</title>
-    <link>https://jacobwalte.rs/posts/life-stack.html</link>
+    <link>https://jacobwalte.rs/content/posts/life-stack.html</link>
     <description><![CDATA[A list of all of the important pieces of technology I use in my day-to-day life.]]></description>
+    <content><div class="h-entry">
+    <div class="header">
+        <p>Posted on <a class="dt-published u-url" href="/posts/life-stack.html">March 16, 2024</a> by <a class="p-author" rel="author" href="https://jacobwalte.rs">Jacob Walters</a>.</p>
+
+        <p class="p-summary">A list of all of the important pieces of technology I use in my day-to-day life.</p>
+
+        
+            <p>Last updated on <a class="dt-updated">2024-05-11</a>.</p>
+        
+    </div>
+    <hr>
+    <div class="e-content">
+        <p>Welcome!
+This page gives a rough description of my personal computing stack.</p>
+<p>I’ve seen a <a href="https://aaronparecki.com/life-stack/">few</a> <a href="https://www.johnpe.art/life-stack">people</a> around the web with a page similar to this one, and I thought I’d try my hand at it too.
+I’ve added a rating to each item, and a brief sentence trying to give my overall thoughts about it.
+You’ll notice most of the ratings are 4 or 5 out of 5;
+generally if something is lower than that, it won’t make it into regular use!</p>
+<h2 id="hardware">Hardware</h2>
+<h3 id="main-devices">Main Devices</h3>
+<h4 id="framework-13-amd">Framework 13 AMD</h4>
+<p><img src="../static/images/life-stack/framework-13.png" width="700" /></p>
+<p>5/5 - It just feels dependable.</p>
+<p>At the start of 2024, I bought a <a href="https://frame.work">Framework 13 AMD</a>, which had just released.
+This was to replace my previous laptop, an XPS 13 7390 2-in-1.
+That machine was lovely in most aspects, but I was constantly running low on RAM, and the webcam and fingerprint sensors didn’t have driver support on Linux.
+The Framework, of course, has perfect Linux support, and given the whole gimmick of the device is to be upgradeable, being stuck on 8GB of RAM will not be an issue.
+I’m also in the process of replacing my desktop with this, since it gets roughly the same performance!</p>
+<h4 id="remarkable-2">reMarkable 2</h4>
+<p><img src="../static/images/life-stack/rm2.png" width="300" /></p>
+<p>5/5 - Invaluable for research</p>
+<p>The reMarkable has fully replaced paper for me.
+I got it for ~£170 including the pen from a friend who no longer needed it.
+That’s an absolute bargain, and knowing how much I like using it, I’d probably buy one full price.</p>
+<p>It’s sleek, responsive (or as responsive as e-ink can be), and very light; only weighing 400g, it’s lighter than the notebook I used to carry.
+Reading PDFs on it is a dream, and the writing experience is the best out there; the feel is roughly similar to a ballpoint pen on paper.
+In this regard, it is way better than any other tablet I’ve tried, even with a paper-like screen protector.</p>
+<h4 id="poco-x4-pro-5g">POCO X4 Pro 5G</h4>
+<p><img src="../static/images/life-stack/poco-x4-pro-5g.png" width="400" /></p>
+<p>4/5 - Does the job, plenty of alternatives available.</p>
+<p>This is a very cheap Android phone for its specifications:
+120Hz screen; decent battery; okay camera quality; and a lovely blue colour.
+It even comes with an IR blaster of all things!
+I managed to get it for only £160 in total.
+I’m not someone who <em>wants</em> to be using their phone all that much, so it does the job for me.
+As a bonus, it comes with a compact <em>67W</em> USB-C power delivery charger, which is insane, and conveniently enough to charge my laptop from.
+By this point I use USB-C exclusively (save for my watch) to charge things, so a high-quality charger included for free is a very welcome surprise.</p>
+<h4 id="topton-r1-pro">Topton R1 Pro</h4>
+<p><img src="../static/images/life-stack/topton-r1-pro.png" width="400" /></p>
+<p>5/5 - A very good deal, and a NAS works so much better for me than a desktop.</p>
+<p>This is a cute two bay NAS enclosure with an Intel N100-based motherboard I recently picked up.
+As mentioned above, I’m trying to get rid of my desktop computer, primarily because it draws a lot of power for the amount I use it these days.
+However, there’s a bunch of small services I run on it, and I’d rather not run them on a VPS since they contain sensitive personal information.
+This thing only draws around 25W when my drives are being accessed, compared to the 100W my PC drew.</p>
+<p>It was about £200 in total (including 16GB of RAM), which is a very good price for an entry-level NAS.
+I already had the storage from my old desktop; a 512gb 7Gbps NVMe SSD for the boot drive, and two 3.5 inch HDDs (8TB and 1TB).
+I run Proxmox on it.
+You can see which services I’m running in the software section.</p>
+<h3 id="peripherals">Peripherals</h3>
+<h4 id="logitech-pebble">Logitech Pebble</h4>
+<p><img src="../static/images/life-stack/logitech-pebble.png" width="400" /></p>
+<p>4/5 - Beats a touchpad</p>
+<p>This is a pretty uncomfortable mouse to use for long periods of time.
+Luckily, that’s not what I bought it for; this is for when I need to do some work that would be annoying on a touchpad, but I don’t want to have to lug a full mouse around.</p>
+<p>Its design is surprisingly clever, ignoring the lack of ergonomics;
+the USB receiver and (AA) battery are hidden underneath the <em>top</em> of the mouse, which is held in place magnetically against some standard screws - a very smart solution!
+It’s got a nice button that toggles between the USB receiver and Bluetooth for connectivity, which is handy if you need to switch between two devices frequently.</p>
+<h4 id="between-pro">Between Pro</h4>
+<p><img src="../static/images/life-stack/between-pro.png" width="400" /></p>
+<p>5/5 - Although they have a newer model that’s presumably better</p>
+<p>These true wireless earbuds are great:
+they’re very comfortable; last for absolutely ages on a single charge; never fall out; block out most environmental noise even without ANC; and sound amazing.
+The box is fairly bulky compared to e.g. AirPods, but Edinburgh weather tends to force you to wear a jacket, so it’s not that big of a deal for me.
+I use them daily to listen to music when walking around or shopping, and also during work calls.
+The mic quality is average I’d say;
+I think you always end up with worse quality mic audio on these sorts of earphones since the mics are nowhere near your mouth.</p>
+<p>If I were looking to buy some of these today, Status Audio have a newer model out that has ANC and an app, which I presume is probably better.</p>
+<h4 id="status-audio-flagship-anc">Status Audio Flagship ANC</h4>
+<p><img src="../static/images/life-stack/flagship-anc.png" width="400" /></p>
+<p>5/5 - Great sound for the price.</p>
+<p>Given how much I liked the Between Pros, I ended up snagging a pair of Flagship ANCs, also by Status Audio.
+They’ve got good sound and battery life, with a generally convenient touch surface on the right ear to control your music.
+They’re great for focusing in a co-working environment.
+I think they’ve been discontinued, which is a shame;
+the noise cancelling is really good, and the cheaper replacement model doesn’t have the same system.</p>
+<p>One really important feature about these for me is that, while they are primarily wireless headphones, you can connect an aux cable to them with zero latency - you’d be shocked at how many Bluetooth devices have a 6-700ms delay even when using wires!
+Because of this, I find it super convenient to use these with my synths if I want to play later at night.</p>
+<h4 id="yubico-security-key">Yubico Security Key</h4>
+<p><img src="../static/images/life-stack/yubikey.png" width="300" /></p>
+<p>5/5 - Can’t complain, it beats SMS any day.</p>
+<p>For 2FA, I’ve been making use of this thing.
+Note that it isn’t a Yubikey proper!
+It only does FIDO U2F, but that’s enough for me; I’m not encrypting many emails.</p>
+<h3 id="smart-devices">Smart Devices</h3>
+<h4 id="emporio-armani-connected-gen-2-smartwatch">Emporio Armani Connected Gen 2 Smartwatch</h4>
+<p><img src="../static/images/life-stack/ea-connected.png" width="300" /></p>
+<p>4/5 - Looks very nice for a smartwatch</p>
+<p>I received this smartwatch as a gift.
+It’s a really nice design for a smartwatch; very far from the silicon straps and circular edges of the Apple and Pixel watches.
+Unfortunately, it runs Wear OS, which is somehow an even worse version of Android than all the other versions of Android.
+Its battery life doesn’t last a day, and its app support is now limited, given its age.
+Still, as a day-to-day watch, it looks nice, and keeps track of my activity pretty well.</p>
+<h4 id="smart-lights">Smart lights</h4>
+<p>5/5 - Assuming you have Home Assistant.</p>
+<p>These things are great.
+I have Home Assistant set up to turn them on alongside my alarm, and turn them off when I start sleep tracking or leave the house.
+They also adjust their colour temperature and brightness throughout the day.</p>
+<h4 id="renpho-smart-scales">Renpho Smart Scales</h4>
+<p>4/5 - Pretty much the same price as regular scales but they do way more.</p>
+<p>Since I’m trying to get a better understanding of my health, I thought smart scales were a decent option to get started.
+There’s a bunch of different models that Renpho sells, and I’m not sure what the differences are between them; I just picked my one based on aesthetics.
+They can connect over Bluetooth or Wi-Fi to an app, which will then show you:</p>
+<ul>
+<li>Your weight</li>
+<li>Your body fat percentage, broken down into visceral and subcutaneous</li>
+<li>Your muscle mass</li>
+<li>Your BMI and “metabolic age” (who cares)</li>
+<li>And several more which I don’t bother checking</li>
+</ul>
+<p>They’re good, but I do question the 11.5% body fat they give me.
+Mostly, I end up just caring about the trend lines.</p>
+<h4 id="wanbo-t2-max">Wanbo T2 Max</h4>
+<p><img src="../static/images/life-stack/wanbo-t2-max.png" width="400" /></p>
+<p>3/5 - Software is <em>terrible</em>, but it’s cheap!</p>
+<p>This was the cheapest true 1080p projector I could find.
+It runs a very laggy version of Android 6, but I think newer models have a much more powerful CPU and a newer Android version.
+I generally only use this to connect other devices through HDMI.
+Given that, as a student, my housing is pretty non-permanent, this is a lot more transportable than a TV (it is <em>tiny</em>), and gives a much bigger image.
+Plus, projectors are just more fun.</p>
+<p>I’d definitely recommend having <em>a</em> projector, but probably not this one.</p>
+<h2 id="software">Software</h2>
+<h3 id="nixos">NixOS</h3>
+<p>The main reason I use NixOS is it lets me keep my system configs all in one place.
+When I switched to my Framework, it took me 5 minutes (excluding time taken to download files) to get it set up the exact way I had my old laptop set up, and I was immediately able to be productive on it.</p>
+<p>It’s also nice being able to revert to a previous build of my system if something breaks and I don’t have time to fix it.</p>
+<h3 id="emacs">Emacs</h3>
+<p>I use Emacs mostly out of a lack of choice.
+There aren’t really any other editors that have support for the languages I usually write.
+That being said, I <em>do</em> enjoy the customisability you can get with it.</p>
+<h3 id="firefox">Firefox</h3>
+<p>I use <a href="https://www.mozilla.org/en-GB/firefox/">Firefox</a> as my main browser, with <a href="https://addons.mozilla.org/en-US/firefox/addon/sidebery/">Sideberry</a> to give a vertical tree structure to my tabs (of which I usually have around 50 open at any given time).</p>
+<h3 id="filesystem-structure">Filesystem Structure</h3>
+<p>I have a rather unorthodox home directory.</p>
+<p>At its core, my filesystem structure has two main folders:</p>
+<dl>
+<dt>~/docs</dt>
+<dd>
+Permanent, synched storage for my work and important files.
+</dd>
+<dt>~/inbox</dt>
+<dd>
+Effectively a downloads folder. It’s shown on my desktop by default, to discourage building up too many files. The downloads folder on my phone is also synched here to make it easy to copy files between devices.
+</dd>
+</dl>
+<p>Synching is accomplished via <a href="https://syncthing.net/">Syncthing</a>.
+Large media (photos, videos, etc.) is kept on my NAS, not locally.
+I find this system really helps me keep on top of my files; generally I know exactly where everything important to me is saved.
+Keeping all my important files in one folder makes backups simple too.</p>
+<h3 id="personal-finance">Personal Finance</h3>
+<p>I have a very complicated setup for managing my personal finances.
+It’s based around <a href="https://hledger.org/">hledger</a> and <a href="https://observablehq.com/">Observable notebooks</a>, to provide an overview of my spending and saving across multiple accounts all in one place.
+It’s a little janky, and took an age to set up; I wouldn’t recommend this exact setup for people to use, but I certainly would recommend they look into something similar like <a href="https://www.ynab.com/">YNAB</a>.</p>
+<h3 id="services">Services</h3>
+<dl>
+<dt><a href="https://immich.app/">Immich</a></dt>
+<dd>
+Good alternative to Google Photos. I used to use photoprism, but Immich is generally faster.
+</dd>
+<dt><a href="https://jellyfin.org/">Jellyfin</a></dt>
+<dd>
+A great replacement for streaming service paralysis.
+</dd>
+<dt><a href="https://www.tailscale.com">Tailscale</a></dt>
+<dd>
+Invaluable; I no longer need to worry about port forwarding and secure auth to access my devices remotely.
+</dd>
+<dt><a href="https://github.com/coder/code-server">VS Code Server</a></dt>
+<dd>
+I keep this running in a scratch container for writing quick scripts. Very handy!
+</dd>
+</dl>
+<h3 id="other-tools">Other tools</h3>
+<p>Here’s a bunch of small utilities I use that don’t deserve their own subsection.</p>
+<dl>
+<dt>Warp terminal</dt>
+<dd>
+It recently dropped for Linux, and it’s a vastly better experience than any other terminal emulator.
+</dd>
+</dl>
+<h2 id="fun">Fun</h2>
+<h3 id="cardputer">Cardputer</h3>
+<p><img src="../static/images/life-stack/cardputer.png" />
+5/5 - I can’t describe how much I love this.</p>
+<p>This thing is probably my favourite piece of technology that I own.</p>
+<p>It’s £30, the same dimensions as a credit card (albeit with a depth of about a centimetre), and has:</p>
+<ul>
+<li>An ESP-32 as its main source of computation</li>
+<li>Wi-Fi and Bluetooth connectivity (as a result of the ESP-32)</li>
+<li>A tiny LCD</li>
+<li>A tiny keyboard</li>
+<li>A speaker and microphone</li>
+<li>An IR blaster</li>
+<li>A battery backpack, as well as a small internal battery</li>
+<li>A micro SD card slot</li>
+<li>An exposed 4-pin connector that speaks I2C</li>
+<li>Some pretty strong magnets</li>
+<li>LEGO headers</li>
+</ul>
+<p>It’s so much fun to play around with.
+Being effectively a normal ESP-32 with a bunch of pre-connected peripherals, you can program this device from the Arduino IDE.
+I’ve loaded a custom Forth interpreter on it that can read programs from the SD card, to get around memory restrictions of the device itself.
+I actually use this thing in my daily life as a pomodoro timer;
+the magnets make it easy to prop up against metallic objects, and the simplicity of the device means you can’t really get distracted with it
+(Of course, you can easily distract yourself <em>programming</em> it).</p>
+<h3 id="synths">Synths</h3>
+<h4 id="behringer-deepmind-6">Behringer DeepMind 6</h4>
+<p><img src="../static/images/life-stack/deepmind-6.png" width="400" /></p>
+<p>5/5 - Very fun synth to use!</p>
+<p>This hardware, analogue synth has six voices of polyphony and sliders all over it.
+It’s an absolute blast to play with!</p>
+<h4 id="uno-synth">UNO Synth</h4>
+<p><img src="../static/images/life-stack/uno-synth.png" width="400" /></p>
+<p>5/5 - A nice portable monosynth!</p>
+<p>This was the first synthesizer I ever bought.
+It’s got a <em>very</em> strong analogue sound engine for something of this size and budget, and as such I still use it frequently for basslines alongside the DeepMind 6.
+This use case is actually aided by the capacitive touch pads; they make it very easy to slide between notes.</p>
+<p>It’s portability is unmatched; it’s a little bit taller than an A5 piece of paper, can run on either AA batteries or a USB power supply (and thus a USB power bank), and weighs barely anything.
+You can use MIDI either over USB, or via a MIDI-to-2.5mm jack adaptor provided.</p>
+<p>The main downside in my opinion is that the sequencer is only 16 steps; the UNO Drum below has 64 steps and the ability to program “songs” as a list of sequences to go beyond that.
+As a result, I generally either play this manually or just play a pre-written bassline over MIDI.</p>
+<h4 id="uno-drum">UNO Drum</h4>
+<p><img src="../static/images/life-stack/uno-drum.png" width="500" /></p>
+<p>5/5 - Great little drum machine</p>
+<p>This obviously pairs well with the UNO Synth above, and has many of the same portability features.
+It’s partially analogue, but mainly digital, and allows uploading of custom sample sounds over USB.</p>
+<p>One nice feature is the line in port; this is routed through the effects engine, meaning you can use it as a compressor in a pinch.</p>
+    </div>
+</div>
+</content>
     <pubDate>2024-03-16</pubDate>
-    <guid>https://jacobwalte.rs/posts/life-stack.html</guid>
-    <dc:creator>Jacob Walters</dc:creator>
-</item>
-<item>
-    <title>Installing idris2-pack on NixOS</title>
-    <link>https://jacobwalte.rs/posts/nixos-idris2-pack.html</link>
-    <description><![CDATA[A simple note-to-self on how to install Pack, the package manager for Idris 2, on NixOS]]></description>
-    <pubDate>2024-01-07</pubDate>
-    <guid>https://jacobwalte.rs/posts/nixos-idris2-pack.html</guid>
-    <dc:creator>Jacob Walters</dc:creator>
-</item>
-<item>
-    <title>Serving Websites with Org</title>
-    <link>https://jacobwalte.rs/posts/serving-websites-over-org.html</link>
-    <description><![CDATA[Emacs can browse remote Org files as if they were local. We can exploit this to serve websites entirely with Org mode!]]></description>
-    <pubDate>2023-05-17</pubDate>
-    <guid>https://jacobwalte.rs/posts/serving-websites-over-org.html</guid>
-    <dc:creator>Jacob Walters</dc:creator>
-</item>
-<item>
-    <title>Making a website with Org mode, Hakyll, and NixOS</title>
-    <link>https://jacobwalte.rs/posts/website.html</link>
-    <description><![CDATA[The wild and wonderful journey of how I made this site work the way it does!]]></description>
-    <pubDate>2023-05-12</pubDate>
-    <guid>https://jacobwalte.rs/posts/website.html</guid>
+    <guid>https://jacobwalte.rs/content/posts/life-stack</guid>
     <dc:creator>Jacob Walters</dc:creator>
 </item>
 
+<item>
+    <title>Installing idris2-pack on NixOS</title>
+    <link>https://jacobwalte.rs/content/posts/nix-idris2-pack.html</link>
+    <description><![CDATA[A simple note-to-self on how to install Pack, the package manager for Idris 2, on NixOS]]></description>
+    <content><div class="h-entry">
+    <div class="header">
+        <p>Posted on <a class="dt-published u-url" href="/posts/nixos-idris2-pack.html">January  7, 2024</a> by <a class="p-author" rel="author" href="https://jacobwalte.rs">Jacob Walters</a>.</p>
+
+        <p class="p-summary">A simple note-to-self on how to install Pack, the package manager for Idris 2, on NixOS</p>
+
+        
+    </div>
+    <hr>
+    <div class="e-content">
+        <p>This post acts as a simple note-to-self on how to install <a href="https://github.com/stefan-hoeck/idris2-pack">Pack</a>, the primary package manager for Idris 2, on NixOS.</p>
+<p>The Idris community currently doesn’t overlap much with the Nix community. Ignoring a basic nixpkgs entry for the compiler itself, and editor plugins for Vim and Emacs, there is nothing packaged for Idris 2 at all.</p>
+<p>The primary package manager that has arisen is Stefan Hoeck’s <em>Pack</em>. It follows a <a href="https://github.com/commercialhaskell/stack">Stack</a>-like model, but the main thing that we care about is it’s what the community has settled on. Most libraries that have been written for Idris 2 can be installed through Pack, and it can even manage the version of the Idris 2 compiler<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> itself!</p>
+<p>So Pack is a pretty indispensible tool for the Idris 2 programmer. How can we use it on NixOS?</p>
+<p>The Pack repo offers a simple command to install it to the current user’s home directory on a standard Linux system.</p>
+<div class="sourceCode" id="cb1" data-org-language="sh"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> <span class="at">-c</span> <span class="st">&quot;</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://raw.githubusercontent.com/stefan-hoeck/idris2-pack/main/install.bash<span class="va">)</span><span class="st">&quot;</span></span></code></pre></div>
+<p>But NixOS is no standard Linux system.</p>
+<p>The first hurdle is the shebang at the start of the file. Trying to run this command as-is can return:</p>
+<pre><code>bash: line 1: #!/usr/bin/env: No such file or directory
+</code></pre>
+<p>This can be fixed by downloading the file and running it directly with <code class="verbatim">bash install.bash</code>.</p>
+<p>Then, the script may complain about missing dependencies such as <code>git</code> or <code>make</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. These can simply be installed system-wide, or you can enter a shell that provides them.</p>
+<p>Finally, when trying to compile the RefC backend, the script may complain about not being able to access the C headers for GMP. This can’t be solved by installing the <code>gmp</code> package globally, due to the nature of NixOS. The quickest way around this is to enter a Nix shell that exposes the package to the linker:</p>
+<div class="sourceCode" id="cb3" data-org-language="sh"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nix-shell</span> <span class="at">-p</span> bash gcc gmp gnumake</span></code></pre></div>
+<p>The above command will expose all the needed dependencies. From here, you should be able to install Pack as normal.</p>
+<p>Ideally, a <code>nixpkgs</code> derivation would be made that does all of this, but I’m not experienced enough with writing Nix packages to do this myself. Maybe some day in the future.</p>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Since, of course, the Idris 2 compiler is just another Idris 2 library.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Which tends to happen to me, as Idris is one of the first programs I try to install on a new machine :)<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+    </div>
+</div>
+</content>
+    <pubDate>2024-01-07</pubDate>
+    <guid>https://jacobwalte.rs/content/posts/nix-idris2-pack</guid>
+    <dc:creator>Jacob Walters</dc:creator>
+</item>
+
+<item>
+    <title>Serving Websites with Org</title>
+    <link>https://jacobwalte.rs/content/posts/serving-websites-over-org.html</link>
+    <description><![CDATA[Emacs can browse remote Org files as if they were local. We can exploit this to serve websites entirely with Org mode!]]></description>
+    <content><div class="h-entry">
+    <div class="header">
+        <p>Posted on <a class="dt-published u-url" href="/posts/serving-websites-over-org.html">May 17, 2023</a> by <a class="p-author" rel="author" href="https://jacobwalte.rs">Jacob Walters</a>.</p>
+
+        <p class="p-summary">Emacs can browse remote Org files as if they were local. We can exploit this to serve websites entirely with Org mode!</p>
+
+        
+    </div>
+    <hr>
+    <div class="e-content">
+        <p><strong>TL;DR</strong>: My site can be browsed over Org mode! Go to <a href="#emacs-setup" class="spurious-link" target="Emacs Setup" title="Emacs Setup"><em>Emacs Setup</em></a> to see how.</p>
+<p>I wrote in my <a href="2023-05-12-website.html">last post</a> about how my blog posts are written in Org mode. It’s a nice format for writing this sort of thing, with built in support for heading structure, links, images, and much more. It’s also nice for reading, as you can collapse sections, use your favourite Emacs focus package<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> for greater comfort, and even link directly to sections from your own Org notes. If you’re reading a technical post, you can even execute code blocks from within the post!</p>
+<p>This got me thinking.</p>
+<p>Since Org provides such a nice reading environment, why not also serve my site’s content over Org? Hakyll, the site generator I use, makes this straightforward, as I can just tell it to serve the same Org files I write my posts in. Surely Emacs is flexible enough to allow this?</p>
+<h2 id="the-emacs-side">The Emacs Side</h2>
+<p>It turns out, as always, that it is. There’s a built-in mode called <code>url-handler-mode</code> that lets us treat remote files as if they’re local.
+This works by wrapping the Emacs file handling primitives, which means it affects any function that tries to load a file. Crucially, this includes Org links, so we can link to remote pages and have them download and open entirely with Emacs.</p>
+<p>By default, Org won’t download images and render them inline, even if you have inline images enabled by default. Luckily, the variable <code class="verbatim">org-display-remote-inline-images</code> lets us control this behaviour. You can choose to <code class="verbatim">skip</code> files (the default), <code class="verbatim">download</code> them every time, or <code class="verbatim">cache</code> them whenever the remote file is updated. I recommend the latter.</p>
+<p>It’s also a good idea to set <code class="verbatim">org-image-actual-width</code> to <code class="verbatim">nil</code>, which allows the use of a <code class="verbatim">#+ATTR_ORG</code> tag to set the width of an image. I use this to make images smaller to minimise the effect of Emacs’ awful image handling<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p>With this, we have pretty much everything we need on the client.</p>
+<h2 id="the-hakyll-side">The Hakyll Side</h2>
+<p>Hakyll is actually a bit finicky when dealing with Org input. It requires a yaml heading with variables for templating purposes, like this:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> This is the title of my amazing blog post</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> Tim Smith</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">description</span><span class="kw">:</span><span class="at"> A stitch in time saves nine in time, but that's the way we all go.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">Welcome to my post! Today, we'll be…</span></span></code></pre></div>
+<p>It’s possible to define a pandoc compiler that allows you to specify these with the standard Org headers for the title and author, but I use these tags for a few purposes that aren’t supported by the Org headers, so it’s easier to keep using the Hakyll header. Luckily for us, we can strip it away easily using <code class="verbatim">getResourceBody</code>. We can then fill in the standard Org headers using a template. I <a href="https://github.com/jacobjwalters/site-frontend/blob/master/templates/default.html">made one</a> that also has header links, like the HTML version of my site.</p>
+<p>We do still need to produce Org files as output. This basically consists of defining additional matchers for each fie we want to generate, and applying the Org compiler and templates instead of the HTML ones. Hakyll’s <a href="https://jaspervdj.be/hakyll/tutorials/06-versions.html">version tags</a> make this really easy to do.</p>
+<h3 id="homepage">Homepage</h3>
+<p>With this, everything works pretty much flawlessly, except for the homepage. When we access <code class="verbatim">https://jacobwalte.rs</code> in a browser, it knows to automatically access <code class="verbatim">/index.html</code>. Org, not being built for this, doesn’t. Forcing the user to remember to add <code class="verbatim">/index.org</code> is really bad UX, so we need to find some way to automatically redirect Emacs traffic to that page.</p>
+<p>Luckily, Emacs has its own user agent! When we browse a site (through <code>url-handler-mode</code> or an Emacs browser like <code>w3</code>), we use something like <code class="verbatim">URL/Emacs Emacs/30.0.50 (PureGTK; x86_64-pc-linux-gnu)</code> as our user agent. You can check yours by connecting to <a href="https://ifconfig.me/ua">https://ifconfig.me/ua</a>. So if we check against the user agent, we can automatically redirect to the Org file.</p>
+<p>Caddy (the webserver I use) can do this easily, with the following rule:</p>
+<pre class="Caddyfile"><code>@emacs-ua {
+  header User-Agent *Emacs*
+  path /
+}
+redir @emacs-ua /index.org
+</code></pre>
+<p>This redirects any Emacs traffic from <code class="verbatim">https://jacobwalte.rs/</code> to <code class="verbatim">https://jacobwalte.rs/index.org</code>. It’s important that we filter for the root path, as otherwise any file we try to access would bring us to the index page!</p>
+<p>This <em>nearly</em> works. Unfortunately, Emacs has no way to tell this is an Org file. The way I got around this was by adding a mode descriptor line to the homepage (and the homepage only):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode org"><code class="sourceCode orgmode"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>-*- mode: org -*-</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>#+title: jacobwalte.rs</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>…</span></code></pre></div>
+<p>This tells Emacs to use Org for that particular file. With that, everything is ready to go!</p>
+<h2 id="emacs-setup">Emacs Setup</h2>
+<p>To browse my site over Emacs, simply add the following to your config:</p>
+<pre class="elisp"><code>(url-handler-mode)
+(setq org-display-remote-inline-images 'cache)
+(setq org-image-actual-width nil)
+</code></pre>
+<p>You can read the full post for an explanation of how these work.</p>
+<p>The second and third lines are optional, but basically allow Org to display inline and resized images.</p>
+<p>Now, all you have to do is run <code class="verbatim">find-file</code> (that’s <code class="verbatim">C-x C-f</code> in vanilla Emacs, or <code class="verbatim">SPC .</code> in DOOM), and navigate to <code class="verbatim">https://jacobwalte.rs</code>. You should now see my homepage, rendered in beautiful high-fidelity Org!</p>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>I like <a href="https://github.com/joaotavora/darkroom">darkroom</a>, but there’s also <a href="https://github.com/rnkn/olivetti">olivetti</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Try scrolling past an image and claim there’s nothing wrong.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+    </div>
+</div>
+</content>
+    <pubDate>2023-05-17</pubDate>
+    <guid>https://jacobwalte.rs/content/posts/serving-websites-over-org</guid>
+    <dc:creator>Jacob Walters</dc:creator>
+</item>
+
+<item>
+    <title>Making a website with Org mode, Hakyll, and NixOS</title>
+    <link>https://jacobwalte.rs/content/posts/website.html</link>
+    <description><![CDATA[The wild and wonderful journey of how I made this site work the way it does!]]></description>
+    <content><div class="h-entry">
+    <div class="header">
+        <p>Posted on <a class="dt-published u-url" href="/posts/website.html">May 12, 2023</a> by <a class="p-author" rel="author" href="https://jacobwalte.rs">Jacob Walters</a>.</p>
+
+        <p class="p-summary">The wild and wonderful journey of how I made this site work the way it does!</p>
+
+        
+    </div>
+    <hr>
+    <div class="e-content">
+        <p>This is how I build and host my site. If you want to look through the code while reading, it can be found <a href="https://github.com/jacobjwalters/site-frontend">here</a>.</p>
+<p>Laziness is perhaps one of Haskell’s most prominent features, and I’ve really taken that philosophy to heart. I want my software to work with as little user input as possible (once set up), preferably none. With a website, this means I want to be able to just write a blog post, upload that file somewhere, and have it appear on my site. There’s plenty of sites and companies that provide this directly, but they tend not to offer you much control. I already rent a VPS (to run personal services on for me and my friends), so why not use that to host my site?</p>
+<h2 id="hakyll">Hakyll</h2>
+<p>Another famous aspect of Haskell is over-engineering simple things. It’s for this reason I chose to use <a href="https://jaspervdj.be/hakyll/">Hakyll</a>, a static site generator written entirely in Haskell, to achieve the previous paragraph’s goals. Hakyll makes use of the fact that <a href="https://pandoc.org/">pandoc</a> is also written in Haskell, and can be used effectively as a library, to convert files into HTML. This means that I can write my pages in whatever format I like, which is nice, but I can also use pandoc plugins<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> to alter my page generation.</p>
+<p>As far as formats go, I like <a href="https://orgmode.org/">Org mode</a>. It’s built into <a href="https://www.gnu.org/software/emacs/">Emacs</a>, my text editor, and has a straightforward syntax (it’s similar to Markdown). The reason I use it over Markdown is that Emacs has a lot of extra support for Org mode, allowing you to do things like manipulate headings and content easily, execute code blocks, and lots more. Since Emacs is infinitely extensible, you can implement whatever feature you want and have it be integrated automatically with the entire Org ecosystem. I already have an advanced Org setup for writing course notes, so why not adopt that for my blog posts too?</p>
+<p>The process of using Hakyll is straight forward. It reads in some input files, applies templates to them (thing like HTML boilerplate, and text substitution for dates, page titles etc), and spits out a folder with your generated HTML. You can then point your favourite web server to these files and serve them directly! It certainly satisfies the laziness requirement.</p>
+<h3 id="footnotes-and-sidenotes">Footnotes and Sidenotes</h3>
+<p>You may have noticed that note on the side three paragraphs ago. I really like this form of literal marginalia, as it saves you from having to jump around the document to find information, and uses screen space better on our modern widescreen devices.</p>
+<p>There’s a <a href="https://github.com/jez/pandoc-sidenote">package</a> that already implements this for us, that works with the CSS I use! This makes things really easy, I just add that to my <code class="verbatim">stack.yaml</code> and add it to the pandoc compiler in Hakyll.</p>
+<p>Annoyingly, however, Org implements its footnotes as a heading at the end of the file. The contents of this are removed, but the footnote heading stays! This means it still gets rendered in the HTML, which is quite ugly. Luckily, we can define our own pandoc compiler:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ot">removeFootnotesHeader ::</span> <span class="dt">Pandoc</span> <span class="ot">-&gt;</span> <span class="dt">Pandoc</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>removeFootnotesHeader <span class="ot">=</span> walk <span class="op">$</span> \inline <span class="ot">-&gt;</span> <span class="kw">case</span> inline <span class="kw">of</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Header</span> <span class="dv">1</span> (<span class="st">&quot;footnotes&quot;</span>, [], []) _ <span class="ot">-&gt;</span> <span class="dt">Null</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    _                                <span class="ot">-&gt;</span> inline</span></code></pre></div>
+<p>This will filter out the bogus heading.</p>
+<h3 id="links">Links</h3>
+<p>For some reason, Org links to other pages on the site don’t get converted to HTML correctly. We can just define another compiler plugin to fix this:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ot">convertOrgLinks ::</span> <span class="dt">Pandoc</span> <span class="ot">-&gt;</span> <span class="dt">Pandoc</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>convertOrgLinks <span class="ot">=</span> walk <span class="op">$</span> \inline <span class="ot">-&gt;</span> <span class="kw">case</span> inline <span class="kw">of</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Link</span> attr inline (url, title) <span class="ot">-&gt;</span> <span class="dt">Link</span> attr inline (<span class="fu">pack</span> (orgRegex (unpack url)), title)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    _                             <span class="ot">-&gt;</span> inline</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ot">    orgRegex ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    orgRegex str <span class="ot">=</span> subRegex (mkRegex <span class="st">&quot;^(.*?)\\.org$&quot;</span>) str <span class="st">&quot;\\1.html&quot;</span> </span></code></pre></div>
+<p>This code was originally from <a href="https://www.jrciii.com/posts/2021-03-14-orglinktohtml.html">here</a>.</p>
+<h3 id="headings">Headings</h3>
+<p>Pandoc, by default, will convert Org headings directly to HTML headings. That is to say, <code class="verbatim">*</code> becomes <code class="verbatim">&lt;h1&gt;</code>, <code class="verbatim">**</code> becomes <code class="verbatim">&lt;h2&gt;</code>, etc. However, we’re already using <code class="verbatim">&lt;h1&gt;</code> for our title! We need to lower the heading depths somehow.</p>
+<p>Hakyll provides a function to do this, called <code class="verbatim">demoteHeaders</code>. However, its type is <code class="verbatim">String -&gt; String</code>, which can’t be directly applied in a compiler. So we need to map it:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ot">comp ::</span> <span class="dt">Compiler</span> (<span class="dt">Item</span> <span class="dt">String</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>comp <span class="ot">=</span> <span class="fu">fmap</span> demoteHeaders <span class="op">&lt;$&gt;</span> pandocCompiler</span></code></pre></div>
+<p>This gets us what we want. Importantly, we’re running the compiler before adding the template; if we ran it after, we’d demote the heading of our title too!</p>
+<h2 id="caddy">Caddy</h2>
+<p>So what is my favourite web server? I’ve become a fan of <a href="https://caddyserver.com/">Caddy</a>, largely because of how incredibly <em>easy</em> it is to use over something like nginx. To serve files from a directory, all you have to have in your config is this:</p>
+<pre class="Caddyfile"><code>jacobwalte.rs {
+  encode zstd gzip
+  root * /srv/http/
+  file_server
+}
+</code></pre>
+<p>These few lines will serve your site over ports 80 and 443, with <strong>HTTPS already set up for you</strong>! This is genuinely all you need to host a personal site. You don’t even need the <code class="verbatim">encode</code> line, that just helps to speed up page loads slightly. It really is this simple!</p>
+<h3 id="error-page">Error Page</h3>
+<p>It’s handy to let users know if they’ve followed a broken link somewhere. Caddy allows us to redirect requests with non-200 HTTP codes to a specific page, and we can use this to provide a 404 page:</p>
+<pre class="Caddyfile"><code>handle_errors {
+  @404 {
+    expression {http.error.status_code} == 404
+  }
+  rewrite @404 /404.html
+  file_server
+}
+</code></pre>
+<h2 id="nixos">NixOS</h2>
+<p>The main benefit I reap from NixOS is the declarative configuration. This means I can keep my server’s entire configuration in one file<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, which makes it very easy to keep on top of things. Furthermore, if I’m making a large change to my configuration, it keeps the old one around. If something breaks, I can simply roll back.</p>
+<p>NixOS has support for configuring Caddy directly, which is nice. The config looks something like this:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode nix"><code class="sourceCode nix"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>services.caddy = <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">enable</span> <span class="op">=</span> <span class="cn">true</span><span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">virtualHosts</span>.<span class="st">&quot;jacobwalte.rs&quot;</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">serverAliases</span> <span class="op">=</span> <span class="op">[</span> <span class="st">&quot;www.jacobwalte.rs&quot;</span> <span class="op">];</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">extraConfig</span> <span class="op">=</span> <span class="st">''</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">      encode zstd gzip</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="st">      ...</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="st">    ''</span><span class="op">;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>networking.firewall.allowedTCPPorts = <span class="op">[</span> <span class="dv">80</span> <span class="dv">443</span> <span class="op">]</span>;</span></code></pre></div>
+<p>Basically the same as the default Caddy file, but it means less to back up.</p>
+<h2 id="deployment">Deployment</h2>
+<p>With the setup so far, every time I make an update to my site, I have to push the change to GitHub, <code class="verbatim">ssh</code> into my VPS, <code class="verbatim">su</code> into my deploy user, <code class="verbatim">cd</code> into the repo, <code class="verbatim">git pull</code>, and finally <code class="verbatim">make</code>. This is slow!</p>
+<p>What I really need is CI/CD. This allows me to make the change on my local device, push to GitHub, and have GitHub automatically do the rest for me. Conveniently, they provide an integrated service for this, called GitHub Actions. This lets us spin up a container, build our site, and then <code class="verbatim">scp</code> it over to my VPS.</p>
+<p>GitHub actions are made by placing a yaml file in <code class="verbatim">.github/workflows/</code> in your repo. You can do this through the UI too. I find it easiest to write these by stealing other’s, so <a href="https://github.com/jacobjwalters/site-frontend/blob/master/.github/workflows/main.yaml">here’s mine</a> to get you started.</p>
+<h3 id="caching">Caching</h3>
+<p>If we change our <code class="verbatim">site.hs</code>, we obviously need to rebuild it in order to reflect the changes in our output HTML. This means we need to run <code class="verbatim">stack run site build</code> again, which is fairly quick if we’ve already built all of Hakyll’s dependencies.</p>
+<p>However, presumably for various reasons, GitHub does not preserve your container once it’s run its course. This is bad news for us Haskell enjoyers, because Haskell builds tend to be <em>big</em>. A clean <code class="verbatim">~/.stack</code> for my site totals just over one gigabyte,<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> and that’s after compiling! An uncached build takes around 35 minutes on GitHub’s machines, which is quite dreadful if you’re just making a small grammatical change. Since the container gets wiped after the build is complete, we’d hit this 35 minute build time on every change!</p>
+<p>Thus, it’s important we add caching to our action. We can use the official GitHub caching action to achieve this:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Cache stack folder</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/cache@v3</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">path</span><span class="kw">:</span><span class="at"> ~/.stack</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">key</span><span class="kw">:</span><span class="at"> ${{ hashFiles('stack.yaml') }}</span></span></code></pre></div>
+<p>This means our <code class="verbatim">~/.stack</code> will be cached by the hash of our <code class="verbatim">stack.yaml</code>, so if this file is untouched, we’ll reuse the already built workdir. This takes roughly 45s to happen, as the runner now needs to download 1GB of stack files, but it’s a big improvement over 35 minutes! If we update <code class="verbatim">stack.yaml</code> (by e.g. adding a new dependency, or updating GHC), it will start anew.</p>
+<p>It’s worth remembering also that GitHub will only keep your caches around for a week, so if you don’t make any changes for a while, you’ll once again hit that 35 minute build time. There’s no real way around this, but you could just run builds on the deployment server itself, using one of the SSH actions.</p>
+<p>One final thing to remember is that caching installs two actions, one that runs at the beginning (to check if we hit or miss the cache), and one at the end (to update the cache if necessary). If your build fails in the deployment phase, your cache won’t be written to! So make sure everything works downstream before wasting 35 minutes of your life, like I did.</p>
+<h3 id="building-and-deploying">Building and Deploying</h3>
+<p>Building is thankfully very straightforward. All you need to run Hakyll is this:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Build Site</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">  run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    cd ${{ github.workspace }}</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    make build</span></code></pre></div>
+<p>(Assuming <code class="verbatim">make build</code> does what you’d expect)</p>
+<p>Once built, our HTML is probably in <code class="verbatim">_site/</code>, so we need to copy the contents of that folder to our VPS. There are many ways of doing this, but I chose SCP, since it’s very straightforward. In particular, I chose <a href="https://github.com/appleboy/scp-action">this action</a>, as it can empty the target directory before copying, which is what we want:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Deploy over SSH</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> appleboy/scp-action@v0.1.4</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">host</span><span class="kw">:</span><span class="at"> ${{ secrets.HOST }}</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">username</span><span class="kw">:</span><span class="at"> ${{ secrets.USERNAME }}</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">key</span><span class="kw">:</span><span class="at"> ${{ secrets.KEY }}</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">source</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;_site/*&quot;</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">target</span><span class="kw">:</span><span class="at"> ${{ secrets.DEPLOY_DIR }}</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">rm</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div>
+<p>You need to set up your secrets, through the Settings page for your repo. This is straightforward, you just put the string values in. For the SSH key, I recommend making a dedicated one for each repo (with the standard <code class="verbatim">ssh-keygen</code>), dropping the private key into the KEY secret, and installing the public key as normal. On NixOS, that can be done as follows:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode nix"><code class="sourceCode nix"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>users.users.deploy = <span class="op">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">openssh</span>.<span class="va">authorizedKeys</span>.<span class="va">keys</span> <span class="op">=</span> <span class="op">[</span> <span class="st">&quot;ssh-rsa AAAA...&quot;</span> <span class="op">];</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>This should be it! Your site should now automatically be deployed whenever you commit.</p>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>More on this later!<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>In actuality, I separate them by service, so my password manager is in a different file to my web server. This has no semantic difference, it’s basically the same as separating different files in a codebase.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Genuinely, it’s 1004MB. Almost suspicious.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+    </div>
+</div>
+</content>
+    <pubDate>2023-05-12</pubDate>
+    <guid>https://jacobwalte.rs/content/posts/website</guid>
+    <dc:creator>Jacob Walters</dc:creator>
+</item>
+
+
     </channel>
 </rss>
+

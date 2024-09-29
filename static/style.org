@@ -36,10 +36,13 @@ body {
   background-color: var(--bg);
   color: var(--fg);
   font-size: 1.4em;
-  line-height: 1.3em;
+  font: -apple-system-body;
   font-family: serif;
+  line-height: 1.3em;
 }
 #+end_src
+
+The =font: -apple-system-body= tells Apple devices to use the default system font. This is useful if the user has changed the size of their font to something larger, as it overrides =font-size=. Naturally, it also overrides =font-family=, so we make sure to set our preferred font immediately afterwards.
 
 * Header
 Now to style the header at the top of the page.

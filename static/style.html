@@ -55,9 +55,11 @@
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">background-color</span>: <span class="fu">var(</span><span class="va">--bg</span><span class="fu">)</span><span class="op">;</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">color</span>: <span class="fu">var(</span><span class="va">--fg</span><span class="fu">)</span><span class="op">;</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">font-size</span>: <span class="dv">1.4</span><span class="dt">em</span><span class="op">;</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">line-height</span>: <span class="dv">1.3</span><span class="dt">em</span><span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">font</span>: -apple-system-body<span class="op">;</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">font-family</span>: <span class="dv">serif</span><span class="op">;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">line-height</span>: <span class="dv">1.3</span><span class="dt">em</span><span class="op">;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>The <code class="verbatim">font: -apple-system-body</code> tells Apple devices to use the default system font. This is useful if the user has changed the size of their font to something larger, as it overrides <code class="verbatim">font-size</code>. Naturally, it also overrides <code class="verbatim">font-family</code>, so we make sure to set our preferred font immediately afterwards.</p>
 <h2 id="header">Header</h2>
 <p>Now to style the header at the top of the page.</p>
 <p>We give it a contrasting colour, add some chunky horizontal padding, and give everything a nice sans serif:</p>
