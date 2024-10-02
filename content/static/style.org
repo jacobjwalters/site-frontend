@@ -208,15 +208,16 @@ h1, h2, h3, h4, h5, h6 {
 
 And links are also green:
 #+begin_src css
-a {
+a:link {
   text-decoration: none;
   position: relative;
   font-family: sans-serif;
-}
-a:link {
   color: var(--hl1);
 }
 a:visited {
+  text-decoration:none;
+  position:relative;
+  font-family:sans-serif;
   color: var(--hl1);
 }
 #+end_src
