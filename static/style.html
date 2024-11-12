@@ -265,21 +265,22 @@
 <span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>We want some nice styling for the buttons. This gives a nice pill shape, with a border that expands slightly when clicked:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>button {</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">background</span>: <span class="fu">var(</span><span class="va">--bg</span><span class="fu">)</span><span class="op">;</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">border</span>: <span class="dv">2</span><span class="dt">px</span> <span class="dv">solid</span> <span class="fu">var(</span><span class="va">--fg</span><span class="fu">)</span><span class="op">;</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">border-radius</span>: <span class="dv">45</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">padding</span>: <span class="dv">0</span><span class="dt">px</span> <span class="dv">8</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">margin</span>: <span class="dv">1</span><span class="dt">px</span> <span class="dv">1</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">outline</span>: <span class="dv">none</span><span class="op">;</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>button<span class="in">:hover</span> {</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">border</span>: <span class="dv">3</span><span class="dt">px</span> <span class="dv">solid</span> <span class="fu">var(</span><span class="va">--fg</span><span class="fu">)</span><span class="op">;</span></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">margin</span>: <span class="dv">0</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>button<span class="in">:active</span> {</span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">background</span>: <span class="fu">var(</span><span class="va">--fg</span><span class="fu">)</span><span class="op">;</span></span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">color</span>: <span class="fu">var(</span><span class="va">--bg</span><span class="fu">)</span><span class="op">;</span></span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">color</span>: <span class="fu">var(</span><span class="va">--fg</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">background</span>: <span class="fu">var(</span><span class="va">--bg</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">border</span>: <span class="dv">2</span><span class="dt">px</span> <span class="dv">solid</span> <span class="fu">var(</span><span class="va">--fg</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">border-radius</span>: <span class="dv">45</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">padding</span>: <span class="dv">0</span><span class="dt">px</span> <span class="dv">8</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">margin</span>: <span class="dv">1</span><span class="dt">px</span> <span class="dv">1</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">outline</span>: <span class="dv">none</span><span class="op">;</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>button<span class="in">:hover</span> {</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">border</span>: <span class="dv">3</span><span class="dt">px</span> <span class="dv">solid</span> <span class="fu">var(</span><span class="va">--fg</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">margin</span>: <span class="dv">0</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>button<span class="in">:active</span> {</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">background</span>: <span class="fu">var(</span><span class="va">--fg</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>  <span class="kw">color</span>: <span class="fu">var(</span><span class="va">--bg</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>As with all proper cookie banners, we want to use dark patterns to discourage the user from managing their preferences. We’ll make a button with inverse colours that blends in more:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.inverseButton</span> {</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">background</span>: <span class="fu">var(</span><span class="va">--fg</span><span class="fu">)</span><span class="op">;</span></span>

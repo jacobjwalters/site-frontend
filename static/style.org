@@ -309,6 +309,7 @@ The "manage cookies" page appears as a side panel, with a slight shadow to disti
 We want some nice styling for the buttons. This gives a nice pill shape, with a border that expands slightly when clicked:
 #+begin_src css
 button {
+  color: var(--fg);
   background: var(--bg);
   border: 2px solid var(--fg);
   border-radius: 45px;
