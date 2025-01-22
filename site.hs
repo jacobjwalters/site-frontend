@@ -130,8 +130,8 @@ feed ft = do
 main :: IO ()
 main = hakyll $ do
     -- Static pages
-    match (fromList ["content/about.org", "content/contact.md",  "content/links.org"]) htmlContent
-    match (fromList ["content/about.org", "content/contact.org", "content/links.org"]) orgContent
+    match (fromList ["content/about.org", "content/contact.md",  "content/links.org", "content/pl-glossary.org"]) htmlContent
+    match (fromList ["content/about.org", "content/contact.org", "content/links.org", "content/pl-glossary.org"]) orgContent
 
     match (fromList ["content/robots.txt", "content/404.html"]) rawContent
     match "content/static/images/**" rawContent
