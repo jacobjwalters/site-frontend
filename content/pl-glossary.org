@@ -12,9 +12,5 @@ This page is a compiled list of terms in PL that I've had to work to understand.
 - Spine :: A more efficient representation of function application with multiple arguments over the usual left-associative application operator. [fn:: Cervesato, I., & Pfenning, F. (2003). A linear spine calculus. Journal of Logic and Computation, 13(5), 639-688.]
 
 ** Type Theory
-- Judgemental Equality :: The same thing as definitional equality. Judgemental equality holds for two things when they have exactly the same semantically (equal by definition).[fn:2]
-
-* Footnotes
-
-[fn:2] https://proofassistants.stackexchange.com/questions/284/what-is-the-difference-between-judgmental-equality-definitional-equality-and-e
+- Judgemental Equality :: The same thing as definitional equality. Judgemental equality holds for two things when they have exactly the same semantically (equal by definition).[fn:: https://proofassistants.stackexchange.com/questions/284/what-is-the-difference-between-judgmental-equality-definitional-equality-and-e]
 
