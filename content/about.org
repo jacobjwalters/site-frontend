@@ -3,15 +3,17 @@ title: About
 description: Find out about me and my interests, as well as how this site is run!
 permalink: about
 ---
-* About me
-I am a fourth and final year student of Computer Science and Mathematics at the University of Edinburgh.
+** About Me
+I am a first year PhD student at the University of Edinburgh, researching programming language theory (PL) under the supervision of [[https://denotational.co.uk/][Dr. Ohad Kammar]].
+I also did my undergraduate degree in Computer Science and Mathematics here.
 
-In the past, I've worked with [[https://denotational.co.uk/][Ohad Kammar]] on implementing an ML-style module system for [[https://idris-lang.org/][Idris 2]], a dependently typed language.
+In the past, I've worked with Ohad on implementing an ML-style module system for [[https://idris-lang.org/][Idris 2]], a dependently typed language.
 We also worked together on a [[https://github.com/idris-bayes/monad-bayes][probabilistic programming DSL/library]] in Idris, with an accompanying [[https://github.com/idris-bayes/melocule][probabilistic music composition tool]].
 
-I also co-founded [[https://typesig.comp-soc.com][TypeSig]], a student special interest group at UoE, which aims to get undergraduates interested in theoretical computer science.
+In 2023, I co-founded [[https://typesig.pl][TypeSig]], a student special interest group at UoE, which aims to get undergraduates interested in theoretical computer science.
 TypeSig runs weekly Lean workshops and regular academic talks (from the likes of [[https://homepages.inf.ed.ac.uk/wadler/][Phil Wadler]], [[https://math.ucr.edu/home/baez/][John Baez]] and [[https://www.ma.ic.ac.uk/~buzzard/][Kevin Buzzard]]). 
-We also ran our very own [[https://typesig.comp-soc.com/pages/dt2024/index.html][lecture series]] and [[https://typesig.comp-soc.com/tuple/][conference]]!
+We also ran our very own [[https://typesig.pl/resources/domain-theory][lecture series]] and [[https://typesig.pl/tuple/][conference]]!
+I also developed and ran a [[https://typesig.pl/resources/lang-workshop][tutorial series]] teaching first year students how to implement a functional programming language called MLTS.
 
 My main academic interests lie in
 programming language theory (PL),
@@ -19,14 +21,14 @@ type theory,
 quantum computing,
 and category theory.
 
-Outside of the nerd life, I enjoy synthesizers (both playing and making them), reading, and eclectic (read: bad) music.
+Outside of research, I enjoy synthesizers (both playing and making them), reading, and listening to and making music.
 In order to truly fit the PL stereotype, I've recently taken up climbing.
 
 Here's a map of countries I've been to:
 [[./static/images/countries.svg]]
 (you can find the script that made this image [[https://github.com/jacobjwalters/countries][here]])
 
-* About this site
+** About this Site
 You can read in detail about how this site is made in [[file:posts/2023-05-12-website.org][this post]], but the gist is: this site is generated from a set of Org files using [[https://jaspervdj.be/hakyll/][Hakyll]] (and [[https://pandoc.org/][Pandoc]]), and served to you via Github Pages.
 
 I've used literate programming to document the [[./static/style.org][CSS]] and [[./static/js.org][JS]] for this site. The actual =.css= and =.js= files are generated directly from the previously linked pages.
