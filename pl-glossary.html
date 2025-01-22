@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>PL Glossary - jacobwalte.rs</title>
+        <meta property="fediverse:creator" content="@jw@types.pl">
+        <link rel="icon" type="image/x-icon" href="./static/images/favicon.png">
+        <link rel="stylesheet" href="./static/style.css">
+        <script src="./static/site.js"></script>
+        
+        <link rel="canonical" href="https://jacobwalte.rs/content/pl-glossary.html">
+        <link rel="webmention" href="https://webmention.io/jacobwalte.rs/webmention">
+        <meta name="description" content="A glossary of terms I've come across in programming language theory and related fields.">
+    </head>
+    <body>
+        <header>
+            <a href="#main" class="skip">Skip to main content</a>
+            <div class="logo">
+                <a href="./">jacobwalte.rs</a>
+            </div>
+            <nav class="header-nav">
+                <a href="./about.html">About</a>
+                <a href="./contact.html">Contact</a>
+                <a href="./archive.html">Archive</a>
+            </nav>
+        </header>
+
+        <main class="main" id="main">
+            <section>
+                <h1>PL Glossary</h1>
+                <p>This page is a compiled list of terms in PL that I’ve had to work to understand.</p>
+<h3 id="type-system-implementation">Type System Implementation</h3>
+<dl>
+<dt>Elaborator</dt>
+<dd>
+A function/program that maps a surface syntax into a core syntax. Usually this involves desugaring and adding more annotations, hence the name.
+</dd>
+<dt>Intrinsically scoped</dt>
+<dd>
+A method of representing your object syntax in a way that enforces its scoping rules in the type system of your metalanguage.
+</dd>
+<dt>Intrinsically scoped</dt>
+<dd>
+A method of representing your object syntax in a way that enforces its typing rules in the type system of your metalanguage. Works for smaller calculi, but extending this to dependent types is currently an open problem.
+</dd>
+<dt>Spine</dt>
+<dd>
+A more efficient representation of function application with multiple arguments over the usual left-associative application operator. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
+</dd>
+</dl>
+<h3 id="type-theory">Type Theory</h3>
+<dl>
+<dt>Judgemental Equality</dt>
+<dd>
+The same thing as definitional equality. Judgemental equality holds for two things when they have exactly the same semantically (equal by definition).<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>
+</dd>
+</dl>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Cervesato, I., &amp; Pfenning, F. (2003). A linear spine calculus. Journal of Logic and Computation, 13(5), 639-688.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://proofassistants.stackexchange.com/questions/284/what-is-the-difference-between-judgmental-equality-definitional-equality-and-e">https://proofassistants.stackexchange.com/questions/284/what-is-the-difference-between-judgmental-equality-definitional-equality-and-e</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+            </section>
+        </main>
+
+        <footer>
+            <a href="#">top</a> | <a href="./">home</a>
+        </footer>
+    </body>
+</html>

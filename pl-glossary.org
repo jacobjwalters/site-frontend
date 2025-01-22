@@ -1,0 +1,19 @@
+#+title:PL Glossary
+[[file:https://jacobwalte.rs/index.org][Home]] [[file:https://jacobwalte.rs/about.org][About]] [[file:https://jacobwalte.rs/contact.org][Contact]] [[file:https://jacobwalte.rs/archive.org][Archive]]
+
+This page is a compiled list of terms in PL that I've had to work to understand.
+
+** Type System Implementation
+- Elaborator :: A function/program that maps a surface syntax into a core syntax. Usually this involves desugaring and adding more annotations, hence the name.
+- Intrinsically scoped :: A method of representing your object syntax in a way that enforces its scoping rules in the type system of your metalanguage.
+- Intrinsically scoped :: A method of representing your object syntax in a way that enforces its typing rules in the type system of your metalanguage. Works for smaller calculi, but extending this to dependent types is currently an open problem.
+- Spine :: A more efficient representation of function application with multiple arguments over the usual left-associative application operator. [fn:: Cervesato, I., & Pfenning, F. (2003). A linear spine calculus. Journal of Logic and Computation, 13(5), 639-688.]
+
+** Type Theory
+- Judgemental Equality :: The same thing as definitional equality. Judgemental equality holds for two things when they have exactly the same semantically (equal by definition).[fn:2]
+
+* Footnotes
+
+[fn:2] https://proofassistants.stackexchange.com/questions/284/what-is-the-difference-between-judgmental-equality-definitional-equality-and-e
+
+
