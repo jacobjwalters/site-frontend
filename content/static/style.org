@@ -38,7 +38,6 @@ body {
   margin: 0;
   background-color: var(--bg);
   color: var(--fg);
-  font-size: 1.4em;
   font: -apple-system-body;
   font-family: serif;
   line-height: 1.3em;
@@ -133,16 +132,16 @@ h1.heroText:hover:before {
 #+end_src
 
 * Main Content Style
-I've defined the main body in a mobile-first manner. All we enforce here is 1em padding, and a sans serif font for the links in the footer. To separate the footer from the page content, we want a horizonal line above and below it:
+I've defined the main body in a mobile-first manner. All we enforce here is 1rem padding, and a sans serif font for the links in the footer. To separate the footer from the page content, we want a horizonal line above and below it:
 #+begin_src css
 .main {
   margin: auto;
-  padding: 1em;
+  padding: 1rem;
 }
 footer {
   margin: auto;
-  padding: 1em;
-  margin-bottom: 1em;
+  padding: 1rem;
+  margin-bottom: 1rem;
   font-family: sans-serif;
   border: 1px solid var(--fg);
   border-style: solid none;
@@ -154,13 +153,13 @@ When the screen width is large enough, we introduce vertical rules to keep the c
 @media only screen and (min-width: 768px) {
   .main {
     width: 50%;
-    min-width: calc(768px - 2em);
+    min-width: calc(768px - 2rem);
     border: 1px solid var(--fg);
     border-style: none solid solid solid;
   }
   footer {
     width: 50%;
-    min-width: calc(768px - 2em);
+    min-width: calc(768px - 2rem);
     border: 1px solid var(--fg);
     border-style: none solid solid solid;
   }
@@ -189,8 +188,8 @@ img {
 And let's extend horizontal rules to touch both sides, and be 1px wide:
 #+begin_src css
 hr {
-  width: calc(100% + 2em);
-  margin-left: -1em;
+  width: calc(100% + 2rem);
+  margin-left: -1rem;
   border: 0px solid var(--fg);
   border-top: 1px solid var(--fg);
 }
@@ -210,44 +209,34 @@ And links are also green:
 #+begin_src css
 a:link {
   text-decoration: none;
-  position: relative;
   font-family: sans-serif;
   color: var(--hl1);
 }
 a:visited {
   text-decoration:none;
-  position:relative;
   font-family:sans-serif;
   color: var(--hl1);
 }
 #+end_src
 
 * Code Blocks
-First, we want to set the text size of code snippets to match the body:
-#+begin_src css
-code, .verbatim {
-  font-size: 1.4em;
-}
-#+end_src
-
-Let's also extend code blocks to the full width of the body, and give them some nice colours:
+Let's extend code blocks to the full width of the body, and give them some nice colours:
 #+begin_src css
 pre {
-  width: calc(100% + 1.4em);
+  width: calc(100% + 1rem);
   margin: 0 auto;
-  margin-left: -1.7em;
+  margin-left: -1rem;
   overflow: auto;
   color: var(--bg);
   background-color: var(--fg);
-  padding: 1em;
-  font-size: 0.8em;
+  padding: 1rem;
 }
 #+end_src
 
 This does most of the job, but there's no right padding on the code content. This is a [[https://www.brunildo.org/test/overscrollback.html][general "feature"]] with scrolling overflow, and we can fix it by manually adding a margin to the child elements:
 #+begin_src css
 pre > code {
-  margin-right:1em;
+  margin-right: 1rem;
   display: inline-block;
 }
 #+end_src
