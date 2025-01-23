@@ -38,13 +38,10 @@ body {
   margin: 0;
   background-color: var(--bg);
   color: var(--fg);
-  font: -apple-system-body;
   font-family: serif;
   line-height: 1.3em;
 }
 #+end_src
-
-The =font: -apple-system-body= tells Apple devices to use the default system font. This is useful if the user has changed the size of their font to something larger, as it overrides =font-size=. Naturally, it also overrides =font-family=, so we make sure to set our preferred font immediately afterwards.
 
 * Header
 Now to style the header at the top of the page.
@@ -209,12 +206,10 @@ And links are also green:
 #+begin_src css
 a:link {
   text-decoration: none;
-  font-family: sans-serif;
   color: var(--hl1);
 }
 a:visited {
   text-decoration:none;
-  font-family:sans-serif;
   color: var(--hl1);
 }
 #+end_src
@@ -223,7 +218,7 @@ a:visited {
 Let's extend code blocks to the full width of the body, and give them some nice colours:
 #+begin_src css
 pre {
-  width: calc(100% + 1rem);
+  width: 100%;
   margin: 0 auto;
   margin-left: -1rem;
   overflow: auto;
@@ -233,11 +228,13 @@ pre {
 }
 #+end_src
 
-This does most of the job, but there's no right padding on the code content. This is a [[https://www.brunildo.org/test/overscrollback.html][general "feature"]] with scrolling overflow, and we can fix it by manually adding a margin to the child elements:
+This does most of the job, but on Firefox there's no right padding on the code content. This is due to scrolling overflow being [[https://www.brunildo.org/test/overscrollback.html][poorly specified]] in CSS, and we can fix it by manually adding a margin to the child elements on Firefox browsers:
 #+begin_src css
-pre > code {
-  margin-right: 1rem;
-  display: inline-block;
+@-moz-document url-prefix() {
+  pre > code {
+    margin-right: 1rem;
+    display: inline-block;
+  }
 }
 #+end_src
 
