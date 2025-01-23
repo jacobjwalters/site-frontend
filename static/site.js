@@ -173,4 +173,5 @@ function showSettings() {
 function hideSettings() {
   settings = document.getElementById("cookie_settings")
   settings.classList.toggle("fadeOut")
+  settings.style.removeProperty("visibility")
 }
