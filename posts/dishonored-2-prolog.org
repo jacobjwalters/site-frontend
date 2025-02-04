@@ -192,6 +192,8 @@ diner(finch,green,beer,dunwall,ring)
 Two answers? I feel I must be missing a clue in the text, but I've scoured it and can't find where it may be. A few other people have had the same idea as me to use Prolog to solve this puzzle, and some of their solutions also produce two answers. I wonder if this is an issue with the constraint randomisation or if there's a subtlety in the wording that multiple people have missed.
 
 * Conclusion
+You can find the complete file in a SWI-Prolog session [[https://swish.swi-prolog.org/p/Dishonored%202%20Jindosh%20Puzzle.pl][here]].
+
 Once you've put in the solution to the puzzle into the lock, the door opens, and if you go through it, the level ends. You encounter the door at the beginning of the level, and you're supposed to go through a whole side quest dealing with a gang war to get the door open, but I find it very funny that you can skip the whole thing if you know a bit of predicate logic.
 
 [[../static/images/dishonored-2-prolog/d2winscreen.png]]
