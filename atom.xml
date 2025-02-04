@@ -10,8 +10,164 @@
         <email>blog@this.domain</email>
         
     </author>
-    <updated>2024-05-11</updated>
+    <updated>2025-02-04T00:00:00Z</updated>
     <entry>
+    <title>Cheating in Dishonored 2 using Prolog</title>
+    <link href="https://jacobwalte.rs/content/posts/dishonored-2-prolog.html" />
+    <id>https://jacobwalte.rs/content/posts/dishonored-2-prolog.html</id>
+    <published>2025-02-04</published>
+    <updated>2025-02-04T00:00:00Z</updated>
+    <summary type="html"><![CDATA[Solving the Jindosh Riddle through constraint programming and a Prolog interpreter.]]></summary>
+    <content><div class="h-entry">
+    <div class="header">
+        <p>Posted on <a class="dt-published u-url" href="/posts/dishonored-2-prolog.html">February  4, 2025</a> by <a class="p-author" rel="author" href="https://jacobwalte.rs">Jacob Walters</a>.</p>
+
+        <p class="p-summary">Solving the Jindosh Riddle through constraint programming and a Prolog interpreter.</p>
+
+        
+    </div>
+    <hr>
+    <div class="e-content">
+        <p>There’s a level in the excellent first person stealth game Dishonored 2, where for various reasons, you need to break into the mansion of a certain Aramis Stilton. But this mansion is protected by a door, and this door is protected by a lock devised by the great inventor Kirin Jindosh.</p>
+<p>The lock is no ordinary lock. There isn’t a keyhole; instead it’s effectively a combination lock.</p>
+<p><img src="../static/images/dishonored-2-prolog/d2lock.png" /></p>
+<p>There’s also an accompanying riddle, which gives clues to the combination:</p>
+<p><img src="../static/images/dishonored-2-prolog/d2puzzle.png" /></p>
+<p>The lock proves too complicated for lockpickers living in the game’s world; unfortunately, Jindosh didn’t account for assassins that have access to a Prolog interpreter.</p>
+<h2 id="the-setup">The Setup</h2>
+<p>The puzzle is effectively a <a href="https://en.wikipedia.org/wiki/Zebra_Puzzle">zebra puzzle</a>; a logic puzzle where you’re given a set of facts, a set of constraints, and you’re supposed to unify to find a solution to the constraints.</p>
+<p>In our case, there are five diners at the dinner party, and five properties that we care about for each diner: their name; the colour of their clothes; what they’re drinking; where they’re from; and what heirloom they’ve brought.</p>
+<p>Additionally, we care about the order in which they’re sitting; we can model this as a list with exactly five elements. Prolog comes with syntactic sugar for lists, but in this case it’s a little easier to roll our own since we want lists of exactly 5 elements:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode prolog"><code class="sourceCode prolog"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">% exists(A, Xs) states that A is an element of Xs</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>exists(<span class="dt">A</span><span class="kw">,</span> list(<span class="dt">A</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span>))<span class="kw">.</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>exists(<span class="dt">A</span><span class="kw">,</span> list(<span class="dt">_</span><span class="kw">,</span> <span class="dt">A</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span>))<span class="kw">.</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>exists(<span class="dt">A</span><span class="kw">,</span> list(<span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">A</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span>))<span class="kw">.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>exists(<span class="dt">A</span><span class="kw">,</span> list(<span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">A</span><span class="kw">,</span> <span class="dt">_</span>))<span class="kw">.</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>exists(<span class="dt">A</span><span class="kw">,</span> list(<span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">A</span>))<span class="kw">.</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">% leftOf(L, R, Xs) states that L and R are elements of Xs, and L appears directly to the left of R.</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>leftOf(<span class="dt">L</span><span class="kw">,</span> <span class="dt">R</span><span class="kw">,</span> list(<span class="dt">L</span><span class="kw">,</span> <span class="dt">R</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span>))<span class="kw">.</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>leftOf(<span class="dt">L</span><span class="kw">,</span> <span class="dt">R</span><span class="kw">,</span> list(<span class="dt">_</span><span class="kw">,</span> <span class="dt">L</span><span class="kw">,</span> <span class="dt">R</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span>))<span class="kw">.</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>leftOf(<span class="dt">L</span><span class="kw">,</span> <span class="dt">R</span><span class="kw">,</span> list(<span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">L</span><span class="kw">,</span> <span class="dt">R</span><span class="kw">,</span> <span class="dt">_</span>))<span class="kw">.</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>leftOf(<span class="dt">L</span><span class="kw">,</span> <span class="dt">R</span><span class="kw">,</span> list(<span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">L</span><span class="kw">,</span> <span class="dt">R</span>))<span class="kw">.</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">% first(A, Xs) states that A is the first element of Xs</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>first(<span class="dt">A</span><span class="kw">,</span>  list(<span class="dt">A</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span>))<span class="kw">.</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">% second(A, Xs) states that A is the second element of Xs</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>second(<span class="dt">A</span><span class="kw">,</span> list(<span class="dt">_</span><span class="kw">,</span> <span class="dt">A</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span>))<span class="kw">.</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">% middle(A, Xs) states that A is the third (middle) element of Xs</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>middle(<span class="dt">A</span><span class="kw">,</span> list(<span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">A</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span>))<span class="kw">.</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">% If A is next to B, then either A is to the left of B, or B is to the left of A.</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>nextTo(<span class="dt">A</span><span class="kw">,</span> <span class="dt">B</span><span class="kw">,</span> <span class="dt">Xs</span>) <span class="kw">:-</span> leftOf(<span class="dt">A</span><span class="kw">,</span> <span class="dt">B</span><span class="kw">,</span> <span class="dt">Xs</span>)<span class="kw">.</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>nextTo(<span class="dt">A</span><span class="kw">,</span> <span class="dt">B</span><span class="kw">,</span> <span class="dt">Xs</span>) <span class="kw">:-</span> leftOf(<span class="dt">B</span><span class="kw">,</span> <span class="dt">A</span><span class="kw">,</span> <span class="dt">Xs</span>)<span class="kw">.</span></span></code></pre></div>
+<p>The above prediates are enough to encode the ordering constraints given in the puzzle. I’m also going to declare now that my prolog solution is in no way minimal!</p>
+<h2 id="the-puzzle">The Puzzle</h2>
+<p>We’ll define the puzzle as a predicate called, fittingly, <code class="verbatim">puzzle</code>. The code for this will look as follows:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode prolog"><code class="sourceCode prolog"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>puzzle(<span class="dt">Diners</span>) <span class="kw">:-</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  constraint1<span class="kw">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  constraint2<span class="kw">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  ...</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  constraintN<span class="dv">-1</span><span class="kw">,</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  constraintN<span class="kw">.</span></span></code></pre></div>
+<p>Note that this predicate is dependent on a metavariable called <code class="verbatim">Diners</code>. This will be the list of diners and their properties, and solving for <code class="verbatim">puzzle(Diners)</code> will give us our solution.</p>
+<p>We’ll also need a consistent way to represent a diner. Since the position is encoded in the list, we only need to store the other five properties:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode prolog"><code class="sourceCode prolog"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">% Name, Colour, Drink, Town, Heirloom</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>diner(winslow<span class="kw">,</span> white<span class="kw">,</span> whiskey<span class="kw">,</span> dunwall<span class="kw">,</span> warMedal)</span></code></pre></div>
+<p>The exact constraints of the puzzle appear to be randomised on each playthrough, presumably to stop people from just sharing the solution online.</p>
+<p>Let’s walk through the puzzle description from my playthrough piece by piece.</p>
+<blockquote>
+<p>At the dinner party were Lady Winslow, Doctor Marcolla, Countess Contee, Madam Natsiou, and Baroness Finch.</p>
+</blockquote>
+<p>This sentence simply states that there are five diners, and gives their names. We can translate this into prolog as follows:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode prolog"><code class="sourceCode prolog"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>exists(diner(winslow<span class="kw">,</span>  <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span>)<span class="kw">,</span> <span class="dt">Diners</span>)<span class="kw">,</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>exists(diner(marcolla<span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span>)<span class="kw">,</span> <span class="dt">Diners</span>)<span class="kw">,</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>exists(diner(contee<span class="kw">,</span>   <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span>)<span class="kw">,</span> <span class="dt">Diners</span>)<span class="kw">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>exists(diner(natsiou<span class="kw">,</span>  <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span>)<span class="kw">,</span> <span class="dt">Diners</span>)<span class="kw">,</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>exists(diner(finch<span class="kw">,</span>    <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span>)<span class="kw">,</span> <span class="dt">Diners</span>)<span class="kw">,</span></span></code></pre></div>
+<p>The underscores represent metavariables in the statement that we need to fill in via unification.</p>
+<p>Next, we get the following paragraph:</p>
+<blockquote>
+<p>The women sat in a row. They all wore different colors and Lady Winslow wore a jaunty blue hat. Madam Natsiou was at the far left, next to the guest wearing a purple jacket. The lady in red sat left of someone in green. I remember that red outfit because the woman spilled her whiskey all over it. The traveler from Karnaca was dressed entirely in white. When one of the dinner guests bragged about her Snuff Tin, the woman next to her said they were finer in Karnaca, where she lived.</p>
+</blockquote>
+<p>Here’s the prolog version:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode prolog"><code class="sourceCode prolog"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">% Lady Winslow wore a jaunty blue hat.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>exists(diner(winslow<span class="kw">,</span> blue<span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span>)<span class="kw">,</span> <span class="dt">Diners</span>)<span class="kw">,</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">% Madam Natsiou was at the far left,</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>first(diner(natsiou<span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span>)<span class="kw">,</span> <span class="dt">Diners</span>)<span class="kw">,</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">% next to the guest wearing a purple jacket.</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>second(diner(<span class="dt">_</span><span class="kw">,</span> purple<span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span>)<span class="kw">,</span> <span class="dt">Diners</span>)<span class="kw">,</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">% The lady in red sat left of someone in green.</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>leftOf(diner(<span class="dt">_</span><span class="kw">,</span> red<span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span>)<span class="kw">,</span> diner(<span class="dt">_</span><span class="kw">,</span> green<span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span>)<span class="kw">,</span> <span class="dt">Diners</span>)<span class="kw">,</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">% I remember that red outfit because the woman spilled her whiskey all over it.</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>exists(diner(<span class="dt">_</span><span class="kw">,</span> red<span class="kw">,</span> whiskey<span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span>)<span class="kw">,</span> <span class="dt">Diners</span>)<span class="kw">,</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">% The traveler from Karnaca was dressed entirely in white.</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>exists(diner(<span class="dt">_</span><span class="kw">,</span> white<span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> karnaca<span class="kw">,</span> <span class="dt">_</span>)<span class="kw">,</span> <span class="dt">Diners</span>)<span class="kw">,</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">% When one of the dinner guests bragged about her Snuff Tin, the woman next to her said they were finer in Karnaca, where she lived.</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>nextTo(diner(<span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> snuffTin)<span class="kw">,</span> diner(<span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> karnaca<span class="kw">,</span> <span class="dt">_</span>)<span class="kw">,</span> <span class="dt">Diners</span>)<span class="kw">,</span></span></code></pre></div>
+<p>The next paragraph says:</p>
+<blockquote>
+<p>So Baroness Finch showed off a prized Ring, at which the lady from Baleton scoffed, saying it was no match for her War Medal. Someone else carried a valuable Bird Pendant and when she saw it, the visitor from Fraeport next to her almost spilled her neighbor’s wine. Doctor Marcolla raised her rum in toast. The lady from Dunwall, full of beer, jumped up onto the table, falling onto the guest in the center seat, spilling the poor woman’s absinthe. Then Countess Contee captivated them all with a story about her wild youth in Dabokva.</p>
+</blockquote>
+<p>In Prolog:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode prolog"><code class="sourceCode prolog"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">% So Baroness Finch showed off a prized Ring,</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>exists(diner(finch<span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> ring)<span class="kw">,</span> <span class="dt">Diners</span>)<span class="kw">,</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">% at which the lady from Baleton scoffed, saying it was no match for her War Medal.</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>exists(diner(<span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> baleton<span class="kw">,</span> warMedal)<span class="kw">,</span> <span class="dt">Diners</span>)<span class="kw">,</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">% Someone else carried a valuable Bird Pendant</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>exists(diner(<span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> birdPendant)<span class="kw">,</span> <span class="dt">Diners</span>)<span class="kw">,</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">% and when she saw it, the visitor from Fraeport next to her almost spilled her neighbor's wine.</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>nextTo(diner(<span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> fraeport<span class="kw">,</span> <span class="dt">_</span>)<span class="kw">,</span> diner(<span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> wine<span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span>)<span class="kw">,</span> <span class="dt">Diners</span>)<span class="kw">,</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">% Doctor Marcolla raised her rum in toast.</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>exists(diner(marcolla<span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> rum<span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span>)<span class="kw">,</span> <span class="dt">Diners</span>)<span class="kw">,</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">% The lady from Dunwall, full of beer,</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>exists(diner(<span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> beer<span class="kw">,</span> dunwall<span class="kw">,</span> <span class="dt">_</span>)<span class="kw">,</span> <span class="dt">Diners</span>)<span class="kw">,</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">% jumped up onto the table, falling onto the guest in the center seat, spilling the poor woman's absinthe.</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>not(middle(diner(<span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> dunwall<span class="kw">,</span> <span class="dt">_</span>)<span class="kw">,</span> <span class="dt">Diners</span>))<span class="kw">,</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>middle(diner(<span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> absinthe<span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span>)<span class="kw">,</span> <span class="dt">Diners</span>)<span class="kw">,</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">% Then Countess Contee captivated them all with a story about her wild youth in Dabokva.</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>exists(diner(contee<span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> dabovka<span class="kw">,</span> <span class="dt">_</span>)<span class="kw">,</span> <span class="dt">Diners</span>)<span class="kw">,</span></span></code></pre></div>
+<p>Finally, we have a sentence that simply asserts the existence of four other heirlooms besides the ring.</p>
+<blockquote>
+<p>In the morning, there were four heirlooms under the table: the Snuff Tin, Diamond, the War Medal, and the Bird Pendant.</p>
+</blockquote>
+<p>Technically, the only one we haven’t seen yet is the diamond, but we’ll encode them all for completeness.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode prolog"><code class="sourceCode prolog"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>exists(diner(<span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> snuffTin)<span class="kw">,</span> <span class="dt">Diners</span>)<span class="kw">,</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>exists(diner(<span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> diamond)<span class="kw">,</span> <span class="dt">Diners</span>)<span class="kw">,</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>exists(diner(<span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> warMedal)<span class="kw">,</span> <span class="dt">Diners</span>)<span class="kw">,</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>exists(diner(<span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> <span class="dt">_</span><span class="kw">,</span> birdPendant)<span class="kw">,</span> <span class="dt">Diners</span>)<span class="kw">.</span></span></code></pre></div>
+<p>With that, we’re done, there’s only one more sentence to deal with:</p>
+<blockquote>
+<p>But who owned each?</p>
+</blockquote>
+<p>We can evaluate the following:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode prolog"><code class="sourceCode prolog"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>puzzle(<span class="dt">Diners</span>)</span></code></pre></div>
+<p>Which spits out this:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode prolog"><code class="sourceCode prolog"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>list(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>diner(natsiou<span class="kw">,</span>white<span class="kw">,</span>wine<span class="kw">,</span>karnaca<span class="kw">,</span>birdPendant)<span class="kw">,</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>diner(marcolla<span class="kw">,</span>purple<span class="kw">,</span>rum<span class="kw">,</span>fraeport<span class="kw">,</span>snuffTin)<span class="kw">,</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>diner(winslow<span class="kw">,</span>blue<span class="kw">,</span>absinthe<span class="kw">,</span>baleton<span class="kw">,</span>warMedal)<span class="kw">,</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>diner(contee<span class="kw">,</span>red<span class="kw">,</span>whiskey<span class="kw">,</span>dabovka<span class="kw">,</span>diamond)<span class="kw">,</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>diner(finch<span class="kw">,</span>green<span class="kw">,</span>beer<span class="kw">,</span>dunwall<span class="kw">,</span>ring)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>list(</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>diner(natsiou<span class="kw">,</span>white<span class="kw">,</span>wine<span class="kw">,</span>karnaca<span class="kw">,</span>diamond)<span class="kw">,</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>diner(marcolla<span class="kw">,</span>purple<span class="kw">,</span>rum<span class="kw">,</span>fraeport<span class="kw">,</span>snuffTin)<span class="kw">,</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>diner(winslow<span class="kw">,</span>blue<span class="kw">,</span>absinthe<span class="kw">,</span>baleton<span class="kw">,</span>warMedal)<span class="kw">,</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>diner(contee<span class="kw">,</span>red<span class="kw">,</span>whiskey<span class="kw">,</span>dabovka<span class="kw">,</span>birdPendant)<span class="kw">,</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>diner(finch<span class="kw">,</span>green<span class="kw">,</span>beer<span class="kw">,</span>dunwall<span class="kw">,</span>ring)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>Two answers? I feel I must be missing a clue in the text, but I’ve scoured it and can’t find where it may be. A few other people have had the same idea as me to use Prolog to solve this puzzle, and some of their solutions also produce two answers. I wonder if this is an issue with the constraint randomisation or if there’s a subtlety in the wording that multiple people have missed.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Once you’ve put in the solution to the puzzle into the lock, the door opens, and if you go through it, the level ends. You encounter the door at the beginning of the level, and you’re supposed to go through a whole side quest dealing with a gang war to get the door open, but I find it very funny that you can skip the whole thing if you know a bit of predicate logic.</p>
+<p><img src="../static/images/dishonored-2-prolog/d2winscreen.png" /></p>
+<p>Look! Zero kills and zero detections, and it only took three hours (after trying to unify by hand for a while). So convenient!</p>
+    </div>
+</div>
+</content>
+</entry>
+<entry>
     <title>Life Stack</title>
     <link href="https://jacobwalte.rs/content/posts/life-stack.html" />
     <id>https://jacobwalte.rs/content/posts/life-stack.html</id>
