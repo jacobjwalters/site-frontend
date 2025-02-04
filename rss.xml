@@ -10,7 +10,7 @@
         <lastBuildDate>Tue, 04 Feb 2025 00:00:00 UT</lastBuildDate>
         <item>
     <title>Cheating in Dishonored 2 using Prolog</title>
-    <link>https://jacobwalte.rs/content/posts/dishonored-2-prolog.html</link>
+    <link>https://jacobwalte.rs/posts/dishonored-2-prolog.html</link>
     <description><![CDATA[Solving the Jindosh Riddle through constraint programming and a Prolog interpreter.]]></description>
     <content><div class="h-entry">
     <div class="header">
@@ -161,13 +161,13 @@
 </div>
 </content>
     <pubDate>2025-02-04</pubDate>
-    <guid>https://jacobwalte.rs/content/posts/dishonored-2-prolog</guid>
+    <guid>https://jacobwalte.rs/posts/dishonored-2-prolog</guid>
     <dc:creator>Jacob Walters</dc:creator>
 </item>
 
 <item>
     <title>Life Stack</title>
-    <link>https://jacobwalte.rs/content/posts/life-stack.html</link>
+    <link>https://jacobwalte.rs/posts/life-stack.html</link>
     <description><![CDATA[A list of all of the important pieces of technology I use in my day-to-day life.]]></description>
     <content><div class="h-entry">
     <div class="header">
@@ -409,13 +409,13 @@ It’s partially analogue, but mainly digital, and allows uploading of custom sa
 </div>
 </content>
     <pubDate>2024-03-16</pubDate>
-    <guid>https://jacobwalte.rs/content/posts/life-stack</guid>
+    <guid>https://jacobwalte.rs/posts/life-stack</guid>
     <dc:creator>Jacob Walters</dc:creator>
 </item>
 
 <item>
     <title>Installing idris2-pack on NixOS</title>
-    <link>https://jacobwalte.rs/content/posts/nix-idris2-pack.html</link>
+    <link>https://jacobwalte.rs/posts/nix-idris2-pack.html</link>
     <description><![CDATA[A simple note-to-self on how to install Pack, the package manager for Idris 2, on NixOS]]></description>
     <content><div class="h-entry">
     <div class="header">
@@ -454,13 +454,13 @@ It’s partially analogue, but mainly digital, and allows uploading of custom sa
 </div>
 </content>
     <pubDate>2024-01-07</pubDate>
-    <guid>https://jacobwalte.rs/content/posts/nix-idris2-pack</guid>
+    <guid>https://jacobwalte.rs/posts/nix-idris2-pack</guid>
     <dc:creator>Jacob Walters</dc:creator>
 </item>
 
 <item>
     <title>Serving Websites with Org</title>
-    <link>https://jacobwalte.rs/content/posts/serving-websites-over-org.html</link>
+    <link>https://jacobwalte.rs/posts/serving-websites-over-org.html</link>
     <description><![CDATA[Emacs can browse remote Org files as if they were local. We can exploit this to serve websites entirely with Org mode!]]></description>
     <content><div class="h-entry">
     <div class="header">
@@ -528,13 +528,13 @@ redir @emacs-ua /index.org
 </div>
 </content>
     <pubDate>2023-05-17</pubDate>
-    <guid>https://jacobwalte.rs/content/posts/serving-websites-over-org</guid>
+    <guid>https://jacobwalte.rs/posts/serving-websites-over-org</guid>
     <dc:creator>Jacob Walters</dc:creator>
 </item>
 
 <item>
     <title>Making a website with Org mode, Hakyll, and NixOS</title>
-    <link>https://jacobwalte.rs/content/posts/website.html</link>
+    <link>https://jacobwalte.rs/posts/website.html</link>
     <description><![CDATA[The wild and wonderful journey of how I made this site work the way it does!]]></description>
     <content><div class="h-entry">
     <div class="header">
@@ -662,7 +662,7 @@ redir @emacs-ua /index.org
 </div>
 </content>
     <pubDate>2023-05-12</pubDate>
-    <guid>https://jacobwalte.rs/content/posts/website</guid>
+    <guid>https://jacobwalte.rs/posts/website</guid>
     <dc:creator>Jacob Walters</dc:creator>
 </item>
 
