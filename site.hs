@@ -206,7 +206,7 @@ main = hakyll $ do
         route idRoute
         compile $ do
             posts <- recentFirst =<< loadAll ("content/posts/*" .&&. hasVersion "html")
-            singlePages <- loadAll (fromList ["content/about.org", "content/contact.org", "content/links.org", "archive.html"] .&&. hasVersion "html")
+            singlePages <- loadAll (fromList ["about.org", "contact.org", "links.org", "archive.html"] .&&. hasVersion "html")
 
             let sitemapCtx =
                     constField "root" root <>
@@ -264,5 +264,8 @@ postCtx =
     rootCtx
 
 pathNoExt :: Context a
-pathNoExt = field "pathNoExt" $ pure . Prelude.takeWhile (/= '.') . toFilePath . itemIdentifier
+pathNoExt = field "pathNoExt" $ pure . dropContent . Prelude.takeWhile (/= '.') . toFilePath . itemIdentifier
+  where
+    dropContent ('c':'o':'n':'t':'e':'n':'t':'/':path) = path
+    dropContent path = path
 
