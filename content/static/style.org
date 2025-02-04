@@ -172,12 +172,13 @@ I don't want the skip-to-content button to be visible by default. (You can still
 }
 #+end_src
 
-Let's set images to fit within the borders:
+Let's set images to be centered within the borders if the width isn't big enough, and otherwise take the full width of the borders, ignoring the padding:
 #+begin_src css
 img {
-  max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: calc(100% + 2rem);
   display: block;
 }
 #+end_src
