@@ -205,8 +205,8 @@ main = hakyll $ do
     create ["sitemap.xml"] $ do
         route idRoute
         compile $ do
-            posts <- recentFirst =<< loadAll ("content/posts/*" .&&. hasNoVersion)
-            singlePages <- loadAll (fromList ["content/about.org", "content/contact.org", "content/links.org", "archive.html"] .&&. hasNoVersion)
+            posts <- recentFirst =<< loadAll ("content/posts/*" .&&. hasVersion "html")
+            singlePages <- loadAll (fromList ["content/about.org", "content/contact.org", "content/links.org", "archive.html"] .&&. hasVersion "html")
 
             let sitemapCtx =
                     constField "root" root <>
