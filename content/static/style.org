@@ -241,6 +241,15 @@ This does most of the job, but on Firefox there's no right padding on the code c
 
 At some point I'll get around to adding syntax highlighting. This will get put here.
 
+* Lists
+For the [[https://jacobwalte.rs/pl-glossary][PL glossary]], I use description lists. By default, their styling is pretty unclear, so I've added some spacing and changed the font family of terms to make them more distinguishable.
+#+begin_src css
+dt {
+  font-family: sans-serif;
+  margin-top: 1em;
+}
+#+end_src
+
 * Cookie Banner
 The cookie banner is a rounded bar at the bottom of the page, in inverted colours to make it (vaguely) stand out.
 #+begin_src css
