@@ -29,7 +29,7 @@ Here's a map of countries I've been to:
 (you can find the script that made this image [[https://github.com/jacobjwalters/countries][here]])
 
 ** About this Site
-You can read in detail about how this site is made in [[file:posts/2023-05-12-website.org][this post]], but the gist is: this site is generated from a set of Org files using [[https://jaspervdj.be/hakyll/][Hakyll]] (and [[https://pandoc.org/][Pandoc]]), and served to you via Github Pages.
+You can read in detail about how this site is made in [[file:posts/website.org][this post]], but the gist is: this site is generated from a set of Org files using [[https://jaspervdj.be/hakyll/][Hakyll]] (and [[https://pandoc.org/][Pandoc]]), and served to you via Github Pages.
 
 I've used literate programming to document the [[./static/style.org][CSS]] and [[./static/js.org][JS]] for this site. The actual =.css= and =.js= files are generated directly from the previously linked pages.
 
