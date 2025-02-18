@@ -57,11 +57,29 @@ A more efficient representation of function application with multiple arguments 
 The same thing as definitional equality. Judgemental equality holds for two things when they have exactly the same semantically (equal by definition).<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>
 </dd>
 </dl>
+<h4 id="contexts">Contexts</h4>
+<dl>
+<dt>(Capture-Avoiding) Substitution</dt>
+<dd>
+Given <span class="math inline"><em>Γ</em>, <em>x</em> : <em>A</em> ⊢ <em>b</em> : <em>B</em></span> and <span class="math inline"><em>Γ</em> ⊢ <em>a</em> : <em>A</em></span> then <span class="math inline"><em>Γ</em> ⊢ <em>b</em>[<em>a</em>/<em>x</em>] : <em>B</em></span>. Effectively, substitutions allow us to shorten a context. cf. weakening.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>
+</dd>
+<dt>Substitution Calculus</dt>
+<dd>
+While the usual substitution operator <span class="math inline">[<em>a</em>/<em>x</em>]</span> is defined on single terms, we can consider arbitrary compositions of substitutions and weakenings as morphisms between contexts. This presentation gives rise to a substitution calculus. We denote <span class="math inline"><em>ρ</em> : <em>Γ</em> → <em>Δ</em></span> as <span class="math inline"><em>Γ</em> ⊢ <em>ρ</em> : <em>Δ</em></span>, sending elements of <span class="math inline"><em>Δ</em></span> to <span class="math inline"><em>Γ</em></span>. Usually we drop variable names when working in the substitution calculus. <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>
+</dd>
+<dt>Weakening</dt>
+<dd>
+Given <span class="math inline"><em>Γ</em> ⊢ <em>b</em> : <em>B</em></span> and <span class="math inline"><em>Γ</em> ⊢ <em>A</em>type</span>, then <span class="math inline"><em>Γ</em>, <em>x</em> : <em>A</em> ⊢ <em>b</em> : <em>B</em></span>. Effectively, weakenings allow us to extend a context. cf. substition.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>
+</dd>
+</dl>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr />
 <ol>
 <li id="fn1"><p>Cervesato, I., &amp; Pfenning, F. (2003). A linear spine calculus. Journal of Logic and Computation, 13(5), 639-688.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p><a href="https://proofassistants.stackexchange.com/questions/284/what-is-the-difference-between-judgmental-equality-definitional-equality-and-e">https://proofassistants.stackexchange.com/questions/284/what-is-the-difference-between-judgmental-equality-definitional-equality-and-e</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a href="https://carloangiuli.com/courses/b619-sp24/notes.pdf">https://carloangiuli.com/courses/b619-sp24/notes.pdf</a>, p23; <span class="math inline">[<em>a</em>/<em>x</em>]</span> operator defined on p22<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><a href="https://carloangiuli.com/courses/b619-sp24/notes.pdf">https://carloangiuli.com/courses/b619-sp24/notes.pdf</a>, p28<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><a href="https://carloangiuli.com/courses/b619-sp24/notes.pdf">https://carloangiuli.com/courses/b619-sp24/notes.pdf</a>, p24<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
             </section>
