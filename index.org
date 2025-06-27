@@ -16,6 +16,8 @@ Below is a list of my recent blog posts. You can find the complete list in the [
 - [[file:https://jacobwalte.rs/posts/website.org][Making a website with Org mode, Hakyll, and NixOS]] - May 12, 2023 :: The wild and wonderful journey of how I made this site work the way it does!
 
 
+
+Additionally, you can find more of my writing on the [[https://typesig.pl][TypeSig website]]; in particular, I wrote the material for our [[https://typesig.pl/resources/lang-workshop][language implementation workshop]].
 * Links
 [[./links.org][Here's]] a collection of learning resources and other links that I've found useful.
 * How the Sausage is Made
