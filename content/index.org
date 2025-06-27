@@ -11,6 +11,8 @@ You're currently browsing over Org. [[https://jacobwalte.rs/][Open this link]] t
 * Posts
 Below is a list of my recent blog posts. You can find the complete list in the [[file:https://jacobwalte.rs/archive.org][archives]].
 $partial("templates/post-list.org")$
+
+Additionally, you can find more of my writing on the [[https://typesig.pl][TypeSig website]]; in particular, I wrote the material for our [[https://typesig.pl/resources/lang-workshop][language implementation workshop]].
 * Links
 [[./links.org][Here's]] a collection of learning resources and other links that I've found useful.
 * How the Sausage is Made
